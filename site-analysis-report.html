@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Microsoft Partner Site Analysis Report</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 15mm 20mm 15mm;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 10pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin: 0;
+    padding: 30px 40px;
+    background: #fff;
+  }
+  .cover {
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    text-align: center;
+  }
+  .cover h1 {
+    font-size: 28pt;
+    color: #0078d4;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .cover .subtitle {
+    font-size: 14pt;
+    color: #444;
+    margin-bottom: 30px;
+  }
+  .cover .meta {
+    font-size: 10pt;
+    color: #666;
+    margin-top: 40px;
+    line-height: 2;
+  }
+  .cover .meta strong { color: #333; }
+  .cover .logo-bar {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid #0078d4;
+    width: 60%;
+  }
+
+  h1 { font-size: 18pt; color: #0078d4; margin-top: 30px; margin-bottom: 10px; border-bottom: 2px solid #0078d4; padding-bottom: 6px; }
+  h2 { font-size: 14pt; color: #333; margin-top: 24px; margin-bottom: 8px; }
+  h3 { font-size: 11pt; color: #0078d4; margin-top: 18px; margin-bottom: 6px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 18px 0;
+    font-size: 9pt;
+  }
+  th {
+    background: #0078d4;
+    color: #fff;
+    font-weight: 600;
+    text-align: left;
+    padding: 7px 8px;
+    white-space: nowrap;
+  }
+  td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #e0e0e0;
+    vertical-align: top;
+  }
+  tr:nth-child(even) { background: #f7f9fc; }
+  tr:hover { background: #eef3fa; }
+
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 8pt;
+    font-weight: 600;
+    color: #fff;
+  }
+  .badge-low { background: #28a745; }
+  .badge-medium { background: #fd7e14; }
+  .badge-high { background: #dc3545; }
+  .badge-very-high { background: #6f42c1; }
+  .badge-critical { background: #1a1a1a; }
+  .badge-out-of-scope { background: #6c757d; }
+
+  .section-break { page-break-before: always; }
+
+  .callout {
+    background: #f0f6ff;
+    border-left: 4px solid #0078d4;
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-size: 9.5pt;
+  }
+  .callout-warn {
+    background: #fff8e1;
+    border-left: 4px solid #fd7e14;
+  }
+  .callout-danger {
+    background: #fef0f0;
+    border-left: 4px solid #dc3545;
+  }
+
+  .summary-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .summary-card {
+    background: #f7f9fc;
+    border: 1px solid #dde3ea;
+    border-top: 3px solid #0078d4;
+    padding: 14px;
+    text-align: center;
+  }
+  .summary-card .number {
+    font-size: 22pt;
+    font-weight: 700;
+    color: #0078d4;
+  }
+  .summary-card .label {
+    font-size: 8.5pt;
+    color: #666;
+    margin-top: 4px;
+  }
+
+  .toc { margin: 20px 0; }
+  .toc a { color: #0078d4; text-decoration: none; }
+  .toc li { margin: 6px 0; font-size: 10.5pt; }
+
+  code {
+    background: #f4f4f4;
+    padding: 1px 4px;
+    border-radius: 3px;
+    font-size: 8.5pt;
+    font-family: 'Consolas', monospace;
+  }
+
+  .footer-note {
+    margin-top: 30px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+    font-size: 8pt;
+    color: #999;
+    text-align: center;
+  }
+
+  .screenshot-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 10px 0;
+  }
+  .screenshot-item {
+    border: 1px solid #ddd;
+    padding: 6px;
+    text-align: center;
+    font-size: 8pt;
+    color: #666;
+    background: #fafafa;
+  }
+  .screenshot-item img {
+    max-width: 100%;
+    height: auto;
+    max-height: 220px;
+    object-fit: contain;
+  }
+  .screenshot-item .caption { margin-top: 4px; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <div class="logo-bar">
+    <div style="font-size: 12pt; color: #666; letter-spacing: 2px; text-transform: uppercase;">Site Analysis Report</div>
+  </div>
+  <h1>Microsoft Partner Network</h1>
+  <div class="subtitle">Comprehensive Site Analysis for Edge Delivery Services Migration</div>
+  <div style="font-size: 11pt; color: #555; margin-top: 10px;">https://partner.microsoft.com/en-US/</div>
+  <div class="meta">
+    <strong>Date:</strong> February 24, 2026<br>
+    <strong>Scope:</strong> Templates, Components, Integrations, Migration Estimates<br>
+    <strong>Platform:</strong> Current: Sitecore CMS &rarr; Target: Adobe Edge Delivery Services
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<h1>Table of Contents</h1>
+<ol class="toc">
+  <li><a href="#exec">Executive Summary</a></li>
+  <li><a href="#templates">Templates Inventory</a></li>
+  <li><a href="#blocks">Blocks / Components Catalog</a></li>
+  <li><a href="#pages">Page Counts by Template</a></li>
+  <li><a href="#integrations">Integrations Analysis</a></li>
+  <li><a href="#complex">Complex Use Cases &amp; Observations</a></li>
+  <li><a href="#estimates">Migration Estimates</a></li>
+  <li><a href="#screenshots">Screenshots Reference</a></li>
+</ol>
+
+<!-- EXECUTIVE SUMMARY -->
+<div class="section-break"></div>
+<h1 id="exec">Executive Summary</h1>
+
+<div class="summary-grid">
+  <div class="summary-card">
+    <div class="number">8</div>
+    <div class="label">Page Templates<br>(5 in-scope)</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">23</div>
+    <div class="label">Unique Blocks /<br>Components</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">~400</div>
+    <div class="label">Estimated Total<br>Pages (en-US)</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">12</div>
+    <div class="label">Third-Party<br>Integrations</div>
+  </div>
+</div>
+
+<div class="callout">
+  <strong>Key Finding:</strong> The site operates as two distinct applications &mdash; a <strong>marketing content site</strong> (Sitecore-based with <code>flex-*</code> components) and the <strong>Partner Center portal</strong> (different header, footer, navigation, and form system). The training section redirects to an external domain (skilling-hub.com). Migration scope should focus on the marketing content site only.
+</div>
+
+<p>The partner.microsoft.com site is built on <strong>Sitecore CMS</strong> with a rich integration ecosystem including Tealium tag management, Microsoft Clarity analytics, Sitecore CDP personalization, and Azure Application Insights monitoring. The marketing content site uses a modular component system with <code>flex-*</code> prefixed components and a Bootstrap-based grid layout.</p>
+
+<p>Of the ~400 in-scope pages, approximately <strong>350 are blog articles</strong> suitable for automated bulk import, while ~40 marketing/landing pages will require individual manual migration with custom block development.</p>
+
+<!-- 1. TEMPLATES INVENTORY -->
+<div class="section-break"></div>
+<h1 id="templates">1. Templates Inventory</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Template Name</th>
+      <th>Complexity</th>
+      <th>Description</th>
+      <th>Reference URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><strong>Homepage</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Rich marketing page with notification banner, hero with CTA, card grid, step-by-step feed, tabbed content switcher (dark theme), CTA banner, social/share bar.</td>
+      <td>partner.microsoft.com/en-US/</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>Marketing Landing Page</strong></td>
+      <td><span class="badge badge-medium">Med-High</span></td>
+      <td>Reusable template for partnership/program pages. Hero with image, body text, card sections, CTA callouts, social bar. Uses <code>flex-hero-v2</code>, <code>flex-card-container</code>, <code>feed-unit</code> components.</td>
+      <td>partnership, solutions/azure</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Comparison / Program Page</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Notification banner, intro section, image+text cards, interactive tabs with comparison tables, pricing cards, feature benefit cards, footnotes section.</td>
+      <td>partnership/compare-programs, partnership/marketplace</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>Blog Listing Page</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Featured hero article, secondary featured cards (2-up), tile/list view toggle, category filtering, search, sort dropdown, pagination (44+ pages), sidebar with recommended topics &amp; social links.</td>
+      <td>blog</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>Blog Article Detail</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Breadcrumbs, article hero with author/date metadata, rich text body with embedded media (YouTube iframes), related articles sidebar, "More from category" section, share/social widgets.</td>
+      <td>blog/article/*</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><strong>Support / Form Page</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Completely different UI framework (Partner Center). Different header/footer, multi-step form wizard, category dropdowns, topic shortcuts. <em>Recommended: Out of scope.</em></td>
+      <td>support/?stage=1</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><strong>Dashboard / Auth Portal</strong></td>
+      <td><span class="badge badge-very-high">Very High</span></td>
+      <td>Authentication-gated SPA portal. OpenID Connect login, Partner Center dashboard, account management. Entirely different application. <em>Recommended: Out of scope.</em></td>
+      <td>dashboard (requires login)</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><strong>External Training Hub</strong></td>
+      <td><span class="badge badge-out-of-scope">Out of Scope</span></td>
+      <td>Redirects to external domain (skilling-hub.com). Separate React/Vite SPA with different branding, auth, and infrastructure.</td>
+      <td>training &rarr; skilling-hub.com</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- 2. BLOCKS/COMPONENTS CATALOG -->
+<div class="section-break"></div>
+<h1 id="blocks">2. Blocks / Components Catalog</h1>
+
+<h2>2.1 Global Components (present on all marketing pages)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Block / Component</th>
+      <th>Complexity</th>
+      <th>Description</th>
+      <th>Screenshot</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><strong>Global Header / Navigation</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Microsoft logo, primary nav with 7 top-level items (Partnership, Explore, Connect, Blogs &amp; stories, Skilling, More), mega-menu dropdowns with icons/descriptions/grouped links, search, "Partner Center" link, "Sign in" link. Responsive hamburger menu on mobile.</td>
+      <td><code>block-header-nav.png</code></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>Notification Banner</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Dismissible alert bar with icon, heading, description text, and CTA link. Supports variants: green (success), blue (info). Close button (&times;) with cookie persistence. Component class: <code>flex-notification</code>.</td>
+      <td><code>block-notification-banner.png</code></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Social / Share Bar</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>"Follow Us" social media links (Facebook, Twitter, LinkedIn, YouTube), "Was this page helpful?" feedback widget (Yes/No), "Share" links. Blue background variant.</td>
+      <td><code>block-social-share.png</code></td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>Global Footer</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>4-column link grid (Get started, Grow With Us, Resources, Support), locale selector (50+ countries), privacy choices links, legal links (Contact, Privacy, Terms, Trademarks, Code of Conduct), copyright notice.</td>
+      <td><code>block-footer.png</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>2.2 Content Blocks</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Block / Component</th>
+      <th>Complexity</th>
+      <th>Description</th>
+      <th>Used In</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>5</td>
+      <td><strong>Hero (flex-hero-v2)</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Full-width hero with background image, H1 heading, description, primary CTA button, secondary link. Variants: standard (dark overlay), light text, blue background (<code>bg-blue-style</code>).</td>
+      <td>Homepage, Landing Pages</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><strong>Card Grid (flex-card-container)</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Multi-column card layout (2, 3, or 4 columns). Cards include: image, category badge (colored header), heading, description, CTA link. Variant: <code>flex-card-feature</code> with icon badges.</td>
+      <td>Homepage, Landing, Marketplace</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><strong>Steps / Feed (feed-unit)</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Numbered step-by-step layout with icon, heading, and description per step. Typically 3 steps. Used for onboarding/process flows.</td>
+      <td>Homepage, Landing</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><strong>Tabbed Content Switcher</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Left sidebar tab navigation + right content panel (<code>flex-content-switcher</code> / <code>flex-tabs</code>). Supports dark-blue theme. Panels can contain: text, images, cards, comparison tables, pricing info.</td>
+      <td>Homepage, Compare, Marketplace</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td><strong>CTA Banner</strong></td>
+      <td><span class="badge badge-low">Low-Med</span></td>
+      <td>Full-width colored background (blue/dark) with heading, description, and CTA button. A variant of the hero component used mid-page as a call-to-action section.</td>
+      <td>Homepage, Solutions, Compare</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td><strong>Image + Text (side-by-side)</strong></td>
+      <td><span class="badge badge-low">Low-Med</span></td>
+      <td>Two-column layout: image on one side, heading + text + CTA on the other. Supports image-left and image-right variants.</td>
+      <td>Compare, Marketplace, Landing</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td><strong>Icon Feature Cards</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>3-column card layout with icon/illustration at top, heading, description text, CTA link. Used for feature highlights without images.</td>
+      <td>Marketplace, Compare, Solutions</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td><strong>Success Story Cards</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>3-column grid with image thumbnail, heading, description, CTA link. Image has overlay/hover state. Used for testimonials and case studies.</td>
+      <td>Marketplace</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td><strong>Resource Cards (bordered)</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>4-column card grid with blue bottom border, heading, description, CTA link. Clean/minimal design for linking to external resources.</td>
+      <td>Marketplace, Solutions</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td><strong>Pricing / Comparison Cards</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Side-by-side card layout with heading, feature lists, pricing info, CTA button. Used inside tab panels. Includes footnote superscripts and legal text.</td>
+      <td>Compare Programs</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td><strong>Blog Featured Hero</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Large featured article card with image, category tag, heading, excerpt, read time, CTA. Used at top of blog listing page.</td>
+      <td>Blog Listing</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td><strong>Blog Tile / Card</strong></td>
+      <td><span class="badge badge-low">Low-Med</span></td>
+      <td>Standard blog listing card with thumbnail image, category tag, title, excerpt, date, read time. Supports tile and list view modes.</td>
+      <td>Blog Listing</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td><strong>Blog Sidebar</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Sidebar with "Recommended Topics" links and "Follow Us" social links. Sticky-on-scroll behavior.</td>
+      <td>Blog Listing</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td><strong>Article Body (rich text)</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Rich text content area supporting: headings, paragraphs, inline images, lists, bold/italic, blockquotes, embedded YouTube iframes, and inline links.</td>
+      <td>Blog Article</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td><strong>Related Articles</strong></td>
+      <td><span class="badge badge-low">Low-Med</span></td>
+      <td>"More from [category]" section with 3-column article card grid at bottom of article pages.</td>
+      <td>Blog Article</td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td><strong>Breadcrumbs</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Text breadcrumb trail for navigation hierarchy. Used on blog articles and deeper subpages.</td>
+      <td>Blog Article</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>2.3 Partner Center Components (different UI framework)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Block / Component</th>
+      <th>Complexity</th>
+      <th>Description</th>
+      <th>Used In</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>21</td>
+      <td><strong>Partner Center Header</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Completely different header from marketing site. Different logo treatment, navigation structure, user menu.</td>
+      <td>Support, Dashboard</td>
+    </tr>
+    <tr>
+      <td>22</td>
+      <td><strong>Multi-Step Form Wizard</strong></td>
+      <td><span class="badge badge-very-high">Very High</span></td>
+      <td>Step indicator, category dropdowns, topic shortcuts, form validation, conditional fields. Used for support ticket creation.</td>
+      <td>Support</td>
+    </tr>
+    <tr>
+      <td>23</td>
+      <td><strong>Partner Center Footer</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Different footer layout from marketing site. Reduced link set, different styling.</td>
+      <td>Support, Dashboard</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- 3. PAGE COUNTS -->
+<div class="section-break"></div>
+<h1 id="pages">3. Page Counts by Template</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Template</th>
+      <th style="text-align:right">Est. Page Count</th>
+      <th style="text-align:center">Auto-Migratable</th>
+      <th style="text-align:center">Manual Migration</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Homepage</strong></td>
+      <td style="text-align:right">1</td>
+      <td style="text-align:center">No</td>
+      <td style="text-align:center">1</td>
+      <td>Unique layout, requires custom block development</td>
+    </tr>
+    <tr>
+      <td><strong>Marketing Landing Pages</strong></td>
+      <td style="text-align:right">~25&ndash;35</td>
+      <td style="text-align:center">Partial</td>
+      <td style="text-align:center">~20</td>
+      <td>Partnership, Solutions (Azure, M365, Security, etc.), Go-to-market, ISV, CSP, New commerce</td>
+    </tr>
+    <tr>
+      <td><strong>Comparison / Program Pages</strong></td>
+      <td style="text-align:right">~8&ndash;10</td>
+      <td style="text-align:center">Partial</td>
+      <td style="text-align:center">~8</td>
+      <td>Compare programs, Marketplace, Solutions Partner. Tabs + comparison tables need manual work.</td>
+    </tr>
+    <tr>
+      <td><strong>Blog Listing</strong></td>
+      <td style="text-align:right">1 (+44 paginated)</td>
+      <td style="text-align:center">No</td>
+      <td style="text-align:center">1</td>
+      <td>Single listing template; pagination is dynamic/JS-driven</td>
+    </tr>
+    <tr>
+      <td><strong>Blog Articles</strong></td>
+      <td style="text-align:right">~350+</td>
+      <td style="text-align:center">Yes (bulk)</td>
+      <td style="text-align:center">~10 for QA</td>
+      <td>High-volume, consistent structure. ~44 pages &times; 8 articles. Bulk importable.</td>
+    </tr>
+    <tr style="background:#fff3e0">
+      <td><strong>Support / Form Pages</strong></td>
+      <td style="text-align:right">~5&ndash;8</td>
+      <td style="text-align:center">No</td>
+      <td style="text-align:center">Out of scope</td>
+      <td>Different framework (Partner Center). Recommend exclusion or rebuild.</td>
+    </tr>
+    <tr style="background:#fff3e0">
+      <td><strong>Dashboard / Portal</strong></td>
+      <td style="text-align:right">~50+</td>
+      <td style="text-align:center">No</td>
+      <td style="text-align:center">Out of scope</td>
+      <td>Authenticated SPA. Not suitable for EDS migration.</td>
+    </tr>
+    <tr style="background:#fff3e0">
+      <td><strong>Training Hub</strong></td>
+      <td style="text-align:right">N/A</td>
+      <td style="text-align:center">N/A</td>
+      <td style="text-align:center">N/A</td>
+      <td>External domain (skilling-hub.com). Out of scope.</td>
+    </tr>
+    <tr style="background:#e8f5e9; font-weight:600">
+      <td>TOTAL (in-scope)</td>
+      <td style="text-align:right">~390&ndash;405</td>
+      <td style="text-align:center">~350</td>
+      <td style="text-align:center">~40</td>
+      <td>Blog articles are bulk-importable; marketing pages need individual attention</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout">
+  <strong>Locale Multiplier:</strong> The site supports 50+ country/language variants via a locale selector. The page counts above reflect <strong>en-US only</strong>. Full internationalization would multiply the in-scope count significantly.
+</div>
+
+<!-- 4. INTEGRATIONS ANALYSIS -->
+<div class="section-break"></div>
+<h1 id="integrations">4. Integrations Analysis</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Integration</th>
+      <th>Type</th>
+      <th>Complexity</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><strong>Tealium Tag Manager</strong></td>
+      <td>Tag Management</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Primary tag management system (<code>tags.tiqcdn.com/utag/msft/mpartner/prod/utag.js</code>). Orchestrates all analytics tags. Includes Tealium Visitor Service for cross-domain tracking.</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>Microsoft Clarity</strong></td>
+      <td>Analytics / Heatmaps</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Session recording and heatmap analytics (<code>scripts.clarity.ms</code>, tag <code>bcxrxdw8j9</code>).</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Sitecore CDP / Engage</strong></td>
+      <td>Personalization</td>
+      <td><span class="badge badge-very-high">Very High</span></td>
+      <td>Real-time personalization engine with A/B testing and targeted content delivery via Sitecore Web Flow libs. Deep CMS integration that drives content variants.</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>Azure Application Insights</strong></td>
+      <td>APM / Monitoring</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Application performance monitoring (<code>az416426.vo.msecnd.net</code> + <code>js.monitor.azure.com</code>). Tracks page load times, errors, custom events.</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>Microsoft Cookie Consent</strong></td>
+      <td>Privacy / Compliance</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>GDPR/CCPA cookie consent banner (<code>wcpstatic.microsoft.com/mscc/lib/v2/wcp-consent.js</code>). Controls other script loading based on consent.</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><strong>OpenID Connect Auth</strong></td>
+      <td>Authentication</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Authentication via <code>/_login?authType=OpenIdConnect</code>. Redirects to Microsoft identity platform. Gates Partner Center, Dashboard, and resources.</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><strong>Chatbot</strong></td>
+      <td>Customer Support</td>
+      <td><span class="badge badge-medium">Med-High</span></td>
+      <td>Custom chat widget (<code>chatBot.js</code>). Likely Azure Bot Service or Power Virtual Agents integration.</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><strong>Microsoft Survey Broker</strong></td>
+      <td>Feedback / Survey</td>
+      <td><span class="badge badge-low">Low-Med</span></td>
+      <td>Intercept survey/feedback system (<code>microsoft.com/library/svy/partner/broker.js</code>).</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td><strong>Medius Video</strong></td>
+      <td>Video / Media</td>
+      <td><span class="badge badge-low">Low-Med</span></td>
+      <td>Video conversion/player library (<code>medius-video-convert.js</code>). Handles embedded video content.</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td><strong>YouTube Embeds</strong></td>
+      <td>Video / Media</td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Standard YouTube iframe embeds in blog articles and marketing pages.</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td><strong>Sitecore CMS</strong></td>
+      <td>Content Management</td>
+      <td><span class="badge badge-very-high">Very High</span></td>
+      <td>Current CMS platform. Evidenced by CDP.js, <code>/mssc/</code> asset paths, Sitecore CDP integration. All content structured in Sitecore content trees.</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td><strong>Bootstrap Grid</strong></td>
+      <td>CSS Framework</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Bootstrap-based responsive grid system (<code>col-md-x-8</code>, <code>col-sm-x-12</code>). Layout dependency across all marketing pages.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- 5. COMPLEX USE CASES -->
+<div class="section-break"></div>
+<h1 id="complex">5. Complex Use Cases &amp; Observations</h1>
+
+<h2>5.1 Critical Observations</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Issue</th>
+      <th>Severity</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><strong>Two Distinct UI Frameworks</strong></td>
+      <td><span class="badge badge-critical">Critical</span></td>
+      <td>The site runs two completely different applications: (a) Marketing/content pages (Sitecore with <code>flex-*</code> components) and (b) Partner Center portal (different header, footer, nav, form system). The Support page visually and structurally differs from all marketing pages. These cannot share Edge Delivery blocks.</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>Sitecore CDP Personalization</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>The site uses Sitecore CDP for real-time personalization (A/B tests, targeted content, web flows). Migrating to Edge Delivery Services means losing this personalization layer unless replaced with an equivalent solution (e.g., Adobe Target, AEM Experimentation).</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Authentication Gate</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Multiple sections require OpenID Connect authentication (Dashboard, resources, support). EDS pages are static/CDN-served. Authentication flows need a separate solution (redirect to external auth portal, client-side auth SDK).</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>Blog Pagination &amp; Dynamic Features</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Blog listing has 44+ pages with: client-side search, sort dropdown, tile/list view toggle, category filtering. All currently JavaScript-driven. Requires custom EDS block development or external content API integration.</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>50+ Locale Variants</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>The site supports 50+ country/language combinations. Each locale variant may have different content, not just translations. This multiplies page count significantly.</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><strong>Training Redirects Externally</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td><code>/training</code> redirects to <code>skilling-hub.com</code>, a completely separate React/Vite SPA. Out of scope for migration, but navigation links must be preserved.</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><strong>Complex Tab Components</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>The <code>flex-content-switcher</code> / <code>flex-tabs</code> component supports multiple content types within panels (text, cards, comparison tables, pricing), dark themes, and interactive state. Requires custom EDS block.</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><strong>Mega-Menu Navigation</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Primary navigation has 7 top-level items with multi-level mega-menu dropdowns. Significant content in dropdowns (icons, descriptions, grouped links). Requires custom EDS nav block.</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td><strong>Notification Banner System</strong></td>
+      <td><span class="badge badge-low">Low-Med</span></td>
+      <td>Dismissible notification banners with close button, cookie persistence. Appears on some pages, not others.</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td><strong>Embedded PDF / Asset Links</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Multiple pages link to PDFs and downloadable assets (<code>assetsprod.microsoft.com</code>). External asset references need to be preserved or migrated.</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td><strong>Footnote System</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Compare Programs page uses superscript footnotes with numbered references and legal disclaimers at page bottom. Needs proper semantic markup in EDS.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>5.2 Out-of-Scope Areas (Recommended Exclusions)</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Area</th>
+      <th>Reason for Exclusion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Partner Center Dashboard</strong></td>
+      <td>Authenticated SPA, completely different application architecture</td>
+    </tr>
+    <tr>
+      <td><strong>Support Ticket System</strong></td>
+      <td>Different UI framework, form-heavy, requires dedicated backend</td>
+    </tr>
+    <tr>
+      <td><strong>Training Hub (skilling-hub.com)</strong></td>
+      <td>External domain, separate React application</td>
+    </tr>
+    <tr>
+      <td><strong>Authenticated Resources</strong></td>
+      <td>Content behind login walls, requires auth infrastructure</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- 6. MIGRATION ESTIMATES -->
+<div class="section-break"></div>
+<h1 id="estimates">6. Migration Estimates</h1>
+
+<h2>6.1 Phase Breakdown</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Phase</th>
+      <th>Scope</th>
+      <th style="text-align:center">Effort (days)</th>
+      <th>Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Design System Migration</strong></td>
+      <td>Global styles, fonts, colors, spacing, CSS custom properties</td>
+      <td style="text-align:center">3&ndash;5</td>
+      <td>Extract from Sitecore CSS, map to EDS design tokens</td>
+    </tr>
+    <tr>
+      <td><strong>Navigation &amp; Header/Footer</strong></td>
+      <td>Mega-menu nav, footer with locale selector</td>
+      <td style="text-align:center">3&ndash;5</td>
+      <td>Complex mega-menu requires custom EDS block</td>
+    </tr>
+    <tr>
+      <td><strong>Core Block Development</strong></td>
+      <td>~15 unique blocks/variants</td>
+      <td style="text-align:center">15&ndash;25</td>
+      <td>Hero, cards, tabs, CTA, steps, notification, social bar, etc.</td>
+    </tr>
+    <tr>
+      <td><strong>Homepage</strong></td>
+      <td>1 page, high complexity</td>
+      <td style="text-align:center">2&ndash;3</td>
+      <td>After core blocks are built</td>
+    </tr>
+    <tr>
+      <td><strong>Marketing Landing Pages</strong></td>
+      <td>~30 pages, medium complexity</td>
+      <td style="text-align:center">10&ndash;15</td>
+      <td>Mix of automated + manual using shared blocks</td>
+    </tr>
+    <tr>
+      <td><strong>Blog Listing Template</strong></td>
+      <td>1 template + custom JS block</td>
+      <td style="text-align:center">5&ndash;8</td>
+      <td>Search, filter, pagination, view toggle functionality</td>
+    </tr>
+    <tr>
+      <td><strong>Blog Article Template</strong></td>
+      <td>1 template, bulk content</td>
+      <td style="text-align:center">3&ndash;5</td>
+      <td>Template development + import script authoring</td>
+    </tr>
+    <tr>
+      <td><strong>Blog Article Content</strong></td>
+      <td>~350 articles, bulk import</td>
+      <td style="text-align:center">3&ndash;5</td>
+      <td>Automated bulk import with QA sampling</td>
+    </tr>
+    <tr>
+      <td><strong>Integrations Replacement</strong></td>
+      <td>Analytics, consent, feedback</td>
+      <td style="text-align:center">5&ndash;8</td>
+      <td>Replace Tealium/Clarity/CDP with EDS-compatible equivalents</td>
+    </tr>
+    <tr>
+      <td><strong>QA &amp; Visual Regression</strong></td>
+      <td>All templates, responsive breakpoints</td>
+      <td style="text-align:center">8&ndash;12</td>
+      <td>Desktop + tablet + mobile testing across all templates</td>
+    </tr>
+    <tr>
+      <td><strong>Locale Framework</strong></td>
+      <td>Multi-locale routing setup</td>
+      <td style="text-align:center">3&ndash;5</td>
+      <td>URL structure and locale selection mechanism</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>6.2 Overall Estimate Summary</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th style="text-align:center">Days</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Automated Migration</strong> (blog articles)</td>
+      <td style="text-align:center">3&ndash;5</td>
+      <td>Bulk import ~350 blog articles using import scripts</td>
+    </tr>
+    <tr>
+      <td><strong>Manual Migration</strong> (templates + pages)</td>
+      <td style="text-align:center">40&ndash;55</td>
+      <td>Block development, templates, marketing pages, navigation</td>
+    </tr>
+    <tr>
+      <td><strong>Integration Work</strong></td>
+      <td style="text-align:center">5&ndash;8</td>
+      <td>Analytics, consent, personalization replacement</td>
+    </tr>
+    <tr>
+      <td><strong>QA &amp; Testing</strong></td>
+      <td style="text-align:center">8&ndash;12</td>
+      <td>Cross-browser, responsive, accessibility, visual regression</td>
+    </tr>
+    <tr style="background:#e8f5e9; font-weight:700; font-size:10pt">
+      <td>TOTAL</td>
+      <td style="text-align:center">56&ndash;80</td>
+      <td>~12&ndash;16 weeks with a small team (2&ndash;3 developers)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>6.3 Assumptions &amp; Caveats</h2>
+
+<div class="callout-warn callout">
+  <ul style="margin:0; padding-left:18px">
+    <li>Partner Center portal (Dashboard, Support, Auth) is <strong>excluded</strong> from migration scope</li>
+    <li>Training hub (skilling-hub.com) is <strong>excluded</strong> &mdash; external domain</li>
+    <li>Estimates assume <strong>en-US locale only</strong>; multiply by locale count for full i18n</li>
+    <li>Sitecore CDP personalization features require a <strong>separate solution decision</strong></li>
+    <li>Blog article content import assumes <strong>consistent HTML structure</strong> across articles</li>
+    <li>Estimates assume Edge Delivery Services boilerplate blocks can be <strong>extended</strong> (not built entirely from scratch)</li>
+  </ul>
+</div>
+
+<!-- 7. SCREENSHOTS REFERENCE -->
+<div class="section-break"></div>
+<h1 id="screenshots">7. Screenshots Reference</h1>
+
+<h2>7.1 Page Templates</h2>
+
+<div class="screenshot-grid">
+  <div class="screenshot-item">
+    <img src="homepage-desktop-full.png" alt="Homepage" />
+    <div class="caption">Homepage (Desktop)</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="partnership-page-full.png" alt="Partnership Landing Page" />
+    <div class="caption">Partnership Landing Page</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="compare-programs-page.png" alt="Compare Programs Page" />
+    <div class="caption">Compare Programs Page</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="marketplace-page.png" alt="Marketplace Page" />
+    <div class="caption">Marketplace Page</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="blog-page-full.png" alt="Blog Listing Page" />
+    <div class="caption">Blog Listing Page</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="solutions-azure-page.png" alt="Solutions Azure Page" />
+    <div class="caption">Solutions / Azure Page</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="support-page-full.png" alt="Support Page (Partner Center)" />
+    <div class="caption">Support Page (Partner Center)</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="homepage-full.png" alt="Homepage (Mobile)" />
+    <div class="caption">Homepage (Mobile)</div>
+  </div>
+</div>
+
+<h2>7.2 Block Components</h2>
+
+<div class="screenshot-grid">
+  <div class="screenshot-item">
+    <img src="block-header-nav.png" alt="Header / Navigation" />
+    <div class="caption">Global Header / Navigation</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="block-notification-banner.png" alt="Notification Banner" />
+    <div class="caption">Notification Banner</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="block-hero-desktop.png" alt="Hero Section" />
+    <div class="caption">Hero Section (Desktop)</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="block-cards-desktop.png" alt="Card Grid" />
+    <div class="caption">Card Grid (Desktop)</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="block-steps-get-started.png" alt="Steps / Feed" />
+    <div class="caption">Steps / Feed Component</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="block-tabs-desktop.png" alt="Tabbed Content Switcher" />
+    <div class="caption">Tabbed Content Switcher</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="block-social-share.png" alt="Social / Share Bar" />
+    <div class="caption">Social / Share Bar</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="block-footer.png" alt="Footer" />
+    <div class="caption">Global Footer</div>
+  </div>
+</div>
+
+<div class="footer-note">
+  Microsoft Partner Site Analysis Report &mdash; Generated February 24, 2026 &mdash; Confidential
+</div>
+
+</body>
+</html>
