@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Device Partner Center – Site Analysis Report</title>
+<style>
+  @page { size: A4; margin: 18mm 14mm 18mm 14mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 10pt; line-height: 1.5; color: #1a1a1a; margin: 0; padding: 28px 36px; background: #fff; }
+
+  /* Cover */
+  .cover { page-break-after: always; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 90vh; text-align: center; }
+  .cover h1 { font-size: 26pt; color: #0078d4; margin-bottom: 6px; font-weight: 600; }
+  .cover .subtitle { font-size: 13pt; color: #444; margin-bottom: 24px; }
+  .cover .meta { font-size: 10pt; color: #666; margin-top: 36px; line-height: 2; }
+  .cover .meta strong { color: #333; }
+  .cover .logo-bar { margin-bottom: 36px; padding-bottom: 18px; border-bottom: 3px solid #0078d4; width: 55%; }
+
+  h1 { font-size: 17pt; color: #0078d4; margin-top: 28px; margin-bottom: 8px; border-bottom: 2px solid #0078d4; padding-bottom: 5px; }
+  h2 { font-size: 13pt; color: #333; margin-top: 20px; margin-bottom: 6px; }
+  h3 { font-size: 11pt; color: #0078d4; margin-top: 16px; margin-bottom: 5px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 16px 0; font-size: 8.5pt; }
+  th { background: #0078d4; color: #fff; font-weight: 600; text-align: left; padding: 6px 7px; }
+  td { padding: 5px 7px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+  tr:nth-child(even) { background: #f7f9fc; }
+
+  .badge { display: inline-block; padding: 1px 7px; border-radius: 3px; font-size: 7.5pt; font-weight: 600; color: #fff; }
+  .badge-low { background: #28a745; }
+  .badge-medium { background: #fd7e14; }
+  .badge-high { background: #dc3545; }
+  .badge-very-high { background: #6f42c1; }
+  .badge-critical { background: #1a1a1a; }
+  .badge-oos { background: #6c757d; }
+
+  .section-break { page-break-before: always; }
+
+  .callout { background: #f0f6ff; border-left: 4px solid #0078d4; padding: 10px 14px; margin: 10px 0; font-size: 9pt; }
+  .callout-warn { background: #fff8e1; border-left-color: #fd7e14; }
+  .callout-danger { background: #fef0f0; border-left-color: #dc3545; }
+
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin: 14px 0; }
+  .summary-card { background: #f7f9fc; border: 1px solid #dde3ea; border-top: 3px solid #0078d4; padding: 12px; text-align: center; }
+  .summary-card .number { font-size: 20pt; font-weight: 700; color: #0078d4; }
+  .summary-card .label { font-size: 8pt; color: #666; margin-top: 3px; }
+
+  .toc { margin: 16px 0; }
+  .toc a { color: #0078d4; text-decoration: none; }
+  .toc li { margin: 5px 0; font-size: 10pt; }
+
+  code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; font-size: 8pt; font-family: 'Consolas', monospace; }
+  ul, ol { margin: 4px 0; padding-left: 18px; }
+  li { margin: 2px 0; }
+
+  .footer-note { margin-top: 28px; padding-top: 8px; border-top: 1px solid #ddd; font-size: 7.5pt; color: #999; text-align: center; }
+
+  .screenshot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0; }
+  .screenshot-item { border: 1px solid #ddd; padding: 5px; text-align: center; font-size: 7.5pt; color: #666; background: #fafafa; }
+  .screenshot-item img { max-width: 100%; height: auto; max-height: 200px; object-fit: contain; }
+  .screenshot-item .caption { margin-top: 3px; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <div class="logo-bar">
+    <div style="font-size: 11pt; color: #666; letter-spacing: 2px; text-transform: uppercase;">AEM Site Analysis Report</div>
+  </div>
+  <h1>Device Partner Center</h1>
+  <div class="subtitle">Comprehensive Site Analysis for Edge Delivery Services Migration</div>
+  <div style="font-size: 10.5pt; color: #555; margin-top: 8px;">https://devicepartner.microsoft.com/en-US/</div>
+  <div class="meta">
+    <strong>Date:</strong> February 27, 2026<br>
+    <strong>Scope:</strong> Templates, Components, Integrations, Migration Estimates<br>
+    <strong>Current Platform:</strong> Sitecore CMS &rarr; <strong>Target:</strong> Adobe Edge Delivery Services
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<h1>Table of Contents</h1>
+<ol class="toc">
+  <li><a href="#exec">Executive Summary</a></li>
+  <li><a href="#templates">Templates Inventory</a></li>
+  <li><a href="#blocks">Blocks &amp; Components Catalog</a></li>
+  <li><a href="#pages">Page Count by Template</a></li>
+  <li><a href="#integrations">Integrations &amp; Embedded Services</a></li>
+  <li><a href="#complex">Complex Use Cases &amp; Special Observations</a></li>
+  <li><a href="#estimates">Migration Estimates</a></li>
+  <li><a href="#screenshots">Screenshots Reference</a></li>
+</ol>
+
+<!-- EXECUTIVE SUMMARY -->
+<div class="section-break"></div>
+<h1 id="exec">Executive Summary</h1>
+
+<div class="summary-grid">
+  <div class="summary-card">
+    <div class="number">7</div>
+    <div class="label">Page Templates<br>(5 in-scope for migration)</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">16</div>
+    <div class="label">Unique Blocks /<br>Components</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">~60&ndash;80</div>
+    <div class="label">Estimated Public<br>Pages (en-US)</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">13</div>
+    <div class="label">Third-Party<br>Integrations</div>
+  </div>
+</div>
+
+<div class="callout">
+  <strong>Key Finding:</strong> Device Partner Center (DPC) is built on <strong>Sitecore CMS</strong> with the same <code>flex-*</code> / <code>mssc</code> component framework as partner.microsoft.com. The site is <strong>heavily auth-gated</strong>&mdash;most product and resource pages require Microsoft Entra ID sign-in and DPC registration. Publicly accessible pages are limited to the homepage, getting-started guide, public communications, some asset detail pages, support/FAQ, and contact form. The authenticated dashboard and personalized content behind login walls represent a significant portion of the site that falls outside typical EDS migration scope.
+</div>
+
+<p><strong>CMS Platform:</strong> Sitecore, evidenced by <code>CDP.js</code>, <code>/mssc/</code> asset paths, Sitecore CDP/Engage integration, and <code>.ashx</code> handler files.</p>
+<p><strong>Key Distinction from partner.microsoft.com:</strong> DPC uses the same Sitecore framework but has a <strong>simpler footer</strong> (no multi-column link grid), <strong>email-only sharing</strong> (no social media links), and a <strong>pervasive auth-gate pattern</strong> where content is shown/hidden based on registration status and partner type.</p>
+
+<!-- 1. TEMPLATES INVENTORY -->
+<div class="section-break"></div>
+<h1 id="templates">1. Templates Inventory</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Template Name</th>
+      <th>Purpose</th>
+      <th>Complexity</th>
+      <th>Example URL(s)</th>
+      <th>Variations / Conditional Logic</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><strong>Homepage</strong></td>
+      <td>Primary landing page with hero, registration callout, category cards, CTA banner, and asset carousel.</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td><code>/en-US/</code></td>
+      <td>
+        <ul>
+          <li>Two notification banners (MSA retirement + registration prompt) shown to unauthenticated users</li>
+          <li>Carousel content is dynamically populated from recent assets</li>
+          <li>Authenticated users likely see a personalized homepage with bookmarks and alerts</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>Product Landing Page</strong></td>
+      <td>Category hub pages for each product line (Windows, M365, Teams, etc.). Hero + registration callout. Content hidden behind auth.</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td><code>/en-us/windows</code>, <code>/en-us/teams</code>, <code>/en-us/gaming</code>, <code>/en-us/edu-prod-solutions-page</code>, <code>/en-us/iot</code></td>
+      <td>
+        <ul>
+          <li>Unauthenticated: shows hero + registration CTA only</li>
+          <li>Authenticated: shows full product resources, assets, and documentation</li>
+          <li>Some pages are fully gated (Teams shows "Please sign in" message)</li>
+          <li>Others (Windows) show partial public content</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Content/Guide Page</strong></td>
+      <td>Rich content pages with hero, text+image sections, icon cards, accordion/tabs, FAQ, and CTA sections. Used for getting-started guides and informational pages.</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td><code>/getting-started-guide</code></td>
+      <td>
+        <ul>
+          <li>Contains multiple block types: hero, text+CTA, icon cards, vertical tabs, image+text overlay, FAQ accordion</li>
+          <li>Most complex public-facing template</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>Communication / Article Page</strong></td>
+      <td>Rich-text article pages for partner communications, announcements, and how-to guides. Title + date metadata + body text with embedded images and links.</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td><code>/communications/comm-msc-modernization-entra-id-sign-in-new-key-bridge-tools</code>, <code>/communications/comm-registration-account-management</code></td>
+      <td>
+        <ul>
+          <li>"Applies to" field controls visibility (e.g., "Publicly available" vs. partner-type-specific)</li>
+          <li>Some have accordion sections for collapsible content</li>
+          <li>Embedded Vimeo videos in some articles</li>
+          <li>Inline screenshots/images within body content</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>Asset Detail Page</strong></td>
+      <td>Downloadable asset pages with thumbnail preview, download button, metadata (date, file size, access level), and "More like this" carousel.</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td><code>/assets/detail/entra-id-key-bridge-onboarding-ffki-direct-model-pdf</code></td>
+      <td>
+        <ul>
+          <li>Lock icon for auth-gated assets</li>
+          <li>Download size displayed dynamically</li>
+          <li>Preview overlay on thumbnail hover</li>
+          <li>"More like this" section populated algorithmically</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><strong>Support / FAQ Page</strong></td>
+      <td>Support hub with hero, registration CTA banner, grouped accordion FAQ sections, and contact CTA.</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td><code>/en-us/support</code></td>
+      <td>
+        <ul>
+          <li>Multiple accordion groups organized by topic</li>
+          <li>Hero with dark overlay</li>
+          <li>Full-width CTA banner (dark purple background)</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><strong>Contact / Form Page</strong></td>
+      <td>Support request form with hero banner, left-column description, right-column form with cascading dropdowns, CAPTCHA, and submit button.</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td><code>/en-us/contact-us</code></td>
+      <td>
+        <ul>
+          <li>Cascading dependent dropdowns (Program &rarr; Reason &rarr; Issue)</li>
+          <li>CAPTCHA image for bot prevention</li>
+          <li>Hidden "Path" field auto-populated with referrer URL</li>
+          <li>Server-side form processing</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- 2. BLOCKS & COMPONENTS CATALOG -->
+<div class="section-break"></div>
+<h1 id="blocks">2. Blocks &amp; Components Catalog</h1>
+
+<h2>2.1 Global Components</h2>
+<table>
+  <thead>
+    <tr><th>#</th><th>Block / Component</th><th>Complexity</th><th>Description &amp; Behaviors</th><th>Screenshot</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><strong>Global Header / Navigation</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Microsoft logo, "Device Partner Center" branding, 4 nav items (Products &amp; Solutions, Marketing, Licensing &amp; Programs, More) with dropdown menus, Dashboard link, Search button, Sign in/Register link. Responsive hamburger on mobile.</td>
+      <td><code>dpc-nav-products.png</code></td>
+      <td>Dropdown menus are single-level lists (simpler than partner.microsoft.com mega-menus). Search triggers a full-page search overlay. Dashboard link redirects to external registration portal.</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>Notification Banner (Red)</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Dismissible red/orange alert banner with info icon, text content, and close button (&times;). Used for MSA retirement notice.</td>
+      <td><code>dpc-homepage-desktop.png</code></td>
+      <td>Cookie-persisted dismiss state. Red background with white text. Component: <code>flexnotification</code>.</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Notification Banner (Yellow/Warning)</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Dismissible yellow/cream warning banner with warning icon, rich text (including links), and close button. Used for registration prompt.</td>
+      <td><code>dpc-homepage-desktop.png</code></td>
+      <td>Contains inline links. Slightly different styling from red variant. Same <code>flexnotification</code> component with different theme.</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>Share / Feedback Bar</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>"Share" with email icon + "Was this page helpful?" Yes/No buttons. Simpler than partner.microsoft.com (email only, no social media).</td>
+      <td><code>dpc-homepage-desktop.png</code></td>
+      <td>Present on all pages. No social media sharing (email only via <code>mailto:</code>). Feedback submits to analytics.</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>Global Footer</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Single-row footer with locale selector, Consumer Health Privacy, Your Privacy Choices, Contact us, Privacy &amp; cookies, Terms of use, Trademarks, copyright. Much simpler than partner.microsoft.com (no multi-column link grid).</td>
+      <td><code>dpc-homepage-desktop.png</code></td>
+      <td>Minimal footer. Locale selector links to <code>/localeselection</code> page.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>2.2 Content Blocks</h2>
+<table>
+  <thead>
+    <tr><th>#</th><th>Block / Component</th><th>Complexity</th><th>Description &amp; Behaviors</th><th>Found On</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>6</td>
+      <td><strong>Hero (flex-hero-v2)</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Two-column hero: left text (H1, description, CTA buttons) + right image. Variants: standard light background, dark overlay with text overlay on image.</td>
+      <td>Homepage, Windows, Getting Started, Support</td>
+      <td>JS: <code>flexhero</code>. Support page uses dark image overlay variant. Getting Started uses standard light variant.</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><strong>Registration Callout (two-column)</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Two-column section: left has H2, description, CTA button; right has paragraph text + bullet list. Used specifically for the "You must register" messaging.</td>
+      <td>Homepage, Windows</td>
+      <td>Consistent pattern across product pages. Contains registration-specific messaging and links to <code>dpcregistration.microsoft.com</code>.</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><strong>Icon Card Grid (4-up)</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>4-column grid of cards with colorful illustrations/icons at top, H3 heading, description text. No CTA links in public view (likely linked when authenticated).</td>
+      <td>Homepage</td>
+      <td>Categories: Marketing resources, Pricing &amp; licensing, Technical resources, Training &amp; readiness. Uses <code>flexcontainer</code> component.</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td><strong>CTA Banner (centered)</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Full-width light blue/bordered banner with centered H2, description text, and outlined CTA button. Used for "Get started" callouts.</td>
+      <td>Homepage</td>
+      <td>Clean, simple centered layout. Links to tutorial/getting-started content.</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td><strong>Asset Carousel (CQC Carousel V2)</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Horizontal scrolling carousel of asset cards. Each card: thumbnail image, download icon with file size, lock icon (auth-gated), title link, description, date. Prev/next arrows, dot pagination, auto-play with pause button.</td>
+      <td>Homepage, Asset Detail ("More like this")</td>
+      <td>JS: <code>assetlib2/ellipsisv2</code>. Auto-rotates. Cards show download size, lock status. Links to asset detail pages. 8 dots = 8 slide positions.</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td><strong>Icon Feature Cards (3-up)</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>3-column grid with illustration icons, H4 heading, description, CTA link. Used for registration steps (Sign in, Set up preferences, Check profile).</td>
+      <td>Getting Started</td>
+      <td>Uses <code>feedunit</code> component. Similar to homepage cards but 3 columns with more prominent CTAs.</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td><strong>Vertical Tabs + Image Overlay</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Left column: H2 heading + subtitle + vertical tab buttons. Right column: image with overlaid text panel (H3, description, CTA button). Tab selection changes the right-side content.</td>
+      <td>Getting Started</td>
+      <td>Complex interactive component. Tabs: "Accessing content", "Creating email preferences", "Adding to favorites", "Updating profile". Right panel has dark overlay on image.</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td><strong>FAQ Accordion</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Grouped accordion with expandable/collapsible sections. "Expand All" button. Chevron indicators. Sections grouped by topic headings (H2).</td>
+      <td>Getting Started, Support</td>
+      <td>Support page has 3 accordion groups with 11+ items total. Getting Started has single group with 4 items. Uses custom accordion JS.</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td><strong>Full-Width CTA Section (dark)</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Dark purple/black background full-width section with H2, description, and outlined CTA button. Used for registration and contact prompts.</td>
+      <td>Support, Contact Us</td>
+      <td>Support page: "Register today..." section. Contact page hero uses similar dark background pattern.</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td><strong>Contact Form</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Two-column layout: left description + FAQ link, right form with text inputs, cascading dropdowns (Program &rarr; Reason &rarr; Issue), textarea, hidden path field, CAPTCHA image, submit button.</td>
+      <td>Contact Us</td>
+      <td>Cascading dropdowns are JS-driven. CAPTCHA is server-rendered image. Form submits to server-side handler. Requires significant custom EDS block development.</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td><strong>Asset Detail Block</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>H1 title, date metadata (Created/Last Modified), two-column layout: left thumbnail with preview overlay, right download button (with file size), "Applies to" access level, description text.</td>
+      <td>Asset Detail pages</td>
+      <td>Download links point to <code>assetsprod.microsoft.com</code>. Preview overlay triggers modal/lightbox. File sizes displayed dynamically.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- 3. PAGE COUNT BY TEMPLATE -->
+<div class="section-break"></div>
+<h1 id="pages">3. Page Count by Template</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Template</th>
+      <th style="text-align:right">Est. Public Pages</th>
+      <th style="text-align:right">Est. Auth-Gated Pages</th>
+      <th style="text-align:center">Migration Classification</th>
+      <th>Justification</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Homepage</strong></td>
+      <td style="text-align:right">1</td>
+      <td style="text-align:right">1 (personalized)</td>
+      <td style="text-align:center"><span class="badge badge-high">Manual</span></td>
+      <td>Unique page with multiple block types, carousel, and conditional content based on auth state. Requires custom block development.</td>
+    </tr>
+    <tr>
+      <td><strong>Product Landing Pages</strong></td>
+      <td style="text-align:right">2&ndash;3 (partial public)</td>
+      <td style="text-align:right">7+ (full content behind auth)</td>
+      <td style="text-align:center"><span class="badge badge-medium">Partial Auto</span></td>
+      <td>Public shells are simple (hero + registration CTA). Full authenticated versions contain rich resource libraries. Public portion is auto-migratable; auth content requires access to crawl.</td>
+    </tr>
+    <tr>
+      <td><strong>Content/Guide Pages</strong></td>
+      <td style="text-align:right">3&ndash;5</td>
+      <td style="text-align:right">5&ndash;10</td>
+      <td style="text-align:center"><span class="badge badge-high">Manual</span></td>
+      <td>Complex layouts with multiple block types (tabs, accordions, icon cards). Each page has unique arrangement. Requires manual content mapping.</td>
+    </tr>
+    <tr>
+      <td><strong>Communication / Article Pages</strong></td>
+      <td style="text-align:right">15&ndash;25</td>
+      <td style="text-align:right">20&ndash;40</td>
+      <td style="text-align:center"><span class="badge badge-low">Auto</span></td>
+      <td>Standardized structure (title + metadata + rich text body). Consistent content model. Bulk-importable with automated tooling. Some have embedded videos/accordions requiring validation.</td>
+    </tr>
+    <tr>
+      <td><strong>Asset Detail Pages</strong></td>
+      <td style="text-align:right">10&ndash;20</td>
+      <td style="text-align:right">50&ndash;100+</td>
+      <td style="text-align:center"><span class="badge badge-low">Auto</span></td>
+      <td>Highly standardized layout (thumbnail + download + metadata + related carousel). Bulk-importable. Asset files hosted externally on <code>assetsprod.microsoft.com</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>Support / FAQ Page</strong></td>
+      <td style="text-align:right">1</td>
+      <td style="text-align:right">0</td>
+      <td style="text-align:center"><span class="badge badge-high">Manual</span></td>
+      <td>Unique page with accordion groups, hero, and CTA banner. Requires custom accordion block development.</td>
+    </tr>
+    <tr>
+      <td><strong>Contact / Form Page</strong></td>
+      <td style="text-align:right">1</td>
+      <td style="text-align:right">0</td>
+      <td style="text-align:center"><span class="badge badge-high">Manual</span></td>
+      <td>Server-side form with cascading dropdowns and CAPTCHA. Requires backend integration or form service replacement (e.g., Adobe Forms).</td>
+    </tr>
+    <tr style="background:#e8f5e9; font-weight:600">
+      <td>TOTAL (estimated)</td>
+      <td style="text-align:right">~33&ndash;56</td>
+      <td style="text-align:right">~83&ndash;158+</td>
+      <td style="text-align:center">&mdash;</td>
+      <td>Public pages are relatively few; bulk of content is behind authentication</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout-warn callout">
+  <strong>Auth-Gated Content:</strong> The majority of DPC content is behind Entra ID authentication. The page counts above for auth-gated pages are estimates based on navigation structure and carousel content. A full crawl of authenticated content would require partner credentials.
+</div>
+
+<!-- 4. INTEGRATIONS -->
+<div class="section-break"></div>
+<h1 id="integrations">4. Integrations &amp; Embedded Services</h1>
+
+<table>
+  <thead>
+    <tr><th>#</th><th>Integration</th><th>Type</th><th>Complexity</th><th>Example URL(s)</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><strong>Tealium Tag Manager</strong></td>
+      <td>Tag Management (inline script)</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>All pages</td>
+      <td>Primary tag orchestrator (<code>tags.tiqcdn.com/utag/msft/mpartner/prod/utag.js</code>). Loads multiple sub-tags (utag.9.js, utag.10.js). Includes Tealium Visitor Service for cross-domain ID stitching.</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>Microsoft Clarity</strong></td>
+      <td>Analytics/Heatmaps (inline script)</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>All pages</td>
+      <td>Session recording and heatmaps (<code>scripts.clarity.ms</code>, tag <code>q48pqaamdk</code>). Separate wrapper: <code>MSClarity.js</code>.</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Sitecore CDP / Engage</strong></td>
+      <td>Personalization (inline script)</td>
+      <td><span class="badge badge-very-high">Very High</span></td>
+      <td>All pages</td>
+      <td>Real-time personalization engine (<code>sitecore-engage-v.1.3.0.min.js</code>). Web Flow libs for A/B testing. Deep CMS integration driving content personalization based on partner type.</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>Azure Application Insights</strong></td>
+      <td>APM / Monitoring (inline script)</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>All pages</td>
+      <td>Performance monitoring (<code>az416426.vo.msecnd.net/scripts/a/ai.0.js</code> + <code>js.monitor.azure.com</code>). Tracks page loads, errors, custom telemetry.</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>Microsoft Cookie Consent</strong></td>
+      <td>Privacy/Compliance (inline script)</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>All pages</td>
+      <td>GDPR/CCPA consent banner (<code>wcpstatic.microsoft.com/mscc/lib/v2/wcp-consent.js</code>). Wrapper: <code>CookieConsent.js</code>. Controls loading of other scripts.</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><strong>OpenID Connect / Entra ID Auth</strong></td>
+      <td>Authentication (server-side + redirect)</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>All pages (Sign in link)</td>
+      <td>Authentication via <code>/_login?authType=OpenIdConnect</code>. Redirects to Microsoft identity platform. Registration via external portal: <code>dpcregistration.microsoft.com</code>.</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><strong>DPC Registration Portal</strong></td>
+      <td>External application (redirect)</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Dashboard link, Register buttons</td>
+      <td>Separate application at <code>dpcregistration.microsoft.com</code>. Handles partner registration, profile management. Returns via redirect URL parameter.</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><strong>Chatbot</strong></td>
+      <td>Customer Support (embed)</td>
+      <td><span class="badge badge-medium">Med-High</span></td>
+      <td>All pages</td>
+      <td>Custom chat widget (<code>chatBot.js</code>). Likely Azure Bot Service. Provides automated support assistance.</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td><strong>Microsoft Survey Broker</strong></td>
+      <td>Feedback/Survey (inline script)</td>
+      <td><span class="badge badge-low">Low-Med</span></td>
+      <td>All pages</td>
+      <td>Intercept survey system (<code>microsoft.com/library/svy/partner/broker.js</code> + config). Triggers survey modal on certain user actions.</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td><strong>Medius Video</strong></td>
+      <td>Video/Media (inline script)</td>
+      <td><span class="badge badge-low">Low-Med</span></td>
+      <td>Pages with video content</td>
+      <td>Video conversion/player library (<code>medius-video-convert.js</code>). Handles embedded video playback.</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td><strong>Vimeo Embeds</strong></td>
+      <td>Video/Media (embed)</td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Registration guide communication</td>
+      <td>Vimeo player embeds (<code>player.vimeo.com</code>) in article/communication pages for instructional videos.</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td><strong>Asset CDN (assetsprod.microsoft.com)</strong></td>
+      <td>Content Delivery (external links)</td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Asset detail pages</td>
+      <td>Downloadable files (PDFs, ZIPs) hosted on <code>assetsprod.microsoft.com/oem/</code>. Download links point to this external CDN.</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td><strong>Sitecore CMS Backend</strong></td>
+      <td>Content Management (server-side)</td>
+      <td><span class="badge badge-very-high">Very High</span></td>
+      <td>Entire site</td>
+      <td>All content managed in Sitecore. Evidenced by <code>CDP.js</code>, <code>/mssc/</code> asset paths, <code>.ashx</code> handlers. Content delivery via Sitecore rendering pipeline.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- 5. COMPLEX USE CASES -->
+<div class="section-break"></div>
+<h1 id="complex">5. Complex Use Cases &amp; Special Observations</h1>
+
+<table>
+  <thead>
+    <tr><th>#</th><th>Issue</th><th>Severity</th><th>Description</th><th>Where It Occurs</th><th>Instances</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><strong>Pervasive Auth-Gated Content</strong></td>
+      <td><span class="badge badge-critical">Critical</span></td>
+      <td>Most product pages, asset libraries, and resource content are hidden behind Microsoft Entra ID authentication + DPC registration. Unauthenticated users see only hero + registration CTAs. This means the majority of site content cannot be crawled or migrated without authenticated access. EDS pages are static/CDN-served and require a separate auth strategy.</td>
+      <td>Product pages (<code>/windows</code>, <code>/teams</code>, etc.), asset pages, Marketing, Licensing sections</td>
+      <td>~70&ndash;80% of all pages</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>Role-Based Content Personalization</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Content visibility is determined by partner type, registration status, NDA agreement, and user preferences. Sitecore CDP drives targeted content experience. Different users see different resources on the same URL. Three access tiers: Anonymous, Registered, Validated.</td>
+      <td>All authenticated pages</td>
+      <td>Site-wide</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Sitecore CDP Personalization</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Real-time personalization via Sitecore CDP/Engage (A/B testing, web flows, targeted content). Migrating to EDS loses this layer unless replaced with equivalent solution (Adobe Target, AEM Experimentation).</td>
+      <td>All pages</td>
+      <td>Site-wide</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>Contact Form with Cascading Dropdowns</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Server-side support form with dependent dropdowns (Program &rarr; Reason &rarr; Issue), CAPTCHA validation, and server-side processing. Cannot be replicated with simple static HTML. Requires a form service backend or third-party form solution.</td>
+      <td><code>/contact-us</code></td>
+      <td>1 page</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>Asset Carousel with Dynamic Content</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Homepage and asset detail pages use a JS-heavy carousel (CQC Carousel V2) that dynamically loads recent assets. Auto-plays with pause control, dot pagination, prev/next navigation. Cards show file sizes, lock icons, and dates.</td>
+      <td>Homepage, Asset Detail pages</td>
+      <td>~20&ndash;30+ pages</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><strong>External Registration Portal</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Registration and profile management handled by a separate application at <code>dpcregistration.microsoft.com</code>. Dashboard link redirects there with return URL parameter. This external dependency must be preserved in any migration.</td>
+      <td>All registration links, Dashboard link</td>
+      <td>Every page (nav link)</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><strong>Vertical Tab Component</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Custom vertical tab component with left sidebar buttons and right content panel with image overlay. Tab selection changes content dynamically. Requires custom EDS block.</td>
+      <td><code>/getting-started-guide</code></td>
+      <td>1&ndash;2 pages</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><strong>Grouped FAQ Accordion</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Multi-section accordion with "Expand All" toggle, grouped by H2 headings. Support page has 3 groups totaling 11+ collapsible items. Content includes rich text with links and inline images.</td>
+      <td><code>/support</code>, <code>/getting-started-guide</code></td>
+      <td>2&ndash;3 pages</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td><strong>Dual Notification Banner System</strong></td>
+      <td><span class="badge badge-low">Low-Med</span></td>
+      <td>Two simultaneous notification banners (red + yellow) shown to unauthenticated users. Both dismissible with cookie persistence. Different severity levels with different styling.</td>
+      <td>All public pages</td>
+      <td>All pages</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td><strong>Embedded Vimeo Videos</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Communication/article pages embed Vimeo player for instructional videos. Requires click-to-play pattern or iframe embedding in EDS.</td>
+      <td>Communication pages (e.g., registration guide)</td>
+      <td>2&ndash;5 pages</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td><strong>Download Terms &amp; NDA Gating</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Some downloadable assets require acceptance of Download Terms or Microsoft NDA before access. Lock icons indicate gated content. Access level determined by partner type and agreements.</td>
+      <td>Asset detail pages, asset carousel cards</td>
+      <td>~50% of assets</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- 6. MIGRATION ESTIMATES -->
+<div class="section-break"></div>
+<h1 id="estimates">6. Migration Estimates</h1>
+
+<h2>6.1 Phase Breakdown</h2>
+<table>
+  <thead>
+    <tr><th>Phase</th><th>Scope</th><th style="text-align:center">Effort (days)</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Design System Migration</strong></td>
+      <td>Global styles, fonts, colors, spacing, CSS custom properties</td>
+      <td style="text-align:center">2&ndash;3</td>
+      <td>Simpler design system than partner.microsoft.com. Fewer color variants. Extract from Sitecore CSS.</td>
+    </tr>
+    <tr>
+      <td><strong>Header / Footer / Navigation</strong></td>
+      <td>Nav bar with dropdowns, simple footer, notification banners</td>
+      <td style="text-align:center">2&ndash;4</td>
+      <td>Simpler dropdowns (single-level). Footer is minimal. Two notification banner variants.</td>
+    </tr>
+    <tr>
+      <td><strong>Core Block Development</strong></td>
+      <td>~11 unique content blocks</td>
+      <td style="text-align:center">12&ndash;18</td>
+      <td>Hero, registration callout, icon cards, CTA banner, carousel, tabs, accordion, asset detail, contact form, share/feedback bar.</td>
+    </tr>
+    <tr>
+      <td><strong>Homepage</strong></td>
+      <td>1 page, high complexity</td>
+      <td style="text-align:center">2&ndash;3</td>
+      <td>After core blocks are built. Carousel is the most complex element.</td>
+    </tr>
+    <tr>
+      <td><strong>Content/Guide Pages</strong></td>
+      <td>~5 pages, high complexity</td>
+      <td style="text-align:center">3&ndash;5</td>
+      <td>Getting started, support, and similar pages with mixed block types.</td>
+    </tr>
+    <tr>
+      <td><strong>Communication/Article Pages</strong></td>
+      <td>~20&ndash;40 pages, bulk import</td>
+      <td style="text-align:center">3&ndash;5</td>
+      <td>Standardized structure. Template dev + automated import script + QA sampling.</td>
+    </tr>
+    <tr>
+      <td><strong>Asset Detail Pages</strong></td>
+      <td>~20&ndash;60 pages, bulk import</td>
+      <td style="text-align:center">3&ndash;5</td>
+      <td>Standardized layout. Template + "More like this" carousel + automated import.</td>
+    </tr>
+    <tr>
+      <td><strong>Contact Form</strong></td>
+      <td>1 page with server-side form</td>
+      <td style="text-align:center">3&ndash;5</td>
+      <td>Requires form service integration. Cascading dropdowns + CAPTCHA + server processing.</td>
+    </tr>
+    <tr>
+      <td><strong>Product Landing Pages</strong></td>
+      <td>~7 pages (public shells)</td>
+      <td style="text-align:center">2&ndash;3</td>
+      <td>Public portions are simple (hero + registration CTA). Auth content requires separate crawl.</td>
+    </tr>
+    <tr>
+      <td><strong>Integration Replacement</strong></td>
+      <td>Analytics, consent, chatbot, feedback</td>
+      <td style="text-align:center">4&ndash;6</td>
+      <td>Replace Tealium/Clarity/CDP with EDS-compatible equivalents. Cookie consent. Chatbot embed.</td>
+    </tr>
+    <tr>
+      <td><strong>Auth Strategy</strong></td>
+      <td>Authentication and content access control</td>
+      <td style="text-align:center">5&ndash;8</td>
+      <td>Design client-side auth SDK integration, content visibility rules, redirect flows to DPC registration portal.</td>
+    </tr>
+    <tr>
+      <td><strong>QA &amp; Visual Regression</strong></td>
+      <td>All templates, responsive, accessibility</td>
+      <td style="text-align:center">5&ndash;8</td>
+      <td>Desktop + tablet + mobile. Cross-browser. Accessibility compliance. Auth flow testing.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>6.2 Overall Estimate Summary</h2>
+<table>
+  <thead>
+    <tr><th>Category</th><th style="text-align:center">Days</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Automated Migration</strong> (articles + assets)</td>
+      <td style="text-align:center">6&ndash;10</td>
+      <td>Bulk import ~40&ndash;100 communication and asset detail pages using import scripts</td>
+    </tr>
+    <tr>
+      <td><strong>Manual Migration</strong> (blocks + templates + custom pages)</td>
+      <td style="text-align:center">26&ndash;41</td>
+      <td>Block development, homepage, guide pages, product pages, nav/footer, contact form</td>
+    </tr>
+    <tr>
+      <td><strong>Integration &amp; Auth Work</strong></td>
+      <td style="text-align:center">9&ndash;14</td>
+      <td>Analytics, consent, chatbot, auth SDK, registration portal integration</td>
+    </tr>
+    <tr>
+      <td><strong>QA &amp; UAT</strong></td>
+      <td style="text-align:center">5&ndash;8</td>
+      <td>Visual regression, responsive, accessibility, auth flow, cross-browser testing</td>
+    </tr>
+    <tr style="background:#e8f5e9; font-weight:700; font-size: 10pt">
+      <td>TOTAL (Public Content)</td>
+      <td style="text-align:center">46&ndash;73</td>
+      <td>~10&ndash;15 weeks with a small team (2&ndash;3 developers)</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>6.3 Key Risks &amp; Blockers</h2>
+<div class="callout-danger callout">
+  <ul style="margin:0; padding-left:16px">
+    <li><strong>Auth-gated content inaccessible:</strong> ~70&ndash;80% of site content is behind authentication. Migration estimates above cover <strong>public content only</strong>. A full authenticated migration requires partner credentials and could <strong>double the effort</strong>.</li>
+    <li><strong>Personalization loss:</strong> Sitecore CDP drives role-based content targeting. EDS has no native equivalent&mdash;requires Adobe Target or custom solution.</li>
+    <li><strong>Contact form backend:</strong> Cascading dropdowns + CAPTCHA require a server-side backend or third-party form service (e.g., Adobe Forms, Microsoft Power Automate).</li>
+    <li><strong>External portal dependency:</strong> <code>dpcregistration.microsoft.com</code> is a critical external dependency that must continue to function with the migrated site.</li>
+    <li><strong>Asset download gating:</strong> NDA-gated and Download Terms-gated assets require access control that EDS does not natively support.</li>
+    <li><strong>Locale variants:</strong> Estimates assume en-US only. Additional locales would multiply effort.</li>
+    <li><strong>noindex/nofollow:</strong> The site has <code>robots: noindex, nofollow</code> meta tag, indicating it is intentionally not indexed. This may impact SEO-driven migration decisions.</li>
+  </ul>
+</div>
+
+<h2>6.4 Cost Assumptions</h2>
+<table>
+  <thead>
+    <tr><th>Parameter</th><th>Assumption</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Team size</td><td>2&ndash;3 EDS developers</td></tr>
+    <tr><td>Rate assumption</td><td>$150&ndash;200/hour (blended)</td></tr>
+    <tr><td>Hours per day</td><td>8 productive hours</td></tr>
+    <tr><td>Public content cost range</td><td>$55,000 &ndash; $117,000 USD</td></tr>
+    <tr><td>Full site (incl. auth content) cost range</td><td>$100,000 &ndash; $200,000 USD</td></tr>
+    <tr><td>Overall complexity</td><td><span class="badge badge-medium" style="font-size:9pt">Medium-High</span> &mdash; Auth gating is the primary complexity driver, not the templates themselves</td></tr>
+  </tbody>
+</table>
+
+<!-- 7. SCREENSHOTS -->
+<div class="section-break"></div>
+<h1 id="screenshots">7. Screenshots Reference</h1>
+
+<h2>7.1 Page Templates</h2>
+<div class="screenshot-grid">
+  <div class="screenshot-item">
+    <img src="dpc-homepage-desktop.png" alt="Homepage" />
+    <div class="caption">Homepage (Desktop, 1440px)</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="dpc-windows-page.png" alt="Windows Product Page" />
+    <div class="caption">Product Landing: Windows</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="dpc-getting-started-page.png" alt="Getting Started Guide" />
+    <div class="caption">Content/Guide: Getting Started</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="dpc-communication-page.png" alt="Communication Page" />
+    <div class="caption">Communication / Article Page</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="dpc-asset-detail-page.png" alt="Asset Detail Page" />
+    <div class="caption">Asset Detail Page</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="dpc-support-page.png" alt="Support / FAQ Page" />
+    <div class="caption">Support / FAQ Page</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="dpc-contact-us-page.png" alt="Contact / Form Page" />
+    <div class="caption">Contact / Form Page</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="dpc-teams-auth-gated.png" alt="Auth-Gated Page (Teams)" />
+    <div class="caption">Auth-Gated Page (Teams)</div>
+  </div>
+</div>
+
+<h2>7.2 Block Components</h2>
+<div class="screenshot-grid">
+  <div class="screenshot-item">
+    <img src="dpc-nav-products.png" alt="Navigation Dropdown" />
+    <div class="caption">Header Nav + Dropdown Menu</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="dpc-comm-registration-page.png" alt="Rich Text Communication" />
+    <div class="caption">Rich Text Communication (with embedded images, video, accordion)</div>
+  </div>
+</div>
+
+<div class="footer-note">
+  Device Partner Center Site Analysis Report &mdash; Generated February 27, 2026 &mdash; Confidential
+</div>
+
+</body>
+</html>
