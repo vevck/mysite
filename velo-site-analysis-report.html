@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VELO.com/us – Comprehensive Site Analysis Report</title>
+<style>
+  @page { size: A4; margin: 18mm 14mm 18mm 14mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 10pt; line-height: 1.5; color: #1a1a1a; margin: 0; padding: 28px 36px; background: #fff; }
+
+  .cover { page-break-after: always; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 90vh; text-align: center; }
+  .cover h1 { font-size: 26pt; color: #003B73; margin-bottom: 6px; font-weight: 600; }
+  .cover .subtitle { font-size: 13pt; color: #444; margin-bottom: 24px; }
+  .cover .meta { font-size: 10pt; color: #666; margin-top: 36px; line-height: 2; }
+  .cover .meta strong { color: #333; }
+  .cover .logo-bar { margin-bottom: 36px; padding-bottom: 18px; border-bottom: 3px solid #FFD100; width: 55%; }
+
+  h1 { font-size: 17pt; color: #003B73; margin-top: 28px; margin-bottom: 8px; border-bottom: 2px solid #FFD100; padding-bottom: 5px; }
+  h2 { font-size: 13pt; color: #333; margin-top: 20px; margin-bottom: 6px; }
+  h3 { font-size: 11pt; color: #003B73; margin-top: 16px; margin-bottom: 5px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 16px 0; font-size: 8.5pt; }
+  th { background: #003B73; color: #fff; font-weight: 600; text-align: left; padding: 6px 7px; }
+  td { padding: 5px 7px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+  tr:nth-child(even) { background: #f0f4f8; }
+
+  .badge { display: inline-block; padding: 1px 7px; border-radius: 3px; font-size: 7.5pt; font-weight: 600; color: #fff; }
+  .badge-low { background: #28a745; }
+  .badge-medium { background: #fd7e14; }
+  .badge-high { background: #dc3545; }
+  .badge-very-high { background: #6f42c1; }
+  .badge-na { background: #6c757d; }
+
+  .section-break { page-break-before: always; }
+
+  .callout { background: #e8f0fe; border-left: 4px solid #003B73; padding: 10px 14px; margin: 10px 0; font-size: 9pt; }
+  .callout-warn { background: #fff8e1; border-left-color: #fd7e14; }
+  .callout-danger { background: #fef0f0; border-left-color: #dc3545; }
+
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin: 14px 0; }
+  .summary-card { background: #f0f4f8; border: 1px solid #d0d8e0; border-top: 3px solid #003B73; padding: 12px; text-align: center; }
+  .summary-card .number { font-size: 20pt; font-weight: 700; color: #003B73; }
+  .summary-card .label { font-size: 8pt; color: #666; margin-top: 3px; }
+
+  .toc { margin: 16px 0; }
+  .toc a { color: #003B73; text-decoration: none; }
+  .toc li { margin: 5px 0; font-size: 10pt; }
+
+  code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; font-size: 8pt; font-family: 'Consolas', monospace; }
+  ul, ol { margin: 4px 0; padding-left: 18px; }
+  li { margin: 2px 0; }
+
+  .footer-note { margin-top: 28px; padding-top: 8px; border-top: 1px solid #ddd; font-size: 7.5pt; color: #999; text-align: center; }
+
+  .screenshot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0; }
+  .screenshot-item { border: 1px solid #ddd; padding: 5px; text-align: center; font-size: 7.5pt; color: #666; background: #fafafa; }
+  .screenshot-item img { max-width: 100%; height: auto; max-height: 200px; object-fit: contain; }
+  .screenshot-item .caption { margin-top: 3px; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <div class="logo-bar">
+    <div style="font-size: 11pt; color: #666; letter-spacing: 2px; text-transform: uppercase;">AEM Site Analysis Report</div>
+  </div>
+  <h1>VELO.com/us</h1>
+  <div class="subtitle">Comprehensive Site Analysis for Edge Delivery Services Migration</div>
+  <div style="font-size: 10.5pt; color: #555; margin-top: 8px;">https://www.velo.com/us</div>
+  <div class="meta">
+    <strong>Date:</strong> March 12, 2026<br>
+    <strong>Scope:</strong> Templates, Components, Integrations, Migration Estimates<br>
+    <strong>Current Platform:</strong> Adobe Experience Manager (AEM Sites) &rarr; <strong>Target:</strong> Adobe Edge Delivery Services<br>
+    <strong>Locale:</strong> US / English &bull; Age-Gated (21+)
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<h1>Table of Contents</h1>
+<ol class="toc">
+  <li><a href="#exec-summary">Executive Summary</a></li>
+  <li><a href="#templates">Section 1 &ndash; Templates Inventory</a></li>
+  <li><a href="#blocks">Section 2 &ndash; Blocks / Components Catalog</a></li>
+  <li><a href="#page-counts">Section 3 &ndash; Page Counts by Template</a></li>
+  <li><a href="#integrations">Section 4 &ndash; Integrations Analysis</a></li>
+  <li><a href="#complex-use-cases">Section 5 &ndash; Complex Use Cases &amp; Observations</a></li>
+  <li><a href="#migration">Section 6 &ndash; Migration Estimates</a></li>
+  <li><a href="#screenshots">Section 7 &ndash; Screenshots</a></li>
+</ol>
+
+<!-- EXECUTIVE SUMMARY -->
+<div class="section-break" id="exec-summary"></div>
+<h1>Executive Summary</h1>
+<p>VELO.com/us is a <strong>consumer-facing, age-gated nicotine pouch brand website</strong> built on Adobe Experience Manager (AEM Sites). The site serves as a product showcase, loyalty rewards platform, and engagement hub for adult nicotine consumers (21+). It features a heavy MarTech stack (25+ ad-tech/analytics vendors), a Loyalty Plus rewards program with gamification, Google Maps store locator, and social engagement features (polls, comments, likes).</p>
+
+<div class="summary-grid">
+  <div class="summary-card">
+    <div class="number">10</div>
+    <div class="label">Page Templates</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">24</div>
+    <div class="label">Blocks / Components</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">~45&ndash;60</div>
+    <div class="label">Estimated Total Pages</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">25+</div>
+    <div class="label">Integrations</div>
+  </div>
+</div>
+
+<div class="callout">
+  <strong>Key Findings:</strong> The site is <strong>relatively small in page count</strong> (~45&ndash;60 pages) but <strong>high in interactive complexity</strong>. Major challenges include: age-gated authentication (all content under <code>/secure/</code>), loyalty/rewards program integration, gamification engine (polls, points, social engagement), Google Maps store locator, 25+ ad-tech integrations, and MFA-protected profile management.
+</div>
+
+<h2>Site Architecture Overview</h2>
+<table>
+  <tr><th>Dimension</th><th>Details</th></tr>
+  <tr><td>CMS Platform</td><td>Adobe Experience Manager (AEM Sites) &mdash; <code>/etc.clientlibs/velo/</code>, <code>/etc.clientlibs/reynoldsamerican-aem-base/</code></td></tr>
+  <tr><td>Authentication</td><td>Age-gated login (21+). All authenticated content under <code>/us/secure/</code>. Public pages: login, registration, forgot password.</td></tr>
+  <tr><td>URL Structure</td><td><code>/us/</code> (public) and <code>/us/secure/</code> (authenticated)</td></tr>
+  <tr><td>Brand Owner</td><td>Modoral Brands Inc. (subsidiary of R.J. Reynolds / British American Tobacco)</td></tr>
+  <tr><td>Loyalty Platform</td><td>Custom "Loyalty Plus" SDK integrated as AEM clientlib</td></tr>
+  <tr><td>API Backend</td><td><code>usapi.velo.com</code> (authentication, profile, offers, notifications)</td></tr>
+  <tr><td>Custom Fonts</td><td>Velo WWangle (Regular, Medium, Bold), IcoMoon icons, Font Awesome brands</td></tr>
+  <tr><td>Layout Shells</td><td>3 distinct layouts: (a) Full authenticated with header/footer/ticker, (b) Minimal dark-background shell for registration/legal, (c) Two-column sidebar for Terms of Use</td></tr>
+</table>
+
+
+<!-- SECTION 1: TEMPLATES INVENTORY -->
+<div class="section-break" id="templates"></div>
+<h1>Section 1 &ndash; Templates Inventory</h1>
+<p>10 distinct page templates were identified across the site, organized into 3 layout shells.</p>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>Template Name</th>
+    <th>Complexity</th>
+    <th>Description / Reasoning</th>
+    <th>Reference URL(s)</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td><strong>Homepage (Authenticated)</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Full-width hero with seasonal promotion (St. Paddy's Day), rewards promo section with gold vault imagery, McLaren Racing partnership banner, product exploration CTA, newsletter signup, store locator teaser. Multiple animated/interactive sections.</td>
+    <td><a href="https://www.velo.com/us/secure.html">velo.com/us/secure.html</a></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><strong>Product Catalog</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Product hero with branding, flavor grid (8&ndash;10 product cards each with image, name, strength, description), "Find a Store" CTA, product comparison section (Plus vs Standard), image carousel, reusable bottom modules.</td>
+    <td><a href="https://www.velo.com/us/secure/products/velo-plus.html">products/velo-plus.html</a><br><a href="https://www.velo.com/us/secure/products/velo.html">products/velo.html</a></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td><strong>Product Education / Landing</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Animated hero with parallax, tabbed product switcher (VELO Plus / VELO), "How to Enjoy" carousel (5 slides), product comparison cards, multiple CTAs. Heavy animation and interactivity.</td>
+    <td><a href="https://www.velo.com/us/secure/about.html">about.html</a></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><strong>Content Hub / Gamification</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Social media-style content feed with filter tabs (All/Poll/Video), content cards with points badges, like/comment counts, "Load More" pagination, Instagram cross-promo section. Highest interactive complexity.</td>
+    <td><a href="https://www.velo.com/us/secure/experience-more.html">experience-more.html</a></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td><strong>Gamification / Poll Detail</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Interactive poll with radio options and images, comment system with character counter, user profile display (avatar, name, location), social engagement (likes/comments with counts), "You May Also Enjoy" carousel.</td>
+    <td><a href="https://www.velo.com/us/secure/experience-more/feelin-lucky.html">feelin-lucky.html</a></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td><strong>Store Locator</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Google Maps embed with numbered markers, zip code search, geolocation, product filter, scrollable results list with "Get Directions" links, "Load More" pagination, product availability per store.</td>
+    <td><a href="https://www.velo.com/us/secure/store-locator.html">store-locator.html</a></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td><strong>Brand Partnership / Landing</strong></td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>Simple two-section layout with large imagery. F1 hero section + IndyCar section. Primarily visual storytelling with minimal interactivity.</td>
+    <td><a href="https://www.velo.com/us/secure/racing/2025.html">racing/2025.html</a></td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td><strong>Form / Support</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Contact form with topic dropdown, message textarea, submit button. Also includes chat button, phone click-to-call, and business hours display. Used for Contact Us, SMS signup, Rewards enrollment.</td>
+    <td><a href="https://www.velo.com/us/secure/footer-links/contact-us.html">contact-us.html</a><br><a href="https://www.velo.com/us/secure/sms.html">sms.html</a><br><a href="https://www.velo.com/us/secure/rewards-enroll.html">rewards-enroll.html</a></td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td><strong>Legal / Informational (Standard)</strong></td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>Long-form text with anchor TOC. Uses standard site header/footer chrome. Accordion variant for FAQ (33 items in 4 categories).</td>
+    <td><a href="https://www.velo.com/us/secure/footer-links/privacy-policy.html">privacy-policy.html</a><br><a href="https://www.velo.com/us/secure/footer-links/faq.html">faq.html</a><br><a href="https://www.velo.com/us/secure/footer-links/rewards-terms-and-conditions.html">rewards-terms-and-conditions.html</a></td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td><strong>Registration / Auth Flow</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Minimal dark-background shell (no standard header/footer). Multi-step wizard (4 steps) with form validation, age verification, identity check, state selection. Also used for forgot-password, site-requirements, terms-of-use, text-messaging T&amp;C.</td>
+    <td><a href="https://www.velo.com/us/registration.html">registration.html</a><br><a href="https://www.velo.com/us/forgot-password.html">forgot-password.html</a><br><a href="https://www.velo.com/us/secure/footer-links/terms-of-use.html">terms-of-use.html</a></td>
+  </tr>
+</table>
+
+
+<!-- SECTION 2: BLOCKS / COMPONENTS CATALOG -->
+<div class="section-break" id="blocks"></div>
+<h1>Section 2 &ndash; Blocks / Components Catalog</h1>
+<p>24 blocks/components were identified. These are grouped into Global (present on all pages) and Content blocks.</p>
+
+<h2>2.1 Global Components</h2>
+<table>
+  <tr>
+    <th>#</th>
+    <th>Block Name</th>
+    <th>Complexity</th>
+    <th>Description &amp; Behaviour</th>
+    <th>Reference URL(s)</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td><strong>Nicotine Warning Banner</strong></td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>Fixed top bar with yellow background. "WARNING: This product contains nicotine. Nicotine is an addictive chemical." + "UNDERAGE SALE PROHIBITED" / "NICOTINE PRODUCTS" labels. Persistent on all pages.</td>
+    <td>All pages</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><strong>Promotional Ticker</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Dismissible promotional bar below warning. Currently shows: "FEELIN' LUCKY? EARN +125 Points" with product image and "TAKE POLL" CTA. Dynamic content that changes seasonally. Includes close/dismiss button.</td>
+    <td>All authenticated pages</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td><strong>Global Header</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>VELO logo (links to /secure.html), hamburger menu button, "Join Rewards" CTA button, notification bell with dynamic badge count, slide-out notification center panel. Hamburger opens a full-screen mobile-style nav with expandable sub-menus.</td>
+    <td>All authenticated pages</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><strong>Hamburger Navigation Menu</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Full-screen slide-out navigation. Items: What Is Velo? (expandable &rarr; VELO, VELO Plus), Experience More, Sign Up For Texts, Offers, Profile, Store Finder. Expandable sub-menus with animation.</td>
+    <td>All authenticated pages</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td><strong>Notification Center</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Slide-out panel triggered by bell icon. Shows "Available Coupons" count with link to offers page. Dynamic notification list. Badge count updates in real-time.</td>
+    <td>All authenticated pages</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td><strong>Safety Information Bar</strong></td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>"Important Safety &amp; Product Information" expandable/collapsible banner below header. Links to FAQ page. Contains product safety images.</td>
+    <td>All authenticated pages</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td><strong>Global Footer</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>VELO logo, two-tier navigation (primary: Products, Mobile Offers, Store Locator, McLaren Racing, Contact Us, FAQs, Logout; secondary: Tobacco Rights, Privacy Policy, Text Messaging T&amp;C, Rewards T&amp;C, Terms of Use, Site Requirements). Social icons (Instagram, SMS), legal disclaimers, copyright.</td>
+    <td>All authenticated pages</td>
+  </tr>
+</table>
+
+<h2>2.2 Content Components</h2>
+<table>
+  <tr>
+    <th>#</th>
+    <th>Block Name</th>
+    <th>Complexity</th>
+    <th>Description &amp; Behaviour</th>
+    <th>Reference URL(s)</th>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td><strong>Hero Banner (Animated)</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Full-width hero with large heading, sub-copy, CTA button, and product/promotional imagery. Features CSS animations, parallax effects, and seasonal theming (e.g., St. Paddy's Day gold coins). Multiple visual variants.</td>
+    <td><a href="https://www.velo.com/us/secure.html">Homepage</a>, <a href="https://www.velo.com/us/secure/about.html">About</a>, <a href="https://www.velo.com/us/secure/products/velo-plus.html">Products</a></td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td><strong>Product Flavor Grid</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Grid of product cards (8&ndash;10 items). Each card: product can image, flavor name (H2), strength availability (H5), flavor description paragraph. Some cards have "NEW" badges or dual images. "Find a Store" CTA at bottom.</td>
+    <td><a href="https://www.velo.com/us/secure/products/velo-plus.html">VELO Plus</a>, <a href="https://www.velo.com/us/secure/products/velo.html">VELO</a></td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td><strong>Product Comparison</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Side-by-side comparison of VELO Plus vs VELO. Each side: product image, heading, bulleted feature list (moisture, flavors, pouch count, strengths, packaging). CTA to explore the other product variant. Reused across About and Product pages.</td>
+    <td><a href="https://www.velo.com/us/secure/about.html">About</a>, <a href="https://www.velo.com/us/secure/products/velo.html">Products</a></td>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td><strong>Image Carousel</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Horizontal carousel with prev/next buttons and dot pagination. Shows product lifestyle imagery. 3&ndash;5 slides. Auto-advances. Used on product and about pages.</td>
+    <td><a href="https://www.velo.com/us/secure/products/velo-plus.html">Products</a>, <a href="https://www.velo.com/us/secure/about.html">About</a></td>
+  </tr>
+  <tr>
+    <td>12</td>
+    <td><strong>Rewards Promo Banner</strong></td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>"More Points. More Perks. More Cha-Ching!" promo section with VELO Rewards badge, gold coins imagery, and "Check it Out" CTA. Appears as a reusable module on homepage, product, and store locator pages.</td>
+    <td>Homepage, Product pages, Store Locator</td>
+  </tr>
+  <tr>
+    <td>13</td>
+    <td><strong>Newsletter Signup (Pouch Talk)</strong></td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>"Sign Up for VELO Pouch Talk" section with descriptive text, "Join Now" CTA, and speech bubble graphic. Reusable bottom-of-page module.</td>
+    <td>Homepage, Product pages, About</td>
+  </tr>
+  <tr>
+    <td>14</td>
+    <td><strong>Store Locator Teaser</strong></td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>"Help Me Find My VELO" section with map pin imagery, "Find VELO at a store near you" text, and "Find VELO" CTA. Reusable bottom-of-page module.</td>
+    <td>Homepage, Product pages</td>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td><strong>Google Maps Store Locator</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Interactive Google Maps embed with numbered markers, zip code search form, "Use My Location" geolocation button, product filter dropdown, scrollable store results list (name, address, store ID, distance, "Get Directions" link, "Products Available" expandable), "Load More" pagination.</td>
+    <td><a href="https://www.velo.com/us/secure/store-locator.html">store-locator.html</a></td>
+  </tr>
+  <tr>
+    <td>16</td>
+    <td><strong>Experience Content Card Grid</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Social-media-style card feed with thumbnail image, points badge (+25/+100/+125), like count, comment count, title, description. Filter tabs (All, Poll, Video). "Load More" pagination. Dynamic content loading.</td>
+    <td><a href="https://www.velo.com/us/secure/experience-more.html">experience-more.html</a></td>
+  </tr>
+  <tr>
+    <td>17</td>
+    <td><strong>Interactive Poll</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Poll question with 3 radio options (each with image). Points earning display ("Members Earn +125 Pts"). "Explore More" CTA. Seasonal/themed content.</td>
+    <td><a href="https://www.velo.com/us/secure/experience-more/feelin-lucky.html">feelin-lucky.html</a></td>
+  </tr>
+  <tr>
+    <td>18</td>
+    <td><strong>Social Comments</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>"Tell Us More" comment section with user avatar + name + location display, 140-character limit textbox, share button, submission guidelines link. Part of gamification engagement.</td>
+    <td><a href="https://www.velo.com/us/secure/experience-more/feelin-lucky.html">feelin-lucky.html</a></td>
+  </tr>
+  <tr>
+    <td>19</td>
+    <td><strong>Content Recommendation Carousel</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>"You May Also Enjoy" section with 3 content cards linking to other experience/engagement pages. Each card has image, title. Horizontal scroll with navigation.</td>
+    <td><a href="https://www.velo.com/us/secure/experience-more/feelin-lucky.html">feelin-lucky.html</a></td>
+  </tr>
+  <tr>
+    <td>20</td>
+    <td><strong>Offers / Coupon Section</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Personalized section showing user's name, available offer count, claimed savings tracker, "Reveal offers" CTA. 5-step instruction layout with phone mockup images. Legal coupon terms.</td>
+    <td><a href="https://www.velo.com/us/secure/offers.html">offers.html</a></td>
+  </tr>
+  <tr>
+    <td>21</td>
+    <td><strong>FAQ Accordion</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Grouped accordion sections (4 categories, 33 total items). Each section has a heading, items expand/collapse on click. Categories: Product &amp; Warning Information, About VELO, Using VELO, Other Questions.</td>
+    <td><a href="https://www.velo.com/us/secure/footer-links/faq.html">faq.html</a></td>
+  </tr>
+  <tr>
+    <td>22</td>
+    <td><strong>Contact Form</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Topic dropdown (8 options), message textarea, submit button. Includes chat button (disabled/conditional), phone click-to-call (1-866-255-1780), business hours display.</td>
+    <td><a href="https://www.velo.com/us/secure/footer-links/contact-us.html">contact-us.html</a></td>
+  </tr>
+  <tr>
+    <td>23</td>
+    <td><strong>Multi-Step Registration Form</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>4-step wizard with progress indicator. Step 1: personal info (name, address, email, DOB). Age/tobacco certification checkbox with legal consent. Multi-step validation with state-by-state compliance. Identity verification integration.</td>
+    <td><a href="https://www.velo.com/us/registration.html">registration.html</a></td>
+  </tr>
+  <tr>
+    <td>24</td>
+    <td><strong>Video Player</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Video embed with play button overlay and HD quality indicator. Used on How It Works page for rewards education video.</td>
+    <td><a href="https://www.velo.com/us/secure/how-it-works.html">how-it-works.html</a></td>
+  </tr>
+</table>
+
+<div class="callout">
+  <strong>Block Consolidation Strategy:</strong> The 24 components can be consolidated into <strong>~16 EDS blocks</strong> through design variants:
+  <ul>
+    <li><code>hero</code> block with variants: animated, product, promotional, brand-partnership</li>
+    <li><code>cards</code> block with variants: product-grid, comparison, content-card, recommendation</li>
+    <li><code>carousel</code> block with variants: image, content, product</li>
+    <li>Shared bottom-of-page modules (rewards promo, newsletter, store teaser) as <code>fragment</code> blocks</li>
+  </ul>
+</div>
+
+
+<!-- SECTION 3: PAGE COUNTS BY TEMPLATE -->
+<div class="section-break" id="page-counts"></div>
+<h1>Section 3 &ndash; Page Counts by Template</h1>
+
+<table>
+  <tr>
+    <th>Template</th>
+    <th>Est. Page Count</th>
+    <th>Migration Approach</th>
+    <th>Notes</th>
+  </tr>
+  <tr>
+    <td><strong>Homepage (Authenticated)</strong></td>
+    <td>1</td>
+    <td><span class="badge badge-high">Manual</span></td>
+    <td>Seasonal content, heavy animation, multiple dynamic sections. Requires manual recreation.</td>
+  </tr>
+  <tr>
+    <td><strong>Product Catalog</strong></td>
+    <td>2</td>
+    <td><span class="badge badge-medium">Semi-Auto</span></td>
+    <td>VELO Plus and VELO. Content structure is standardized; imagery and data can be migrated.</td>
+  </tr>
+  <tr>
+    <td><strong>Product Education / Landing</strong></td>
+    <td>1</td>
+    <td><span class="badge badge-high">Manual</span></td>
+    <td>"What Is Velo?" &mdash; complex animations, tabbed switcher, carousel.</td>
+  </tr>
+  <tr>
+    <td><strong>Content Hub / Gamification</strong></td>
+    <td>1</td>
+    <td><span class="badge badge-high">Manual</span></td>
+    <td>Experience More listing page. Dynamic feed with social engagement metrics.</td>
+  </tr>
+  <tr>
+    <td><strong>Gamification / Poll Detail</strong></td>
+    <td>12&ndash;15</td>
+    <td><span class="badge badge-high">Manual</span></td>
+    <td>Individual poll/quiz/video pages. Each has unique interactive content + social engagement. ~12 visible in listing, more possible.</td>
+  </tr>
+  <tr>
+    <td><strong>Store Locator</strong></td>
+    <td>1</td>
+    <td><span class="badge badge-high">Manual</span></td>
+    <td>Google Maps integration, store API, geolocation. Full custom rebuild required.</td>
+  </tr>
+  <tr>
+    <td><strong>Brand Partnership / Landing</strong></td>
+    <td>2</td>
+    <td><span class="badge badge-low">Automated</span></td>
+    <td>McLaren Racing (2025 + potentially archived years). Simple image + text layout.</td>
+  </tr>
+  <tr>
+    <td><strong>Form / Support</strong></td>
+    <td>5</td>
+    <td><span class="badge badge-medium">Semi-Auto</span></td>
+    <td>Contact Us, SMS Signup, Rewards Enroll, How It Works, Offers. Forms require backend integration.</td>
+  </tr>
+  <tr>
+    <td><strong>Legal / Informational (Standard)</strong></td>
+    <td>5&ndash;6</td>
+    <td><span class="badge badge-low">Automated</span></td>
+    <td>Privacy Policy, FAQ, Rewards T&amp;C, Tobacco Rights (external redirect). Standardized text content.</td>
+  </tr>
+  <tr>
+    <td><strong>Registration / Auth Flow</strong></td>
+    <td>6&ndash;8</td>
+    <td><span class="badge badge-high">Manual</span></td>
+    <td>Registration (4-step), Forgot Password, Forgot Username, Site Requirements, Terms of Use, Text Messaging T&amp;C. Uses minimal layout shell. Auth logic is complex.</td>
+  </tr>
+  <tr>
+    <td><strong>Rewards Program (Gated)</strong></td>
+    <td>4&ndash;5</td>
+    <td><span class="badge badge-high">Manual</span></td>
+    <td>Rewards Home, Catalog, Earn, History, Redemption History. Gated behind loyalty enrollment. Not fully accessible without membership.</td>
+  </tr>
+  <tr>
+    <td><strong>Profile (MFA-Gated)</strong></td>
+    <td>1</td>
+    <td><span class="badge badge-high">Manual</span></td>
+    <td>My Profile. Behind MFA (email one-time passcode). Contains personal info, preferences.</td>
+  </tr>
+  <tr style="background: #d4edda; font-weight: 600;">
+    <td>TOTAL</td>
+    <td>~45&ndash;60</td>
+    <td></td>
+    <td><strong>Auto: ~8 pages | Semi-Auto: ~7 pages | Manual: ~30&ndash;45 pages</strong></td>
+  </tr>
+</table>
+
+<div class="callout-warn callout">
+  <strong>Note:</strong> Despite the relatively low page count, the majority of pages (~65&ndash;75%) require <strong>manual migration</strong> due to interactive complexity, dynamic personalization, API integrations, and authentication requirements. Only legal/informational pages and simple landing pages are candidates for automated migration.
+</div>
+
+
+<!-- SECTION 4: INTEGRATIONS ANALYSIS -->
+<div class="section-break" id="integrations"></div>
+<h1>Section 4 &ndash; Integrations Analysis</h1>
+
+<h2>4.1 Core Platform Integrations</h2>
+<table>
+  <tr>
+    <th>#</th>
+    <th>Integration</th>
+    <th>Type</th>
+    <th>Complexity</th>
+    <th>Reference URL(s)</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td><strong>Adobe Experience Platform Launch</strong></td>
+    <td>Tag Manager (Embed)</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>All pages &mdash; <code>assets.adobedtm.com/b57d62cd96da/...</code></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><strong>Adobe Analytics (AppMeasurement)</strong></td>
+    <td>Analytics (API)</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>All pages &mdash; Report suite: <code>raiservices.global.prod</code>, <code>raiservices.sc.omtrdc.net</code></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td><strong>Adobe Target</strong></td>
+    <td>Personalization (API)</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>All pages &mdash; <code>vusevapor.tt.omtrdc.net/rest/v1/delivery</code>. Page-level view triggers for A/B testing.</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><strong>Adobe Audience Manager (AAM)</strong></td>
+    <td>DMP (API)</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>All pages &mdash; <code>dpm.demdex.net</code></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td><strong>Adobe Client Data Layer</strong></td>
+    <td>Data Layer (Embed)</td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>All pages &mdash; v2.0.2</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td><strong>Adobe Helix RUM</strong></td>
+    <td>Monitoring (Embed)</td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>All pages &mdash; <code>rum.hlx.page</code> (indicates EDS migration planning)</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td><strong>Loyalty Plus SDK</strong></td>
+    <td>Custom (Embed)</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>All authenticated pages &mdash; <code>loyaltyplus/clientlibs/clientlib-velo</code>. Points earning, redemption, enrollment.</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td><strong>VELO Custom API</strong></td>
+    <td>REST API</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>All authenticated pages &mdash; <code>usapi.velo.com</code>. Auth, profile, offers, notifications, modals, text subscriptions.</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td><strong>Google Maps JavaScript API</strong></td>
+    <td>Embed/API</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td><a href="https://www.velo.com/us/secure/store-locator.html">store-locator.html</a> &mdash; Advanced Markers, Directions API, Geocoding</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td><strong>Google Tag Manager / Google Ads</strong></td>
+    <td>Tag Manager (Embed)</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>All pages &mdash; <code>googletagmanager.com/gtag/js?id=AW-670804958</code></td>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td><strong>MFA / One-Time Passcode</strong></td>
+    <td>Custom (API)</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td><a href="https://www.velo.com/us/secure/my-profile.html">my-profile.html</a> &mdash; Email-based OTP verification</td>
+  </tr>
+  <tr>
+    <td>12</td>
+    <td><strong>Age Verification / Identity Check</strong></td>
+    <td>Custom (API)</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td><a href="https://www.velo.com/us/registration.html">registration.html</a> &mdash; Third-party database identity verification</td>
+  </tr>
+</table>
+
+<h2>4.2 Ad-Tech / Programmatic Integrations (25+)</h2>
+<table>
+  <tr>
+    <th>#</th>
+    <th>Integration</th>
+    <th>Type</th>
+    <th>Complexity</th>
+  </tr>
+  <tr><td>13</td><td><strong>DoubleClick / Campaign Manager (Floodlight)</strong></td><td>Pixel</td><td><span class="badge badge-low">Low</span></td></tr>
+  <tr><td>14</td><td><strong>Permutive</strong></td><td>DMP (Embed)</td><td><span class="badge badge-medium">Medium</span></td></tr>
+  <tr><td>15</td><td><strong>Quantcast</strong></td><td>Measurement (Embed)</td><td><span class="badge badge-low">Low</span></td></tr>
+  <tr><td>16</td><td><strong>iPredictive</strong></td><td>Retargeting (Pixel)</td><td><span class="badge badge-low">Low</span></td></tr>
+  <tr><td>17</td><td><strong>AppNexus / Xandr</strong></td><td>Programmatic (Pixel)</td><td><span class="badge badge-low">Low</span></td></tr>
+  <tr><td>18</td><td><strong>LiveRamp / LiveIntent</strong></td><td>Identity (Pixel)</td><td><span class="badge badge-low">Low</span></td></tr>
+  <tr><td>19</td><td><strong>Zeta Interactive (Rocket Fuel)</strong></td><td>Programmatic (Pixel)</td><td><span class="badge badge-low">Low</span></td></tr>
+  <tr><td>20</td><td><strong>TVSquared</strong></td><td>TV Attribution (Pixel)</td><td><span class="badge badge-low">Low</span></td></tr>
+  <tr><td>21</td><td><strong>MediaIQ Digital</strong></td><td>Measurement (Pixel)</td><td><span class="badge badge-low">Low</span></td></tr>
+  <tr><td>22</td><td><strong>Acuity Platform</strong></td><td>Programmatic (Pixel)</td><td><span class="badge badge-low">Low</span></td></tr>
+  <tr><td>23</td><td><strong>Affectv</strong></td><td>Targeting (Pixel)</td><td><span class="badge badge-low">Low</span></td></tr>
+  <tr><td>24</td><td><strong>The Trade Desk</strong></td><td>Programmatic (Pixel)</td><td><span class="badge badge-low">Low</span></td></tr>
+  <tr><td>25</td><td><strong>Lotame</strong></td><td>DMP (Pixel)</td><td><span class="badge badge-low">Low</span></td></tr>
+  <tr><td>26</td><td><strong>StackAdapt</strong></td><td>Programmatic (Pixel)</td><td><span class="badge badge-low">Low</span></td></tr>
+  <tr><td>27</td><td><strong>OpenX</strong></td><td>SSP (Pixel)</td><td><span class="badge badge-low">Low</span></td></tr>
+  <tr><td>28</td><td><strong>PubMatic</strong></td><td>SSP (Pixel)</td><td><span class="badge badge-low">Low</span></td></tr>
+  <tr><td>29</td><td><strong>RFI Hub / Eyeota</strong></td><td>Data (Pixel)</td><td><span class="badge badge-low">Low</span></td></tr>
+  <tr><td>30</td><td><strong>BidSwitch</strong></td><td>Exchange (Pixel)</td><td><span class="badge badge-low">Low</span></td></tr>
+  <tr><td>31</td><td><strong>Smaato</strong></td><td>Mobile Ad (Pixel)</td><td><span class="badge badge-low">Low</span></td></tr>
+</table>
+
+<div class="callout">
+  <strong>Integration Summary:</strong> The site has <strong>12 core platform integrations</strong> (Medium&ndash;High complexity) and <strong>19 ad-tech pixel integrations</strong> (Low complexity, managed via Adobe Launch). The ad-tech pixels can be migrated as a single Launch property configuration. The core integrations (Loyalty Plus, VELO API, Google Maps, MFA, Age Verification) require significant custom development.
+</div>
+
+
+<!-- SECTION 5: COMPLEX USE CASES -->
+<div class="section-break" id="complex-use-cases"></div>
+<h1>Section 5 &ndash; Complex Use Cases &amp; Observations</h1>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>Use Case</th>
+    <th>Instances</th>
+    <th>Where Found</th>
+    <th>Why It&rsquo;s Complex</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td><strong>Age-Gated Authentication</strong></td>
+    <td>All pages</td>
+    <td>Entire site (<code>/us/secure/</code> path)</td>
+    <td>All content is behind age-verified login (21+). Public-facing pages are limited to login, registration, and forgot password. Registration involves 4-step wizard with third-party identity verification and state-specific compliance. EDS has no native auth framework; requires custom middleware or proxy solution.</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><strong>Loyalty / Rewards Program</strong></td>
+    <td>~8&ndash;10 pages</td>
+    <td>Rewards enroll, home, catalog, earn, history, how-it-works; points on all engagement pages</td>
+    <td>Full loyalty platform with points earning (product codes, polls, engagement), redemption catalog, savings tracking, membership gating. Custom "Loyalty Plus" SDK tightly integrated with AEM clientlibs. Points display appears on content cards, poll pages, and promotional banners. Requires custom API integration and state management.</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td><strong>Gamification / Social Engagement</strong></td>
+    <td>12&ndash;15 pages</td>
+    <td>Experience More hub, individual poll/quiz/video pages</td>
+    <td>Social media-style engagement system: interactive polls with image options, comment system (140-char limit, user avatar/name/location display), like/comment counters, content recommendations. Points earned per interaction. Requires real-time API, user session state, content management system for polls/quizzes.</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><strong>Google Maps Store Locator</strong></td>
+    <td>1 page</td>
+    <td>store-locator.html</td>
+    <td>Full Google Maps JavaScript API integration with Advanced Markers, geolocation ("Use My Location"), zip code search, product availability filtering per store, numbered result markers, "Get Directions" links, "Load More" pagination, store inventory API. Requires Google Maps API key, store data backend, and product availability service.</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td><strong>Personalized Content / Adobe Target</strong></td>
+    <td>All pages</td>
+    <td>Homepage (seasonal promotions), Offers (user name + offer count + savings), all pages (AT view triggers)</td>
+    <td>Adobe Target A/B testing active on every page load. Offers page shows personalized user name ("NIHAR, YOU HAVE..."), dynamic offer counts, and year-to-date claimed savings. Requires user session data and real-time personalization engine integration.</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td><strong>Mobile Coupon System</strong></td>
+    <td>1 page + ecosystem</td>
+    <td>offers.html</td>
+    <td>Digital coupon generation and redemption flow: reveal offers, scan barcode at store, location-based store selection, savings tracking. 5-step process with phone mockup UX. Requires mobile coupon API, barcode generation, geolocation, and store POS integration.</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td><strong>Multi-Factor Authentication (MFA)</strong></td>
+    <td>1 page</td>
+    <td>my-profile.html</td>
+    <td>Profile page gated behind email-based one-time passcode. Custom MFA overlay blocks all content until passcode is verified. Separate from primary login authentication. Requires email delivery service and OTP verification API.</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td><strong>Notification System</strong></td>
+    <td>All authenticated pages</td>
+    <td>Header bell icon, notification center panel</td>
+    <td>Real-time notification count badge on header bell icon. Slide-out panel shows available coupons count and notification list. Count updates dynamically. Requires real-time or polling API integration.</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td><strong>Heavy Ad-Tech Stack (25+ vendors)</strong></td>
+    <td>All pages</td>
+    <td>Page source / network requests</td>
+    <td>25+ ad-tech/programmatic pixels firing on every page (Trade Desk, AppNexus, Quantcast, Permutive, TVSquared, etc.). All managed through Adobe Launch. Must be carefully migrated to EDS delayed.js to avoid performance impact. Tobacco industry has specific advertising compliance requirements.</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td><strong>Cross-Brand Integration</strong></td>
+    <td>2&ndash;3 instances</td>
+    <td>SMS signup (links to vusevapor.com), Tobacco Rights (redirects to ownitvoiceit.com), Adobe Target uses vusevapor.tt.omtrdc.net</td>
+    <td>VELO shares infrastructure with parent brand VUSE/RAI Services. SMS terms link to vusevapor.com domain. Adobe Target endpoint uses vusevapor subdomain. Tobacco Rights redirects to RAI advocacy site. Cross-brand dependencies must be preserved during migration.</td>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td><strong>Regulatory Compliance</strong></td>
+    <td>All pages</td>
+    <td>Warning banner, registration (state-specific), product pages</td>
+    <td>FDA-mandated nicotine warning on all pages. Age 21+ verification at registration. State-specific privacy rights (CA, VA, CO, UT, CT). Tobacco advertising restrictions. TCPA compliance for SMS. All must be preserved exactly during migration.</td>
+  </tr>
+</table>
+
+
+<!-- SECTION 6: MIGRATION ESTIMATES -->
+<div class="section-break" id="migration"></div>
+<h1>Section 6 &ndash; Migration Estimates</h1>
+
+<h2>6.1 Phase Breakdown</h2>
+<table>
+  <tr>
+    <th>Phase</th>
+    <th>Duration</th>
+    <th>Effort (Person-Days)</th>
+    <th>Details</th>
+  </tr>
+  <tr>
+    <td><strong>Phase 1: Infrastructure &amp; Design System</strong></td>
+    <td>3&ndash;4 weeks</td>
+    <td>15&ndash;20 days</td>
+    <td>EDS project setup, Velo WWangle font integration, global styles (CSS custom properties), nicotine warning banner, global header with notification system, hamburger menu, global footer, safety information bar. Custom delayed.js for 25+ ad-tech pixels.</td>
+  </tr>
+  <tr>
+    <td><strong>Phase 2: Authentication &amp; API Layer</strong></td>
+    <td>4&ndash;6 weeks</td>
+    <td>20&ndash;30 days</td>
+    <td>Age-gated authentication proxy/middleware, session management, <code>usapi.velo.com</code> API integration, MFA for profile, registration multi-step wizard, forgot password flow. <strong>This is the highest-risk phase</strong> &mdash; EDS has no native auth support.</td>
+  </tr>
+  <tr>
+    <td><strong>Phase 3: Core Block Development</strong></td>
+    <td>4&ndash;5 weeks</td>
+    <td>20&ndash;25 days</td>
+    <td>~16 EDS blocks (hero variants, product grid, comparison, carousels, FAQ accordion, contact form, video player, store locator teaser, rewards promo, newsletter signup). Includes responsive design and accessibility.</td>
+  </tr>
+  <tr>
+    <td><strong>Phase 4: Complex Features</strong></td>
+    <td>5&ndash;7 weeks</td>
+    <td>25&ndash;35 days</td>
+    <td>Google Maps store locator, Loyalty Plus rewards integration, gamification engine (polls, comments, likes, points), mobile coupon system, notification center, personalization (Adobe Target), Experience More content hub with filtering/pagination.</td>
+  </tr>
+  <tr>
+    <td><strong>Phase 5: Content Migration</strong></td>
+    <td>2&ndash;3 weeks</td>
+    <td>10&ndash;15 days</td>
+    <td>~45&ndash;60 pages. Automated migration for ~8 legal/informational pages. Semi-automated for ~7 form/product pages. Manual for ~30&ndash;45 interactive/dynamic pages. Image asset migration.</td>
+  </tr>
+  <tr>
+    <td><strong>Phase 6: Integration Testing</strong></td>
+    <td>2&ndash;3 weeks</td>
+    <td>10&ndash;15 days</td>
+    <td>Analytics validation (Adobe Analytics, Target, AAM), ad-tech pixel verification (25+ vendors), loyalty program end-to-end testing, store locator API testing, form submission testing, MFA flow validation, coupon redemption testing.</td>
+  </tr>
+  <tr>
+    <td><strong>Phase 7: QA, Compliance &amp; UAT</strong></td>
+    <td>3&ndash;4 weeks</td>
+    <td>15&ndash;20 days</td>
+    <td>Cross-browser testing, mobile responsiveness, accessibility (WCAG 2.1 AA), FDA regulatory compliance check (warning labels, age verification), state privacy rights compliance, TCPA compliance for SMS, performance optimization (Lighthouse 100 target), UAT with stakeholders.</td>
+  </tr>
+  <tr>
+    <td><strong>Phase 8: Go-Live &amp; Monitoring</strong></td>
+    <td>1&ndash;2 weeks</td>
+    <td>5&ndash;10 days</td>
+    <td>DNS cutover, redirect mapping, production monitoring, post-launch analytics validation, hotfix period.</td>
+  </tr>
+  <tr style="background: #d4edda; font-weight: 600;">
+    <td>TOTAL</td>
+    <td>24&ndash;34 weeks</td>
+    <td>120&ndash;170 person-days</td>
+    <td>Approximately 6&ndash;8 months with a team of 3&ndash;4 developers</td>
+  </tr>
+</table>
+
+<h2>6.2 Effort Distribution</h2>
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Effort</th>
+    <th>% of Total</th>
+  </tr>
+  <tr>
+    <td>Automated Migration (legal/informational pages)</td>
+    <td>3&ndash;5 days</td>
+    <td>~3%</td>
+  </tr>
+  <tr>
+    <td>Semi-Automated Migration (forms, product pages)</td>
+    <td>7&ndash;10 days</td>
+    <td>~6%</td>
+  </tr>
+  <tr>
+    <td>Manual / Custom Development</td>
+    <td>85&ndash;120 days</td>
+    <td>~70%</td>
+  </tr>
+  <tr>
+    <td>QA &amp; Testing</td>
+    <td>25&ndash;35 days</td>
+    <td>~21%</td>
+  </tr>
+</table>
+
+<h2>6.3 Cost Estimate</h2>
+<table>
+  <tr>
+    <th>Scenario</th>
+    <th>Team Size</th>
+    <th>Duration</th>
+    <th>Cost Range (USD)</th>
+  </tr>
+  <tr>
+    <td><strong>Standard Delivery</strong></td>
+    <td>3&ndash;4 developers</td>
+    <td>6&ndash;8 months</td>
+    <td>$180,000 &ndash; $340,000</td>
+  </tr>
+  <tr>
+    <td><strong>Accelerated Delivery</strong></td>
+    <td>5&ndash;6 developers</td>
+    <td>4&ndash;5 months</td>
+    <td>$250,000 &ndash; $420,000</td>
+  </tr>
+</table>
+
+<div class="callout-warn callout">
+  <strong>Cost Assumptions:</strong> Blended rate of $150&ndash;$200/hour per developer. Includes project management overhead (~15%). Does not include third-party API licensing (Google Maps, Loyalty Plus platform, identity verification provider) or ongoing maintenance costs.
+</div>
+
+<h2>6.4 Risk Factors</h2>
+<table>
+  <tr>
+    <th>Risk</th>
+    <th>Impact</th>
+    <th>Likelihood</th>
+    <th>Mitigation</th>
+  </tr>
+  <tr>
+    <td>Authentication architecture on EDS</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>High</td>
+    <td>EDS has no native auth. Requires edge worker/middleware or CDN-level auth proxy. Prototype early. Consider hybrid approach (EDS for public pages, existing AEM for authenticated).</td>
+  </tr>
+  <tr>
+    <td>Loyalty Plus SDK compatibility</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Medium</td>
+    <td>Custom AEM clientlib SDK needs refactoring for EDS. Engage Loyalty Plus team early. May require API-only integration approach.</td>
+  </tr>
+  <tr>
+    <td>Regulatory compliance gap</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Medium</td>
+    <td>FDA tobacco marketing regulations are strict. Ensure all warning labels, age gates, and state-specific disclaimers are pixel-perfect. Legal review required before launch.</td>
+  </tr>
+  <tr>
+    <td>Ad-tech pixel performance impact</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>High</td>
+    <td>25+ pixels will impact page load. Load all via delayed.js. Audit each pixel for necessity. Consider server-side tag management.</td>
+  </tr>
+  <tr>
+    <td>Gamification engine complexity</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Medium</td>
+    <td>Polls, comments, likes, and points require real-time API. Consider phased rollout: launch without gamification, add in phase 2.</td>
+  </tr>
+  <tr>
+    <td>Google Maps API cost</td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>Low</td>
+    <td>Maps API usage may increase with EDS traffic changes. Monitor API call volumes.</td>
+  </tr>
+</table>
+
+
+<!-- SECTION 7: SCREENSHOTS -->
+<div class="section-break" id="screenshots"></div>
+<h1>Section 7 &ndash; Screenshots</h1>
+<p>Visual captures of key page templates and components.</p>
+
+<div class="screenshot-grid">
+  <div class="screenshot-item">
+    <img src="velo-homepage-auth.png" alt="VELO Authenticated Homepage">
+    <div class="caption">Authenticated Homepage</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="velo-products-page.png" alt="VELO Products Page">
+    <div class="caption">Products Page (VELO Plus)</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="01-about-parent-full.png" alt="What Is Velo? About Page">
+    <div class="caption">What Is Velo? (About)</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="04-experience-more-full.png" alt="Experience More Hub">
+    <div class="caption">Experience More (Gamification Hub)</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="store-locator-fullpage.png" alt="Store Locator">
+    <div class="caption">Store Locator (Google Maps)</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="offers-fullpage.png" alt="Mobile Offers">
+    <div class="caption">Mobile Offers (Personalized)</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="racing-fullpage.png" alt="McLaren Racing">
+    <div class="caption">McLaren Racing Partnership</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="contact-us-fullpage.png" alt="Contact Us">
+    <div class="caption">Contact Us (Form)</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="faq-fullpage.png" alt="FAQ Page">
+    <div class="caption">FAQ (Accordion)</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="05-how-it-works-full.png" alt="How Rewards Works">
+    <div class="caption">How Rewards Works</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="08-registration-full.png" alt="Registration Page">
+    <div class="caption">Registration (Multi-Step Form)</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="11-site-requirements-full.png" alt="Site Requirements">
+    <div class="caption">Site Requirements (Minimal Shell)</div>
+  </div>
+</div>
+
+<div class="footer-note">
+  VELO.com/us Site Analysis Report &bull; Generated March 12, 2026 &bull; Confidential
+</div>
+
+</body>
+</html>
