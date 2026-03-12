@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Stryker India – Comprehensive Site Analysis Report</title>
+<style>
+  @page { size: A4; margin: 18mm 14mm 18mm 14mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 10pt; line-height: 1.5; color: #1a1a1a; margin: 0; padding: 28px 36px; background: #fff; }
+
+  /* Cover */
+  .cover { page-break-after: always; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 90vh; text-align: center; }
+  .cover h1 { font-size: 26pt; color: #00703c; margin-bottom: 6px; font-weight: 600; }
+  .cover .subtitle { font-size: 13pt; color: #444; margin-bottom: 24px; }
+  .cover .meta { font-size: 10pt; color: #666; margin-top: 36px; line-height: 2; }
+  .cover .meta strong { color: #333; }
+  .cover .logo-bar { margin-bottom: 36px; padding-bottom: 18px; border-bottom: 3px solid #d4a843; width: 55%; }
+
+  h1 { font-size: 17pt; color: #00703c; margin-top: 28px; margin-bottom: 8px; border-bottom: 2px solid #d4a843; padding-bottom: 5px; }
+  h2 { font-size: 13pt; color: #333; margin-top: 20px; margin-bottom: 6px; }
+  h3 { font-size: 11pt; color: #00703c; margin-top: 16px; margin-bottom: 5px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 16px 0; font-size: 8.5pt; }
+  th { background: #00703c; color: #fff; font-weight: 600; text-align: left; padding: 6px 7px; }
+  td { padding: 5px 7px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+  tr:nth-child(even) { background: #f7f9f7; }
+
+  .badge { display: inline-block; padding: 1px 7px; border-radius: 3px; font-size: 7.5pt; font-weight: 600; color: #fff; }
+  .badge-low { background: #28a745; }
+  .badge-medium { background: #fd7e14; }
+  .badge-high { background: #dc3545; }
+  .badge-very-high { background: #6f42c1; }
+  .badge-critical { background: #1a1a1a; }
+  .badge-oos { background: #6c757d; }
+
+  .section-break { page-break-before: always; }
+
+  .callout { background: #f0f6f2; border-left: 4px solid #00703c; padding: 10px 14px; margin: 10px 0; font-size: 9pt; }
+  .callout-warn { background: #fff8e1; border-left-color: #fd7e14; }
+  .callout-danger { background: #fef0f0; border-left-color: #dc3545; }
+
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin: 14px 0; }
+  .summary-card { background: #f7f9f7; border: 1px solid #dde3de; border-top: 3px solid #00703c; padding: 12px; text-align: center; }
+  .summary-card .number { font-size: 20pt; font-weight: 700; color: #00703c; }
+  .summary-card .label { font-size: 8pt; color: #666; margin-top: 3px; }
+
+  .toc { margin: 16px 0; }
+  .toc a { color: #00703c; text-decoration: none; }
+  .toc li { margin: 5px 0; font-size: 10pt; }
+
+  code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; font-size: 8pt; font-family: 'Consolas', monospace; }
+  ul, ol { margin: 4px 0; padding-left: 18px; }
+  li { margin: 2px 0; }
+
+  .footer-note { margin-top: 28px; padding-top: 8px; border-top: 1px solid #ddd; font-size: 7.5pt; color: #999; text-align: center; }
+
+  .screenshot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0; }
+  .screenshot-item { border: 1px solid #ddd; padding: 5px; text-align: center; font-size: 7.5pt; color: #666; background: #fafafa; }
+  .screenshot-item img { max-width: 100%; height: auto; max-height: 200px; object-fit: contain; }
+  .screenshot-item .caption { margin-top: 3px; font-weight: 600; }
+
+  .comparison-table td:first-child { font-weight: 600; width: 30%; }
+  .highlight-india { background: #e8f5e9 !important; }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <div class="logo-bar">
+    <div style="font-size: 11pt; color: #666; letter-spacing: 2px; text-transform: uppercase;">AEM Site Analysis Report</div>
+  </div>
+  <h1>Stryker India</h1>
+  <div class="subtitle">Comprehensive Site Analysis for Edge Delivery Services Migration</div>
+  <div style="font-size: 10.5pt; color: #555; margin-top: 8px;">https://www.stryker.com/in/en/</div>
+  <div class="meta">
+    <strong>Date:</strong> March 12, 2026<br>
+    <strong>Scope:</strong> Templates, Components, Integrations, Migration Estimates<br>
+    <strong>Current Platform:</strong> Adobe Experience Manager (AEM Sites) &rarr; <strong>Target:</strong> Adobe Edge Delivery Services<br>
+    <strong>Locale:</strong> India / English (in/en)
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<h1>Table of Contents</h1>
+<ol class="toc">
+  <li><a href="#exec-summary">Executive Summary</a></li>
+  <li><a href="#templates">Section 1 &ndash; Templates Inventory</a></li>
+  <li><a href="#blocks">Section 2 &ndash; Blocks / Components Catalog</a></li>
+  <li><a href="#page-counts">Section 3 &ndash; Page Counts by Template</a></li>
+  <li><a href="#integrations">Section 4 &ndash; Integrations Analysis</a></li>
+  <li><a href="#complex-use-cases">Section 5 &ndash; Complex Use Cases &amp; Observations</a></li>
+  <li><a href="#migration">Section 6 &ndash; Migration Estimates</a></li>
+  <li><a href="#screenshots">Section 7 &ndash; Screenshots</a></li>
+</ol>
+
+<!-- EXECUTIVE SUMMARY -->
+<div class="section-break" id="exec-summary"></div>
+<h1>Executive Summary</h1>
+<p>The Stryker India site (<code>stryker.com/in/en/</code>) is a <strong>reduced-scope regional locale</strong> of the global Stryker AEM platform. It shares identical infrastructure, CMS templates, and marketing/analytics integrations with the US site (<code>/us/en/</code>), but operates with significantly fewer content pages, a simplified navigation structure, and India-specific regulatory content (GST/MRP pricing documents).</p>
+
+<div class="summary-grid">
+  <div class="summary-card">
+    <div class="number">7</div>
+    <div class="label">Templates Identified</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">18</div>
+    <div class="label">Blocks / Components</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">~150&ndash;200</div>
+    <div class="label">Estimated Pages (in/en)</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">15</div>
+    <div class="label">Integrations</div>
+  </div>
+</div>
+
+<div class="callout">
+  <strong>Key Finding:</strong> The India site is approximately 20&ndash;25% of the US site's content volume, using the same AEM template set with no India-specific template customizations. Migration effort is reduced proportionally, with the primary differentiation being India regulatory content (GST Rates/MRP documents) and a simplified 4-item top-level navigation (vs 7 on US).
+</div>
+
+<h2>India vs US &ndash; Quick Comparison</h2>
+<table class="comparison-table">
+  <tr><th>Dimension</th><th>India (in/en)</th><th>US (us/en)</th></tr>
+  <tr><td>Primary Nav Items</td><td>4 (About, MedSurg, Orthopaedics, Neurotechnology)</td><td>7 (About, Portfolios, Services, Care Settings, Patients, Training, Careers)</td></tr>
+  <tr><td>Business Units in Nav</td><td>2 (MedSurg, Orthopaedics + Neurotechnology)</td><td>20+ divisions with sub-menus</td></tr>
+  <tr><td>MedSurg Product Categories</td><td>15 categories</td><td>46+ categories</td></tr>
+  <tr><td>Orthopaedics Sub-categories</td><td>3 (Joint Replacement, Sports Medicine, Upper Extremities)</td><td>6+ categories</td></tr>
+  <tr><td>News Articles</td><td>87 articles</td><td>300+ articles</td></tr>
+  <tr><td>Footer Social Links</td><td>2 (Facebook, LinkedIn)</td><td>4 (Facebook, LinkedIn, Instagram, YouTube)</td></tr>
+  <tr><td>India-Specific Content</td><td>GST Rates/MRP PDFs, India regulatory disclaimers</td><td>N/A</td></tr>
+  <tr><td>Missing Sections (vs US)</td><td>Services/Solutions, Care Settings, Patients, Training/Education, Careers</td><td>Full scope</td></tr>
+  <tr><td>Endoscopy Section</td><td>Returns 404</td><td>Full product catalog</td></tr>
+</table>
+
+
+<!-- SECTION 1: TEMPLATES INVENTORY -->
+<div class="section-break" id="templates"></div>
+<h1>Section 1 &ndash; Templates Inventory</h1>
+<p>The India site uses the same AEM template architecture as the global platform. Seven distinct templates were identified through page-level analysis. All templates are shared with the US locale&mdash;no India-specific template customizations exist.</p>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>Template Name</th>
+    <th>AEM Template ID</th>
+    <th>Description</th>
+    <th>India Usage</th>
+    <th>Reuse from US</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td><strong>Tier-1 Landing</strong></td>
+    <td><code>tier1-landing</code></td>
+    <td>Full-width hero, mission/values, fast facts, awards carousel. Used for homepage and About page.</td>
+    <td>Homepage, About page</td>
+    <td>100% &ndash; identical template</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><strong>Portfolio Listing</strong></td>
+    <td><code>portfolio</code></td>
+    <td>Category grid with product image cards. Headline + sub-headline + horizontal rule + descriptive paragraph + product grid.</td>
+    <td>MedSurg, Orthopaedics, Neurotechnology portfolio pages</td>
+    <td>100% &ndash; same layout, fewer cards</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td><strong>Product Category</strong></td>
+    <td><code>base</code></td>
+    <td>Individual product category pages within portfolios (e.g., Bed Frames, Power Tools).</td>
+    <td>15+ MedSurg sub-pages, 3+ Orthopaedics sub-pages</td>
+    <td>100% &ndash; identical template</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><strong>Business Unit Landing</strong></td>
+    <td><code>tier1-landing</code> (variant)</td>
+    <td>Hero banner with featured products/services list + social CTA. Used for Joint Replacement, Neurovascular.</td>
+    <td>Joint Replacement page, Neurovascular page</td>
+    <td>100% &ndash; same template variant</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td><strong>News Listing</strong></td>
+    <td><code>base</code> (variant)</td>
+    <td>Paginated news listing with category filter, sidebar with media contacts. "Load More" pagination.</td>
+    <td>News &amp; Features page (87 articles)</td>
+    <td>100% &ndash; identical component</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td><strong>News Article</strong></td>
+    <td><code>base</code></td>
+    <td>Individual news/feature article pages with date, headline, body copy, and images.</td>
+    <td>87 individual news articles</td>
+    <td>100% &ndash; identical template</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td><strong>Legal / Informational</strong></td>
+    <td><code>base</code></td>
+    <td>Text-heavy informational pages for legal content (Privacy, Terms of Use, Accessibility, etc.).</td>
+    <td>Privacy, Terms of Use, Accessibility, Surgeon Disclaimer</td>
+    <td>100% &ndash; identical template</td>
+  </tr>
+</table>
+
+<div class="callout">
+  <strong>Template Reuse:</strong> All 7 India templates are directly reusable from the US migration. Zero additional template development is required for the India locale. The only differences are content volume (fewer pages per template) and locale-specific metadata.
+</div>
+
+
+<!-- SECTION 2: BLOCKS / COMPONENTS CATALOG -->
+<div class="section-break" id="blocks"></div>
+<h1>Section 2 &ndash; Blocks / Components Catalog</h1>
+<p>18 blocks/components were identified across the India site. These are a subset of the 22 found on the US site, with all components being identical in structure and behavior.</p>
+
+<h2>2.1 Global Components</h2>
+<table>
+  <tr>
+    <th>#</th>
+    <th>Component</th>
+    <th>EDS Block Name</th>
+    <th>Description</th>
+    <th>India Notes</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td><strong>Global Header</strong></td>
+    <td><code>header</code></td>
+    <td>Logo, hamburger menu, locale selector (India/English), search icon. Sticky on scroll.</td>
+    <td>4 nav items (vs 7 US). Locale shows "INDIA/ENGLISH".</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><strong>Global Footer</strong></td>
+    <td><code>footer</code></td>
+    <td>Copyright, legal links, social icons, regulatory links.</td>
+    <td>2 social links (Facebook, LinkedIn). India-specific: GST Rates PDF, MRP Knee Implants PDF, Product Experience link.</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td><strong>Cookie Consent Banner</strong></td>
+    <td>N/A (OneTrust)</td>
+    <td>GDPR/privacy cookie consent dialog via OneTrust.</td>
+    <td>Same domain ID as US: <code>d75729a5-75c8-4a38-8aae-707548537e37</code></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><strong>Locale Selector</strong></td>
+    <td><code>locale-selector</code></td>
+    <td>Globe icon with country/language picker. Redirects to locale-specific path.</td>
+    <td>Links to 74 hreflang locales (same as US).</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td><strong>Search Overlay</strong></td>
+    <td><code>search</code></td>
+    <td>Full-screen search overlay triggered by search icon. Uses server-side search API.</td>
+    <td>Search path uses <code>/in/en/</code> prefix for results.</td>
+  </tr>
+</table>
+
+<h2>2.2 Content Components</h2>
+<table>
+  <tr>
+    <th>#</th>
+    <th>Component</th>
+    <th>EDS Block Name</th>
+    <th>Description</th>
+    <th>Complexity</th>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td><strong>Hero Banner (Full-width)</strong></td>
+    <td><code>hero</code></td>
+    <td>Large heading with animated text ("Our company"), background image or color, descriptive paragraph below.</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td><strong>Mission Statement</strong></td>
+    <td><code>text-block</code></td>
+    <td>Centered text block with animated line-by-line reveal. "Together with our customers, we are driven to make healthcare better."</td>
+    <td><span class="badge badge-low">Low</span></td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td><strong>Values Grid</strong></td>
+    <td><code>cards</code></td>
+    <td>4-column grid: Integrity, Accountability, People, Performance. Each with title and subtitle.</td>
+    <td><span class="badge badge-low">Low</span></td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td><strong>Statistics / Fast Facts</strong></td>
+    <td><code>stats</code></td>
+    <td>Icon + large number + description. Used for "61 countries", "56K employees", "$22.6B sales", etc.</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td><strong>Info Card (Side-by-side)</strong></td>
+    <td><code>cards-horizontal</code></td>
+    <td>Image left/right + heading + body text + CTA link. Used for Code of Conduct, Quality Policy sections.</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td><strong>Teaser Grid</strong></td>
+    <td><code>cards</code> (variant)</td>
+    <td>3-4 column grid of image + title cards. Links to sub-pages. Used for "Learn more about us", portfolio product grids.</td>
+    <td><span class="badge badge-low">Low</span></td>
+  </tr>
+  <tr>
+    <td>12</td>
+    <td><strong>Portfolio Product Grid</strong></td>
+    <td><code>cards</code> (variant)</td>
+    <td>Product category cards with images. 3-column layout for portfolio listing pages.</td>
+    <td><span class="badge badge-low">Low</span></td>
+  </tr>
+  <tr>
+    <td>13</td>
+    <td><strong>Timeline / History</strong></td>
+    <td><code>timeline</code></td>
+    <td>Historical timeline with dates and descriptions. Expandable "Learn More" link.</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+  </tr>
+  <tr>
+    <td>14</td>
+    <td><strong>Awards Carousel</strong></td>
+    <td><code>carousel</code></td>
+    <td>Horizontal scrollable award badges (Great Place to Work, Best Workplaces, etc.).</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td><strong>News Article Card</strong></td>
+    <td><code>news-list</code></td>
+    <td>Thumbnail + date + headline + excerpt + "Read More" link. Paginated with "Load More" button.</td>
+    <td><span class="badge badge-high">High</span></td>
+  </tr>
+  <tr>
+    <td>16</td>
+    <td><strong>Business Links Grid</strong></td>
+    <td><code>link-list</code></td>
+    <td>Simple text link list for business unit pages (Joint Replacement, Neurovascular).</td>
+    <td><span class="badge badge-low">Low</span></td>
+  </tr>
+  <tr>
+    <td>17</td>
+    <td><strong>Featured Products Accordion</strong></td>
+    <td><code>accordion</code></td>
+    <td>Expandable product sections with image + description + "More" link on Joint Replacement page.</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+  </tr>
+  <tr>
+    <td>18</td>
+    <td><strong>Promotional Banner</strong></td>
+    <td><code>banner</code></td>
+    <td>Full-width promotional image banner (e.g., Mako Total Knee professor testimonial).</td>
+    <td><span class="badge badge-low">Low</span></td>
+  </tr>
+</table>
+
+<h3>Block Consolidation Strategy</h3>
+<div class="callout">
+  <strong>EDS Block Reuse:</strong> The 18 India components can be consolidated into <strong>~12 EDS blocks</strong>, achieving a <strong>33% code reduction</strong>. Values Grid, Teaser Grid, and Portfolio Product Grid all map to the same <code>cards</code> block with styling variants. All 12 blocks would be directly reusable from a US migration with zero additional development.
+</div>
+
+<h3>Components Present on US but Absent from India</h3>
+<table>
+  <tr><th>US Component</th><th>Reason for Absence</th></tr>
+  <tr><td>Mega Menu (multi-column)</td><td>India uses simplified 4-item nav; no mega menu required</td></tr>
+  <tr><td>Contact Form / Marketo Form</td><td>No dedicated contact page on India site</td></tr>
+  <tr><td>Video Player (inline)</td><td>No video content sections observed on India pages</td></tr>
+  <tr><td>Patient Stories Carousel</td><td>No Patients section on India site</td></tr>
+</table>
+
+
+<!-- SECTION 3: PAGE COUNTS BY TEMPLATE -->
+<div class="section-break" id="page-counts"></div>
+<h1>Section 3 &ndash; Page Counts by Template</h1>
+<p>Estimated page counts for the India locale based on navigation crawl, news listing pagination (87 articles), and product category enumeration.</p>
+
+<table>
+  <tr>
+    <th>Template</th>
+    <th>Estimated Page Count</th>
+    <th>Estimation Method</th>
+    <th>Notes</th>
+  </tr>
+  <tr>
+    <td><strong>Tier-1 Landing</strong></td>
+    <td>5&ndash;8</td>
+    <td>Navigation crawl</td>
+    <td>Homepage, About, Corporate Responsibility, Culture, Annual Review, etc.</td>
+  </tr>
+  <tr>
+    <td><strong>Portfolio Listing</strong></td>
+    <td>3&ndash;4</td>
+    <td>Primary navigation</td>
+    <td>MedSurg Equipment, Orthopaedics, Neurotechnology (+ possible Spine sub-portfolio)</td>
+  </tr>
+  <tr>
+    <td><strong>Product Category</strong></td>
+    <td>25&ndash;35</td>
+    <td>Category enumeration</td>
+    <td>15 MedSurg + 3 Orthopaedics + 3 Neurotechnology sub-categories + product detail pages</td>
+  </tr>
+  <tr>
+    <td><strong>Business Unit Landing</strong></td>
+    <td>2&ndash;4</td>
+    <td>Page crawl</td>
+    <td>Joint Replacement, Neurovascular (standalone business unit pages outside portfolios)</td>
+  </tr>
+  <tr>
+    <td><strong>News Listing</strong></td>
+    <td>1</td>
+    <td>Single page</td>
+    <td>Paginated listing page with "Load More" (87 articles shown)</td>
+  </tr>
+  <tr>
+    <td><strong>News Article</strong></td>
+    <td>80&ndash;90</td>
+    <td>News count display</td>
+    <td>"Showing 8 of 87" reported by news listing component</td>
+  </tr>
+  <tr>
+    <td><strong>Legal / Informational</strong></td>
+    <td>8&ndash;12</td>
+    <td>Footer link enumeration</td>
+    <td>Privacy, Terms of Use, Accessibility, Surgeon Disclaimer, Code of Conduct, Governance, History, Global Quality, etc.</td>
+  </tr>
+  <tr>
+    <td><strong>About Sub-pages</strong></td>
+    <td>10&ndash;15</td>
+    <td>About page link crawl</td>
+    <td>Leadership, Awards, Our Management, Corporate Governance, Site Map, etc.</td>
+  </tr>
+  <tr style="background: #e8f5e9; font-weight: 600;">
+    <td>TOTAL (India in/en)</td>
+    <td>~150&ndash;200</td>
+    <td></td>
+    <td>Approximately 20&ndash;25% of US site volume (700&ndash;900 pages)</td>
+  </tr>
+</table>
+
+<div class="callout-warn callout">
+  <strong>Note:</strong> The Endoscopy section (<code>/in/en/endoscopy.html</code>) returns a 404 error, suggesting content has been removed or was never published for the India locale. This reduces page count from what might be expected.
+</div>
+
+
+<!-- SECTION 4: INTEGRATIONS ANALYSIS -->
+<div class="section-break" id="integrations"></div>
+<h1>Section 4 &ndash; Integrations Analysis</h1>
+<p>The India site uses an <strong>identical integration stack</strong> to the US site. All integrations are globally shared via the same Adobe Experience Platform Launch property. The only differentiation is the locale dimension passed to analytics.</p>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>Integration</th>
+    <th>Technology</th>
+    <th>Identifier / Config</th>
+    <th>India vs US</th>
+    <th>EDS Migration</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td><strong>Adobe Experience Platform Launch</strong></td>
+    <td>Tag Manager</td>
+    <td><code>136dae5be016/c16a...</code></td>
+    <td>Identical &ndash; same global Launch property</td>
+    <td><span class="badge badge-low">Low</span> &ndash; Single &lt;script&gt; tag</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><strong>Adobe Analytics</strong></td>
+    <td>AppMeasurement 2.23.0</td>
+    <td>Report Suite: <code>stkr.com.2023.prod</code></td>
+    <td>Same suite; locale dimension <code>v7=in|en</code></td>
+    <td><span class="badge badge-medium">Medium</span> &ndash; Data layer mapping</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td><strong>Adobe Visitor ID Service</strong></td>
+    <td>ECID (VisitorAPI)</td>
+    <td>Org: <code>8C5867CA5245AE040A490D4C@AdobeOrg</code></td>
+    <td>Identical</td>
+    <td><span class="badge badge-low">Low</span></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><strong>Adobe Target</strong></td>
+    <td>at.js / Alloy</td>
+    <td>Same Org</td>
+    <td>Identical &ndash; shared A/B testing config</td>
+    <td><span class="badge badge-medium">Medium</span> &ndash; Personalization setup</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td><strong>Adobe Dynamic Media (Scene7)</strong></td>
+    <td>Image delivery CDN</td>
+    <td><code>media-assets.stryker.com</code></td>
+    <td>Identical CDN domain</td>
+    <td><span class="badge badge-high">High</span> &ndash; Image URL rewriting</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td><strong>OneTrust Cookie Consent</strong></td>
+    <td>Cookie management</td>
+    <td>Domain ID: <code>d75729a5-75c8-4a38-8aae-707548537e37</code></td>
+    <td>Identical domain ID</td>
+    <td><span class="badge badge-low">Low</span> &ndash; Script embed</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td><strong>Marketo Munchkin</strong></td>
+    <td>Lead tracking</td>
+    <td>Munchkin ID: <code>338-WAP-571</code></td>
+    <td>Identical</td>
+    <td><span class="badge badge-low">Low</span> &ndash; Script embed</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td><strong>Adobe Helix RUM</strong></td>
+    <td>Real User Monitoring</td>
+    <td><code>rum.hlx.page</code></td>
+    <td>Identical &ndash; indicates EDS migration planning active</td>
+    <td><span class="badge badge-low">Low</span> &ndash; Already EDS-native</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td><strong>AEM ClientLibs</strong></td>
+    <td>Client-side libraries</td>
+    <td>clientlibs-all, granite, clientlib-react</td>
+    <td>Identical</td>
+    <td><span class="badge badge-oos">Out of scope</span> &ndash; Replaced by EDS</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td><strong>i18n / Localization</strong></td>
+    <td>Content dictionaries</td>
+    <td>JSON translation dictionaries</td>
+    <td>India-specific labels (India/English)</td>
+    <td><span class="badge badge-medium">Medium</span> &ndash; EDS spreadsheet mapping</td>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td><strong>Google Tag Manager</strong></td>
+    <td>Supplementary tag mgr</td>
+    <td>Via Launch</td>
+    <td>Identical</td>
+    <td><span class="badge badge-low">Low</span></td>
+  </tr>
+  <tr>
+    <td>12</td>
+    <td><strong>hreflang Multi-locale</strong></td>
+    <td>SEO</td>
+    <td>74 hreflang alternates</td>
+    <td>Identical set &ndash; all 74 locales linked</td>
+    <td><span class="badge badge-medium">Medium</span> &ndash; Meta tag management</td>
+  </tr>
+  <tr>
+    <td>13</td>
+    <td><strong>AEM Content Fragment API</strong></td>
+    <td>Dynamic content</td>
+    <td>News listing, product data</td>
+    <td>Same API endpoints, filtered by locale</td>
+    <td><span class="badge badge-high">High</span> &ndash; Requires spreadsheet/API</td>
+  </tr>
+  <tr>
+    <td>14</td>
+    <td><strong>Adobe Fonts / Typekit</strong></td>
+    <td>Font delivery</td>
+    <td>Custom web fonts</td>
+    <td>Identical</td>
+    <td><span class="badge badge-low">Low</span></td>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td><strong>GST/MRP Document Delivery</strong></td>
+    <td>AEM DAM (PDF serving)</td>
+    <td><code>/content/dam/stryker/in/legal/</code></td>
+    <td><strong>India-specific</strong> &ndash; Not present on US</td>
+    <td><span class="badge badge-medium">Medium</span> &ndash; PDF hosting strategy</td>
+  </tr>
+</table>
+
+<div class="callout">
+  <strong>Integration Summary:</strong> 14 of 15 integrations are shared globally with the US site. The only India-unique integration is the GST/MRP regulatory document delivery from AEM DAM. If the US migration has already been completed, <strong>zero additional integration work</strong> is needed for India beyond locale configuration and PDF hosting.
+</div>
+
+
+<!-- SECTION 5: COMPLEX USE CASES -->
+<div class="section-break" id="complex-use-cases"></div>
+<h1>Section 5 &ndash; Complex Use Cases &amp; Observations</h1>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>Use Case</th>
+    <th>Description</th>
+    <th>Complexity</th>
+    <th>Recommendation</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td><strong>Multi-locale URL Architecture</strong></td>
+    <td>All India pages use <code>/in/en/</code> prefix with 74 hreflang alternates. URL structure must be preserved for SEO equity and cross-locale linking.</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Use EDS folder-based locale routing. Implement hreflang metadata via spreadsheet. Set up 301 redirects for any URL changes.</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><strong>News Listing with Pagination</strong></td>
+    <td>87 articles with "Load More" client-side pagination and category filtering. Dynamic content loaded from AEM Content Fragment API.</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Replace with EDS query index (spreadsheet-backed). Client-side filtering and pagination via custom JavaScript block.</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td><strong>Dynamic Media Image Delivery</strong></td>
+    <td>All product images served via <code>media-assets.stryker.com</code> (Scene7) with on-the-fly transformations (resize, crop, quality).</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Preserve Scene7 URLs during initial migration (external image references). Plan for progressive migration to EDS media delivery.</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><strong>India Regulatory Compliance</strong></td>
+    <td>Footer includes mandatory GST Rates and MRP documents for Indian medical device pricing regulations. PDFs served from AEM DAM at <code>/content/dam/stryker/in/legal/</code>.</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Host PDFs in EDS media folder or external CDN. Add India-specific footer links via locale-conditional footer fragment.</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td><strong>Cross-locale Content Sharing</strong></td>
+    <td>Many India news articles are identical to US articles (global press releases). Content is duplicated across locales rather than shared.</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Use EDS content fragments or shared source documents with locale-specific metadata overlays.</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td><strong>Animated Text Effects</strong></td>
+    <td>Homepage and About page use CSS/JS animations for text reveal (e.g., "Our company" headline animation, mission statement line-by-line reveal).</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Implement via EDS block JavaScript decoration. Use CSS transitions triggered by IntersectionObserver for scroll-based reveals.</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td><strong>Cookie Consent (India DPDP Act)</strong></td>
+    <td>OneTrust consent banner must comply with India's Digital Personal Data Protection Act (DPDP) 2023 in addition to global GDPR settings.</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>OneTrust handles geo-detection automatically. Ensure EDS delayed.js loads OneTrust script. Test India-specific consent categories.</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td><strong>Broken Endoscopy Section</strong></td>
+    <td><code>/in/en/endoscopy.html</code> returns 404. May indicate content removal or unpublished locale variant.</td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>Verify with content owners if Endoscopy should exist for India. Implement 404 handling or redirect to portfolio page.</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td><strong>Awards Carousel with Dynamic Badges</strong></td>
+    <td>About page features horizontally scrollable award badges that may be updated annually (Great Place to Work 2025, Best Workplaces Asia 2025, etc.).</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>EDS carousel block with author-editable image slots. Responsive horizontal scroll on mobile.</td>
+  </tr>
+</table>
+
+
+<!-- SECTION 6: MIGRATION ESTIMATES -->
+<div class="section-break" id="migration"></div>
+<h1>Section 6 &ndash; Migration Estimates</h1>
+
+<h2>6.1 Scenario: Standalone India Migration</h2>
+<p>If the India site is migrated independently (without prior US migration).</p>
+
+<table>
+  <tr>
+    <th>Phase</th>
+    <th>Duration</th>
+    <th>Details</th>
+  </tr>
+  <tr>
+    <td><strong>Phase 1: Infrastructure &amp; Design</strong></td>
+    <td>3&ndash;4 weeks</td>
+    <td>EDS project setup, design token extraction, global styles, header/footer blocks, cookie consent integration.</td>
+  </tr>
+  <tr>
+    <td><strong>Phase 2: Template &amp; Block Development</strong></td>
+    <td>4&ndash;6 weeks</td>
+    <td>7 templates, 12 EDS blocks (consolidated from 18 components). Includes news listing with pagination, carousel, stats block.</td>
+  </tr>
+  <tr>
+    <td><strong>Phase 3: Content Migration</strong></td>
+    <td>3&ndash;5 weeks</td>
+    <td>~150&ndash;200 pages. Import script development, bulk content migration, image URL mapping, metadata setup.</td>
+  </tr>
+  <tr>
+    <td><strong>Phase 4: Integration &amp; Testing</strong></td>
+    <td>2&ndash;3 weeks</td>
+    <td>Analytics validation, OneTrust testing, hreflang verification, India regulatory compliance check, performance optimization.</td>
+  </tr>
+  <tr>
+    <td><strong>Phase 5: UAT &amp; Go-Live</strong></td>
+    <td>2&ndash;3 weeks</td>
+    <td>User acceptance testing, redirect mapping, DNS cutover, monitoring.</td>
+  </tr>
+  <tr style="background: #e8f5e9; font-weight: 600;">
+    <td>TOTAL (Standalone)</td>
+    <td>14&ndash;21 weeks</td>
+    <td>Approximately 3.5&ndash;5 months with 2&ndash;3 developers</td>
+  </tr>
+</table>
+
+<h2>6.2 Scenario: India as Follow-on to US Migration</h2>
+<p>If the US site has already been migrated to EDS (recommended approach).</p>
+
+<table>
+  <tr>
+    <th>Phase</th>
+    <th>Duration</th>
+    <th>Details</th>
+  </tr>
+  <tr>
+    <td><strong>Phase 1: Locale Setup</strong></td>
+    <td>1 week</td>
+    <td>Fork US project, configure India locale routing, update header/footer for India nav and regulatory links.</td>
+  </tr>
+  <tr>
+    <td><strong>Phase 2: Content Migration</strong></td>
+    <td>2&ndash;3 weeks</td>
+    <td>Adapt US import scripts for India content. Migrate ~150&ndash;200 pages. Map India-specific metadata and GST/MRP documents.</td>
+  </tr>
+  <tr>
+    <td><strong>Phase 3: Testing &amp; Compliance</strong></td>
+    <td>1&ndash;2 weeks</td>
+    <td>Analytics locale dimension validation, DPDP Act compliance, hreflang testing, India-specific content QA.</td>
+  </tr>
+  <tr>
+    <td><strong>Phase 4: Go-Live</strong></td>
+    <td>1 week</td>
+    <td>Redirect mapping, DNS configuration, production monitoring.</td>
+  </tr>
+  <tr style="background: #e8f5e9; font-weight: 600;">
+    <td>TOTAL (Follow-on)</td>
+    <td>5&ndash;7 weeks</td>
+    <td>Approximately 1&ndash;2 months with 1&ndash;2 developers</td>
+  </tr>
+</table>
+
+<div class="callout">
+  <strong>Cost Estimate (Follow-on):</strong> $15,000&ndash;$35,000 USD (assuming reuse of US blocks, templates, and integrations).<br>
+  <strong>Cost Estimate (Standalone):</strong> $55,000&ndash;$110,000 USD (full development cycle).<br>
+  <strong>Savings from US Reuse:</strong> 65&ndash;70% effort reduction when leveraging prior US migration.
+</div>
+
+<h2>6.3 Risk Factors</h2>
+<table>
+  <tr>
+    <th>Risk</th>
+    <th>Impact</th>
+    <th>Likelihood</th>
+    <th>Mitigation</th>
+  </tr>
+  <tr>
+    <td>India DPDP Act compliance changes</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Medium</td>
+    <td>OneTrust handles regulation updates. Monitor DPDP Act implementation timelines.</td>
+  </tr>
+  <tr>
+    <td>Dynamic Media URL dependencies</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>High</td>
+    <td>Preserve Scene7 URLs initially. Plan phased image migration.</td>
+  </tr>
+  <tr>
+    <td>News API migration complexity</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Medium</td>
+    <td>Convert to EDS query index. Test pagination with 87+ articles.</td>
+  </tr>
+  <tr>
+    <td>Cross-locale redirect complexity (74 hreflangs)</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Low</td>
+    <td>Use EDS metadata spreadsheet for hreflang management. Implement bulk redirect mapping.</td>
+  </tr>
+  <tr>
+    <td>GST/MRP document update frequency</td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>Medium</td>
+    <td>Host PDFs externally or in EDS media. Establish update workflow for annual GST revisions.</td>
+  </tr>
+</table>
+
+
+<!-- SECTION 7: SCREENSHOTS -->
+<div class="section-break" id="screenshots"></div>
+<h1>Section 7 &ndash; Screenshots</h1>
+<p>Visual captures of key India page templates for reference.</p>
+
+<div class="screenshot-grid">
+  <div class="screenshot-item">
+    <img src="stryker-india-homepage.png" alt="India Homepage">
+    <div class="caption">Homepage (in/en/index.html)</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="stryker-india-about-full.png" alt="India About Page">
+    <div class="caption">About Page (in/en/about.html)</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="stryker-india-medsurg-full.png" alt="India MedSurg Portfolio">
+    <div class="caption">MedSurg Equipment Portfolio</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="stryker-india-orthopaedics-full.png" alt="India Orthopaedics Portfolio">
+    <div class="caption">Orthopaedics Portfolio</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="stryker-india-news-full.png" alt="India News Listing">
+    <div class="caption">News &amp; Features Listing</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="stryker-india-joint-replacement-full.png" alt="India Joint Replacement">
+    <div class="caption">Joint Replacement Business Unit</div>
+  </div>
+</div>
+
+
+<div class="footer-note">
+  Stryker India Site Analysis Report &bull; Generated March 12, 2026 &bull; Confidential
+</div>
+
+</body>
+</html>
