@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Stryker.com – Comprehensive Site Analysis Report</title>
+<style>
+  @page { size: A4; margin: 18mm 14mm 18mm 14mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 10pt; line-height: 1.5; color: #1a1a1a; margin: 0; padding: 28px 36px; background: #fff; }
+
+  /* Cover */
+  .cover { page-break-after: always; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 90vh; text-align: center; }
+  .cover h1 { font-size: 26pt; color: #00703c; margin-bottom: 6px; font-weight: 600; }
+  .cover .subtitle { font-size: 13pt; color: #444; margin-bottom: 24px; }
+  .cover .meta { font-size: 10pt; color: #666; margin-top: 36px; line-height: 2; }
+  .cover .meta strong { color: #333; }
+  .cover .logo-bar { margin-bottom: 36px; padding-bottom: 18px; border-bottom: 3px solid #d4a843; width: 55%; }
+
+  h1 { font-size: 17pt; color: #00703c; margin-top: 28px; margin-bottom: 8px; border-bottom: 2px solid #d4a843; padding-bottom: 5px; }
+  h2 { font-size: 13pt; color: #333; margin-top: 20px; margin-bottom: 6px; }
+  h3 { font-size: 11pt; color: #00703c; margin-top: 16px; margin-bottom: 5px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 16px 0; font-size: 8.5pt; }
+  th { background: #00703c; color: #fff; font-weight: 600; text-align: left; padding: 6px 7px; }
+  td { padding: 5px 7px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+  tr:nth-child(even) { background: #f7f9f7; }
+
+  .badge { display: inline-block; padding: 1px 7px; border-radius: 3px; font-size: 7.5pt; font-weight: 600; color: #fff; }
+  .badge-low { background: #28a745; }
+  .badge-medium { background: #fd7e14; }
+  .badge-high { background: #dc3545; }
+  .badge-very-high { background: #6f42c1; }
+  .badge-critical { background: #1a1a1a; }
+  .badge-oos { background: #6c757d; }
+
+  .section-break { page-break-before: always; }
+
+  .callout { background: #f0f6f2; border-left: 4px solid #00703c; padding: 10px 14px; margin: 10px 0; font-size: 9pt; }
+  .callout-warn { background: #fff8e1; border-left-color: #fd7e14; }
+  .callout-danger { background: #fef0f0; border-left-color: #dc3545; }
+
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin: 14px 0; }
+  .summary-card { background: #f7f9f7; border: 1px solid #dde3de; border-top: 3px solid #00703c; padding: 12px; text-align: center; }
+  .summary-card .number { font-size: 20pt; font-weight: 700; color: #00703c; }
+  .summary-card .label { font-size: 8pt; color: #666; margin-top: 3px; }
+
+  .toc { margin: 16px 0; }
+  .toc a { color: #00703c; text-decoration: none; }
+  .toc li { margin: 5px 0; font-size: 10pt; }
+
+  code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; font-size: 8pt; font-family: 'Consolas', monospace; }
+  ul, ol { margin: 4px 0; padding-left: 18px; }
+  li { margin: 2px 0; }
+
+  .footer-note { margin-top: 28px; padding-top: 8px; border-top: 1px solid #ddd; font-size: 7.5pt; color: #999; text-align: center; }
+
+  .screenshot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0; }
+  .screenshot-item { border: 1px solid #ddd; padding: 5px; text-align: center; font-size: 7.5pt; color: #666; background: #fafafa; }
+  .screenshot-item img { max-width: 100%; height: auto; max-height: 200px; object-fit: contain; }
+  .screenshot-item .caption { margin-top: 3px; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <div class="logo-bar">
+    <div style="font-size: 11pt; color: #666; letter-spacing: 2px; text-transform: uppercase;">AEM Site Analysis Report</div>
+  </div>
+  <h1>Stryker.com</h1>
+  <div class="subtitle">Comprehensive Site Analysis for Edge Delivery Services Migration</div>
+  <div style="font-size: 10.5pt; color: #555; margin-top: 8px;">https://www.stryker.com/us/en/</div>
+  <div class="meta">
+    <strong>Date:</strong> March 12, 2026<br>
+    <strong>Scope:</strong> Templates, Components, Integrations, Migration Estimates<br>
+    <strong>Current Platform:</strong> Adobe Experience Manager (AEM Sites) &rarr; <strong>Target:</strong> Adobe Edge Delivery Services
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<h1>Table of Contents</h1>
+<ol class="toc">
+  <li><a href="#exec">Executive Summary</a></li>
+  <li><a href="#templates">Templates Inventory</a></li>
+  <li><a href="#blocks">Blocks &amp; Components Catalog</a></li>
+  <li><a href="#pages">Page Count by Template</a></li>
+  <li><a href="#integrations">Integrations &amp; Embedded Services</a></li>
+  <li><a href="#complex">Complex Use Cases &amp; Special Observations</a></li>
+  <li><a href="#estimates">Migration Estimates</a></li>
+  <li><a href="#screenshots">Screenshots Reference</a></li>
+</ol>
+
+<!-- EXECUTIVE SUMMARY -->
+<div class="section-break"></div>
+<h1 id="exec">Executive Summary</h1>
+
+<div class="summary-grid">
+  <div class="summary-card">
+    <div class="number">10</div>
+    <div class="label">Page Templates<br>(distinct layouts)</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">22</div>
+    <div class="label">Unique Blocks /<br>Components</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">~700&ndash;900</div>
+    <div class="label">Estimated Public<br>Pages (en-US)</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">15</div>
+    <div class="label">Third-Party<br>Integrations</div>
+  </div>
+</div>
+
+<div class="callout">
+  <strong>Key Finding:</strong> Stryker.com is built on <strong>Adobe Experience Manager (AEM) Sites</strong> with Scene7/Dynamic Media for image delivery. The site is a <strong>large-scale medical technology corporate website</strong> covering 19 business divisions, 3 major portfolios (MedSurg, Orthopaedics, Neurotechnology), 488+ news articles, and a deep product catalog. The site already uses <strong>Adobe Helix RUM</strong> (Real User Monitoring from Edge Delivery Services), indicating EDS migration planning is underway. The site is <strong>publicly accessible</strong> with no authentication gating, which simplifies migration significantly compared to auth-gated sites.
+</div>
+
+<p><strong>CMS Platform:</strong> Adobe Experience Manager (AEM Sites), evidenced by <code>aem-Grid</code> layout classes, <code>/etc/designs/stryker/clientlibs-*</code> client library paths, <code>/libs/granite/</code> framework, and Scene7/Dynamic Media integration via <code>media-assets.stryker.com</code>.</p>
+<p><strong>Architecture Notes:</strong> AEM Templates include <code>tier1-landing</code>, <code>portfolio</code>, <code>base</code>, and <code>tier1-landing-contact</code>. jQuery is loaded twice (Granite + Foundation versions). Seven Scene7 viewer scripts are loaded globally. Multi-region content management supports 74 locales via hreflang tags.</p>
+
+<!-- 1. TEMPLATES INVENTORY -->
+<div class="section-break"></div>
+<h1 id="templates">1. Templates Inventory</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Template Name</th>
+      <th>Purpose</th>
+      <th>Complexity</th>
+      <th>Reference URL(s)</th>
+      <th>Variations / Notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><strong>Homepage</strong></td>
+      <td>Primary corporate landing page with hero carousel, news cards, "Our Focus" tabbed panels, careers CTA, corporate responsibility carousel, awards badges, and quick links grid.</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td><code>https://www.stryker.com/us/en/index.html</code></td>
+      <td>
+        <ul>
+          <li>Multiple distinct block types on a single page</li>
+          <li>Hero carousel with auto-play</li>
+          <li>Tabbed "Our Focus" section with 6 panels (image + text + CTA each)</li>
+          <li>News card grid, awards section, quick links 4-column grid</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>Corporate Landing (Tier-1)</strong></td>
+      <td>Rich multi-section corporate pages with hero, mission/values blocks, infographic stats, 50/50 content+image blocks, card grids, history timeline, business directory, fast facts, and awards.</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td><code>https://www.stryker.com/us/en/about.html</code></td>
+      <td>
+        <ul>
+          <li>AEM Template: <code>tier1-landing</code></li>
+          <li>Most complex template with 10+ distinct block types</li>
+          <li>Animated infographic section (61 countries, 56K employees, 150M patients)</li>
+          <li>Card grids of varying sizes (4-up, 3-up)</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Portfolio / Category Catalog</strong></td>
+      <td>Product category hub pages with text-only header (title + subtitle + description) and responsive product card grid linking to subcategories.</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td><code>https://www.stryker.com/us/en/portfolios/medical-surgical-equipment.html</code><br><code>https://www.stryker.com/us/en/portfolios/orthopaedics.html</code><br><code>https://www.stryker.com/us/en/portfolios/neurotechnology-spine.html</code></td>
+      <td>
+        <ul>
+          <li>AEM Template: <code>portfolio</code></li>
+          <li>Card count varies: MedSurg (39 cards), Orthopaedics (8 cards), Neurotech (7 cards)</li>
+          <li>No hero image &mdash; text-only header with horizontal rule separator</li>
+          <li>Images served via Dynamic Media presets (<code>$preset_307_184$</code>)</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>Business Unit / Product Showcase</strong></td>
+      <td>Long-form product marketing pages for individual business units. Hero carousel + multiple product spotlight sections + feature card grids + statistical callouts + references section.</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td><code>https://www.stryker.com/us/en/endoscopy.html</code><br><code>https://www.stryker.com/us/en/joint-replacement.html</code><br><code>https://www.stryker.com/us/en/sports-medicine.html</code></td>
+      <td>
+        <ul>
+          <li>19 business units, each with its own showcase page</li>
+          <li>Complex product diagrams with lettered callouts (A-K)</li>
+          <li>Statistical highlight blocks ("93%", "27-30")</li>
+          <li>Division-specific social media links</li>
+          <li>Regulatory references section with medical citations</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>Services / Dual-Section Landing</strong></td>
+      <td>Two-section landing page with "Services" and "Solutions" categories, each containing descriptive card lists with long-form descriptions.</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td><code>https://www.stryker.com/us/en/services-and-solutions.html</code></td>
+      <td>
+        <ul>
+          <li>Dual-category layout (Services + Solutions)</li>
+          <li>Long-form card descriptions (100+ words each)</li>
+          <li>Inline contact links within card body text</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><strong>Category Landing (Hero + Cards)</strong></td>
+      <td>Concise landing page with styled hero banner, introductory text, and small set of category cards (3&ndash;6 items).</td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td><code>https://www.stryker.com/us/en/care-settings.html</code><br><code>https://www.stryker.com/us/en/training-and-education.html</code></td>
+      <td>
+        <ul>
+          <li>Minimal page structure</li>
+          <li>Training page adds in-page tab/anchor navigation for audience segmentation</li>
+          <li>Hero uses multi-line styled typography treatment</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><strong>News &amp; Features Listing</strong></td>
+      <td>News hub with hero banner, latest news cards, featured stories cards, category filter tabs, chronological article listing with "Load More" pagination.</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td><code>https://www.stryker.com/us/en/about/news.html</code></td>
+      <td>
+        <ul>
+          <li>AEM Template: <code>base</code></li>
+          <li>488 total articles with "Load More" lazy loading</li>
+          <li>6 filter categories: All News, News/Releases, Innovation, Events, Our Impact, StrykerTalks Podcast</li>
+          <li>News archives back to 2011</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><strong>News / Article Detail</strong></td>
+      <td>Standard article page with H1 title, date, hero image, rich text body (paragraphs, lists, bold text), "About Stryker" boilerplate, and media contact info.</td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td><code>https://www.stryker.com/us/en/about/news/2026/stryker-launches-smarthospital-platform.html</code></td>
+      <td>
+        <ul>
+          <li>Standardized structure across 488+ articles</li>
+          <li>URL pattern: <code>/about/news/{year}/{slug}.html</code></li>
+          <li>Some articles include embedded images and media</li>
+          <li>Regulatory literature number on each page</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td><strong>Contact / Information Hub</strong></td>
+      <td>Contact page with headquarters info, Google Maps embed, regional accordion (6 regions), tabbed company information, and form links.</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td><code>https://www.stryker.com/us/en/about/contact.html</code></td>
+      <td>
+        <ul>
+          <li>AEM Template: <code>tier1-landing-contact</code></li>
+          <li>Google Maps iframe embed</li>
+          <li>6-region accordion with 40+ global office locations</li>
+          <li>Tabbed "Company Information" with 5 sub-categories</li>
+          <li>4 separate contact form links</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td><strong>Patient Stories / Editorial</strong></td>
+      <td>Long-form editorial page with hero banner, patient testimonials with blockquote callouts, story card grids, and patient education resource cards.</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td><code>https://www.stryker.com/us/en/patients.html</code></td>
+      <td>
+        <ul>
+          <li>Decorative blockquote with large quotation marks</li>
+          <li>Mixed story formats: long-form narratives + thumbnail story cards</li>
+          <li>Cross-domain links to patient portals (<code>patients.stryker.com</code>, <code>strykerivs.com</code>)</li>
+          <li>Patient education resource card grid</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- 2. BLOCKS & COMPONENTS CATALOG -->
+<div class="section-break"></div>
+<h1 id="blocks">2. Blocks &amp; Components Catalog</h1>
+
+<h2>2.1 Global Components</h2>
+<table>
+  <thead>
+    <tr><th>#</th><th>Block / Component</th><th>Complexity</th><th>Description &amp; Behaviors</th><th>Reference URL</th><th>Notes / Reuse Reasoning</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><strong>Global Header / Navigation</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Stryker logo, hamburger menu (mobile), 7 primary nav items with multi-level dropdown menus (About submenu has 14 items; business units mega-menu has 19 divisions), country/language selector, search button. Responsive with mobile slide-out menu.</td>
+      <td><code>/us/en/index.html</code> (all pages)</td>
+      <td>Mega-menu for business units is the most complex element. Country selector links to locale pages across 74 locales. Search triggers full-page overlay.</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>Global Footer</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Two rows: Row 1 has copyright + legal links (Privacy, Accessibility, Healthcare Disclaimer, Terms of Use) + social media icons (YouTube, Facebook, LinkedIn, Instagram). Row 2 has supplementary links (Trademarks, UDI, Product Experience, Ethics Hotline).</td>
+      <td><code>/us/en/index.html</code> (all pages)</td>
+      <td>Consistent across all pages. Simple link-based footer without multi-column grid.</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Cookie Consent Banner (OneTrust)</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>GDPR/CCPA consent banner with "Accept All Cookies", "Reject All", and "Cookies Settings" buttons. Flat banner style with configurable text. Geolocation-aware.</td>
+      <td>All pages</td>
+      <td>OneTrust SDK integration. Must be maintained for compliance. Consent ID: <code>d75729a5-75c8-4a38-8aae-707548537e37</code>.</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>Regulatory / Literature Footer</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Document tracking number (e.g., <code>COMM-GSNPS-SYK-601900_Rev-8</code>) and "Last Updated" date stamp displayed above the global footer. Present on every page for medical device regulatory compliance.</td>
+      <td>All pages</td>
+      <td>Unique to medical device industry. Must be preserved in migration. Can be authored as metadata.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>2.2 Content Blocks</h2>
+<table>
+  <thead>
+    <tr><th>#</th><th>Block / Component</th><th>Complexity</th><th>Description &amp; Behaviors</th><th>Found On</th><th>Notes / Reuse Reasoning</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>5</td>
+      <td><strong>Hero Carousel</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Full-width hero banner with background image, multi-line styled heading, subtitle, and 1&ndash;2 CTA buttons. Implemented as a carousel (listbox) infrastructure, often with a single slide. Supports auto-play where multiple slides exist.</td>
+      <td>Homepage, Care Settings, Patients, Training, News, Endoscopy, and all Business Unit pages</td>
+      <td><strong>Highest reuse block.</strong> Same carousel infrastructure used across 25+ pages. Design variation: some have centered text, some have left-aligned text with right image. Single EDS block with style variants.</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><strong>News Card Grid</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>3&ndash;4 column grid of news cards. Each card: thumbnail image, H3 heading, date metadata, description paragraph, "Read More" CTA link. Used for both "Latest News" and "Features" sections.</td>
+      <td>Homepage, News Listing</td>
+      <td><strong>Design variation of Cards block.</strong> Same content model as Product Category Cards but with date metadata and description. Build as variant of a single Cards block.</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><strong>Product Category Card Grid</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Responsive grid of product category cards. Each card: thumbnail image (Dynamic Media preset <code>$preset_307_184$</code>) + H4 heading. Entire card is a link. Grid auto-adjusts columns based on count (3-col for 8 items, 3-col for 39 items).</td>
+      <td>Portfolio pages (MedSurg: 39 cards, Orthopaedics: 8, Neurotech: 7)</td>
+      <td><strong>Design variation of Cards block.</strong> Simpler than news cards (image + title only, no description). Same underlying grid pattern. Build as variant.</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><strong>Our Focus / Tabbed Image+Text Panels</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Horizontally scrollable tabbed section. Each tab panel contains: large linked image on left, right content area with styled title (heading + subtitle), description paragraph, and "Learn more" CTA. 6 panels on homepage.</td>
+      <td>Homepage</td>
+      <td>Custom interactive block. Requires JavaScript for tab switching/scrolling behavior. Only used on homepage but critical for visual impact.</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td><strong>50/50 Content + Image Block</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Two-column layout: one side has styled heading + description paragraph + CTA link; other side has full-bleed image. Content and image positions alternate.</td>
+      <td>About, Endoscopy, Patients, Business Unit pages</td>
+      <td><strong>High reuse block.</strong> Used extensively across the site. Same content model, alternating layout. Single Columns block with left/right variants.</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td><strong>Infographic / Statistics Block</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Animated/visual statistics display with large numbers, icons, and supporting text. Variants: horizontal row of stats (About: 61 countries, 56K employees, 150M patients) and vertical icon+stat grid (Fast Facts: $22.6B, 14,200 patents, etc.).</td>
+      <td>About, Homepage</td>
+      <td>Two design variants sharing same content model (icon + number + label). Build as single block with layout variants.</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td><strong>Mission / Values Block</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Centered text block with large styled heading and 4-column values display (Integrity, Accountability, People, Performance) each with bold title + description.</td>
+      <td>About</td>
+      <td>Specialized but simple. Values section can be built as a Cards variant with centered text styling.</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td><strong>Awards Badge Grid</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Section with title + subtitle, row of award badge images (Great Place to Work, Best Workplaces 2025, etc.), and "View all awards" CTA link.</td>
+      <td>Homepage, About</td>
+      <td>Simple image grid. 6 badge images displayed inline. Can be built as a simple image gallery block.</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td><strong>Quick Links Grid (4-column)</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>4-column grid with category headings (Portfolio, Offerings, Our Company, More Information) and stacked link lists below each heading.</td>
+      <td>Homepage</td>
+      <td>Simple link list grid. Can be built as a Columns block variant or simple link-list block.</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td><strong>Careers CTA Banner</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Full-width section with large styled heading, subtitle, CTA button on left, and group photo image on right. Gray background.</td>
+      <td>Homepage</td>
+      <td>Design variation of 50/50 Content + Image block with different background treatment. Reuse same block with style variant.</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td><strong>Corporate Responsibility Carousel</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Full-width carousel with background image, overlay text content (title + description), and CTA link. Carousel infrastructure with slide controls.</td>
+      <td>Homepage</td>
+      <td>Design variation of Hero Carousel. Same infrastructure with different content overlay treatment. Reuse Hero Carousel block.</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td><strong>Product Spotlight Block</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Two-column product detail section: left has headline + description + CTA; right has labeled product diagram image with A-K lettered feature callouts below. Used for flagship product marketing.</td>
+      <td>Endoscopy, Business Unit pages</td>
+      <td>Complex block specific to product showcase pages. Labeled diagram callouts require custom rendering. Present on 19 business unit pages.</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td><strong>Feature Card Grid (2x2 / 4-up)</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Grid of feature cards, each with image and descriptive text. Used for product feature highlights (e.g., Tone Mode, Full Frame HDR, One Billion Colors).</td>
+      <td>Endoscopy, Business Unit pages</td>
+      <td><strong>Design variation of Cards block.</strong> Same grid pattern as other card types but with image-heavy feature content. Build as variant.</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td><strong>Statistical Highlight Callout</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Large-format numbers (e.g., "93%", "27-30") with supporting text and superscript citations. Used for impactful data points in product marketing sections.</td>
+      <td>Endoscopy, Business Unit pages</td>
+      <td>Compact block for eye-catching statistics. Can be built as a simple default content pattern or lightweight block.</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td><strong>Accordion (Regional / FAQ)</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Collapsible accordion with expandable/collapsible sections. Used for regional office listings (Contact page: 6 regions with 40+ locations) and FAQ content.</td>
+      <td>Contact</td>
+      <td>Standard EDS accordion pattern. Content varies from simple text to complex multi-field location entries (name, address, phone, email, links).</td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td><strong>Tab Navigation (Horizontal)</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Horizontal tab bar for in-page navigation. Tabs scroll to corresponding content sections. Used for both audience segmentation (Training: Nurses, Surgeons, etc.) and category filtering (News: All, Innovation, Events, etc.).</td>
+      <td>Training, News, Contact</td>
+      <td>Common pattern used across 3+ pages with different content. EDS Tabs block with anchor-link behavior.</td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td><strong>Blockquote / Testimonial</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Large styled quotation with decorative open/close quote characters, patient/source quote text, attribution line (name + condition/title).</td>
+      <td>Patients</td>
+      <td>Simple editorial block. Default content with CSS styling for quotation marks.</td>
+    </tr>
+    <tr>
+      <td>22</td>
+      <td><strong>Google Maps Embed</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Google Maps iframe showing Stryker headquarters location (1941 Stryker Way, Portage, MI).</td>
+      <td>Contact</td>
+      <td>Simple iframe embed. Only used on Contact page. Can be built as an Embed block variant.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>2.3 Block Reuse &amp; Code Footprint Reduction Strategy</h2>
+<div class="callout">
+  <strong>Reuse Opportunity:</strong> The 22 identified components can be consolidated into <strong>~12 EDS blocks</strong> by treating visual variations as design variants of shared content models:
+  <ul style="margin:4px 0">
+    <li><strong>Hero block</strong> &rarr; covers: Hero Carousel (#5), Corporate Responsibility Carousel (#15), Careers CTA Banner (#14)</li>
+    <li><strong>Cards block</strong> &rarr; covers: News Card Grid (#6), Product Category Card Grid (#7), Feature Card Grid (#17), Awards Badge Grid (#12), Values (#11)</li>
+    <li><strong>Columns block</strong> &rarr; covers: 50/50 Content + Image (#9), Product Spotlight (#16), Quick Links Grid (#13)</li>
+    <li><strong>Tabs block</strong> &rarr; covers: Our Focus Tabbed Panels (#8), Tab Navigation (#20)</li>
+    <li><strong>Accordion block</strong> &rarr; covers: Regional Accordion (#19)</li>
+    <li><strong>Standalone blocks</strong>: Infographic/Stats (#10), Statistical Callout (#18), Blockquote (#21), Google Maps (#22)</li>
+    <li><strong>Global</strong>: Header (#1), Footer (#2), Cookie Consent (#3), Regulatory Footer (#4)</li>
+  </ul>
+  This reduces the effective code footprint by <strong>~45%</strong> compared to building each component as a separate block.
+</div>
+
+<!-- 3. PAGE COUNT BY TEMPLATE -->
+<div class="section-break"></div>
+<h1 id="pages">3. Page Count by Template</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Template</th>
+      <th style="text-align:right">Est. Pages</th>
+      <th style="text-align:center">Migration Classification</th>
+      <th>Justification</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Homepage</strong></td>
+      <td style="text-align:right">1</td>
+      <td style="text-align:center"><span class="badge badge-high">Manual</span></td>
+      <td>Unique page with 8+ block types, carousel, tabbed panels. Requires custom block development before content migration.</td>
+    </tr>
+    <tr>
+      <td><strong>Corporate Landing (Tier-1)</strong></td>
+      <td style="text-align:right">8&ndash;12</td>
+      <td style="text-align:center"><span class="badge badge-high">Manual</span></td>
+      <td>Rich multi-section pages (About, Culture, History, Corporate Responsibility, Governance, etc.). Each has unique block combinations requiring manual content mapping.</td>
+    </tr>
+    <tr>
+      <td><strong>Portfolio / Category Catalog</strong></td>
+      <td style="text-align:right">3</td>
+      <td style="text-align:center"><span class="badge badge-medium">Partial Auto</span></td>
+      <td>Consistent template structure (header + card grid). Card data can be auto-extracted. Layout customization per portfolio requires review.</td>
+    </tr>
+    <tr>
+      <td><strong>Business Unit / Product Showcase</strong></td>
+      <td style="text-align:right">19</td>
+      <td style="text-align:center"><span class="badge badge-high">Manual</span></td>
+      <td>Each of 19 business divisions has a unique long-form page with different product sections, diagrams, and content. Manual content mapping required for each.</td>
+    </tr>
+    <tr>
+      <td><strong>Services / Dual-Section Landing</strong></td>
+      <td style="text-align:right">2&ndash;3</td>
+      <td style="text-align:center"><span class="badge badge-medium">Partial Auto</span></td>
+      <td>Consistent structure. Services and Solutions pages share the same layout pattern.</td>
+    </tr>
+    <tr>
+      <td><strong>Category Landing (Hero + Cards)</strong></td>
+      <td style="text-align:right">5&ndash;8</td>
+      <td style="text-align:center"><span class="badge badge-medium">Partial Auto</span></td>
+      <td>Simple structure (hero + cards). Care Settings, Training, and similar hub pages. Tab navigation adds complexity on some variants.</td>
+    </tr>
+    <tr>
+      <td><strong>News &amp; Features Listing</strong></td>
+      <td style="text-align:right">1</td>
+      <td style="text-align:center"><span class="badge badge-high">Manual</span></td>
+      <td>Unique listing page with filter tabs, lazy loading, and 488+ article references. Requires custom list/query block or spreadsheet-driven approach.</td>
+    </tr>
+    <tr>
+      <td><strong>News / Article Detail</strong></td>
+      <td style="text-align:right">488+</td>
+      <td style="text-align:center"><span class="badge badge-low">Auto</span></td>
+      <td>Highly standardized structure (H1 + date + image + rich text + boilerplate). Consistent URL pattern. Prime candidate for bulk automated import.</td>
+    </tr>
+    <tr>
+      <td><strong>Contact / Information Hub</strong></td>
+      <td style="text-align:right">5&ndash;8</td>
+      <td style="text-align:center"><span class="badge badge-high">Manual</span></td>
+      <td>Contact page has Google Maps, accordion, tabs, form links. Sub-pages (Business Development, Donations, Recall, Media) are simpler contact forms.</td>
+    </tr>
+    <tr>
+      <td><strong>Patient Stories / Editorial</strong></td>
+      <td style="text-align:right">5&ndash;10</td>
+      <td style="text-align:center"><span class="badge badge-medium">Partial Auto</span></td>
+      <td>Mixed content: long-form stories, blockquotes, card grids, education resources. Template is consistent but content is editorially rich.</td>
+    </tr>
+    <tr>
+      <td><strong>Product Detail / Sub-category Pages</strong></td>
+      <td style="text-align:right">150&ndash;250</td>
+      <td style="text-align:center"><span class="badge badge-medium">Partial Auto</span></td>
+      <td>Deep product pages under each portfolio category. Varying complexity from simple spec sheets to rich multi-section layouts. Partial automation possible for simpler variants.</td>
+    </tr>
+    <tr>
+      <td><strong>Legal / Policy Pages</strong></td>
+      <td style="text-align:right">8&ndash;12</td>
+      <td style="text-align:center"><span class="badge badge-low">Auto</span></td>
+      <td>Privacy, Terms of Use, Accessibility, Trademarks, etc. Simple rich-text pages with standardized layout.</td>
+    </tr>
+    <tr style="background:#e8f5e9; font-weight:600">
+      <td>TOTAL (estimated en-US)</td>
+      <td style="text-align:right">~700&ndash;900</td>
+      <td style="text-align:center">&mdash;</td>
+      <td>News articles (488+) and product sub-pages (150-250) constitute the bulk. Corporate/landing pages are fewer but more complex.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout-warn callout">
+  <strong>Multi-Locale Consideration:</strong> The site serves 74 locales via hreflang tags. Page counts above reflect <strong>en-US only</strong>. Each additional locale may have localized content variations. The <code>data-mastercopylist</code> attribute reveals master copies for US, APAC, Australia, China, EEMEA, EU, France, Hong Kong, Japan, Korea, Latin America, and Taiwan.
+</div>
+
+<!-- 4. INTEGRATIONS -->
+<div class="section-break"></div>
+<h1 id="integrations">4. Integrations &amp; Embedded Services</h1>
+
+<table>
+  <thead>
+    <tr><th>#</th><th>Integration</th><th>Type</th><th>Complexity</th><th>Pages Used</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><strong>Adobe Experience Platform Launch</strong></td>
+      <td>Tag Manager (inline script)</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>All pages</td>
+      <td>Primary tag orchestrator. Container: <code>assets.adobedtm.com/.../launch-b7b98bbdd10a.min.js</code>. Turbine 29.0.0. Manages Adobe Analytics, Marketo, OneTrust consent mapping, asset tracking rules.</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>Adobe Analytics (AppMeasurement 2.23.0)</strong></td>
+      <td>Analytics (inline script)</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>All pages</td>
+      <td>Report suite: <code>stkr.com.2023.prod</code>. First-party tracking via <code>telemetry.stryker.com</code>. Both <code>digitalData</code> (legacy) and <code>window.adobeDataLayer</code> (ACDL) initialized. Org: <code>AFD71C8B5330932B0A490D4D@AdobeOrg</code>.</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Adobe Experience Cloud Visitor ID (5.5.0)</strong></td>
+      <td>Identity (inline script)</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>All pages</td>
+      <td>Cross-solution visitor identification. Demdex endpoint: <code>dpm.demdex.net</code>. Enables visitor stitching across Adobe solutions and Marketo.</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>OneTrust Cookie Consent (CookieLaw)</strong></td>
+      <td>Privacy/Compliance (inline script)</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>All pages</td>
+      <td>GDPR/CCPA consent management. SDK from <code>cdn.cookielaw.org</code>. Geolocation-aware banner. Consent ID: <code>d75729a5-75c8-4a38-8aae-707548537e37</code>. Controls loading of other scripts.</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>Marketo Munchkin (338-WAP-571)</strong></td>
+      <td>Marketing Automation (inline script)</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>All pages</td>
+      <td>Lead tracking from <code>munchkin.marketo.net</code>. Passes Adobe ECID for cross-platform visitor stitching. Cookie: <code>_mkto_trk</code>. Likely powers form submissions on contact/lead-gen pages.</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><strong>Adobe Dynamic Media / Scene7</strong></td>
+      <td>Image/Video CDN</td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>All pages</td>
+      <td>Custom domain: <code>media-assets.stryker.com</code>. 7 viewer scripts loaded globally (BasicZoom, Flyout, MixedMedia, Spin, Video, Zoom, ZoomVertical). Image presets: <code>$max_width_1440$</code>, <code>$preset_307_184$</code>, etc.</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><strong>Adobe Asset Insights</strong></td>
+      <td>Asset Analytics (inline script)</td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>All pages with DAM media</td>
+      <td>Tracks impressions/clicks on DAM-served assets. Script: <code>/etc.clientlibs/dam/clientlibs/assetinsights/pagetracker.js</code>. Custom video tracker for standalone video component.</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><strong>Adobe Helix RUM</strong></td>
+      <td>Performance Monitoring (inline script)</td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>All pages</td>
+      <td>Real User Monitoring from Edge Delivery Services: <code>rum.hlx.page/.rum/@adobe/helix-rum-js</code>. <strong>Indicates EDS migration planning is active.</strong> <code>window.hlx</code> global present.</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td><strong>Google Charts</strong></td>
+      <td>Data Visualization (script)</td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Homepage (at minimum)</td>
+      <td>Library from <code>www.gstatic.com/charts/loader.js</code>. Used for data visualization / chart rendering on specific pages.</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td><strong>Fonts.com (Monotype)</strong></td>
+      <td>Web Font Service (CSS)</td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>All pages</td>
+      <td>Licensed web fonts via <code>fast.fonts.net</code>. Fonts: URW Egyptienne Light, Futura LT, Humanist Slab 712, Futura Book. Plus custom <code>strykericons</code> icon font.</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td><strong>Google Maps</strong></td>
+      <td>Embed (iframe)</td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Contact page only</td>
+      <td>Google Maps iframe showing Stryker headquarters (Portage, MI). Single page usage.</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td><strong>AEM Site Search (Custom)</strong></td>
+      <td>Search (custom)</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>All pages (header search)</td>
+      <td>Custom search at <code>/us/en/search.html?q={query}</code>. Schema.org SearchAction for Google Sitelinks. Meta tag <code>syk-gsa-title</code> suggests Google Search Appliance history.</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td><strong>Adobe Dynamic Media Video Viewer</strong></td>
+      <td>Video Player (custom)</td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Pages with video content</td>
+      <td>Scene7 SDK 2025.9 VideoViewer. Custom video tracker script. No YouTube/Vimeo embeds detected on main site (video served through Dynamic Media).</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td><strong>Schema.org Structured Data</strong></td>
+      <td>SEO (JSON-LD)</td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Homepage (at minimum)</td>
+      <td>JSON-LD with <code>WebSite</code> type and <code>SearchAction</code>. Supports Google Sitelinks Search Box.</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td><strong>Careers Portal (External)</strong></td>
+      <td>External Application (redirect)</td>
+      <td><span class="badge badge-oos">Out of Scope</span></td>
+      <td>Nav link, About page</td>
+      <td>Separate application at <code>careers.stryker.com</code> built with React/Tailwind/Paradox.ai. Different tech stack (Google Analytics, GTM, Facebook Pixel, LinkedIn Insight, Workday). <strong>Not part of AEM migration.</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- 5. COMPLEX USE CASES -->
+<div class="section-break"></div>
+<h1 id="complex">5. Complex Use Cases &amp; Special Observations</h1>
+
+<table>
+  <thead>
+    <tr><th>#</th><th>Issue</th><th>Severity</th><th>Description</th><th>Where Found</th><th>Instances</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td><strong>Multi-Locale Architecture (74 locales)</strong></td>
+      <td><span class="badge badge-critical">Critical</span></td>
+      <td>The site serves content in 74 locale variants (US, AR, AU, AT, BR, CA, CL, CN, CO, DK, EG, FI, FR, DE, GB, GR, HK, IN, ID, IE, IL, IT, JP, JO, KZ, KR, KW, MY, MT, MX, MA, NL, NO, OM, PH, PL, PT, QA, RO, RU, SA, SG, ZA, ES, SE, CH, TH, TN, TR, AE, etc.). Master copy management across regions uses <code>data-mastercopylist</code> attribute. Migration scope must define which locales are in-scope.</td>
+      <td>All pages (hreflang tags)</td>
+      <td>74 locale variants &times; ~700&ndash;900 pages = potentially 50,000+ pages total</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>Dynamic Media / Scene7 Asset Migration</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>All content images are served through <code>media-assets.stryker.com</code> (Scene7/Dynamic Media) with dynamic sizing presets. 7 viewer scripts (BasicZoom, Flyout, MixedMedia, Spin, Video, Zoom, ZoomVertical) are loaded globally. EDS uses its own image optimization &mdash; all Dynamic Media URLs must be mapped to new asset references or maintained as external URLs.</td>
+      <td>All pages</td>
+      <td>Every image on site (~thousands)</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>News Listing with 488+ Articles and Lazy Loading</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>News page loads 5 articles initially, then lazy-loads more via "Load More" button. 6 category filter tabs. 488 articles total spanning 2011&ndash;2026. EDS doesn't natively support dynamic filtering/pagination &mdash; requires spreadsheet-driven approach or custom JavaScript block.</td>
+      <td><code>/about/news.html</code></td>
+      <td>1 listing page, 488+ article pages</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>Medical Device Regulatory Compliance</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Every page carries a literature/document tracking number (e.g., <code>COMM-GSNPS-SYK-601900_Rev-8</code>) and "Last Updated" date for medical device regulatory compliance. Business unit pages include references sections with numbered medical citations, prescribing information links, and FDA clearance notes. These must be preserved and are likely subject to approval workflows.</td>
+      <td>All pages</td>
+      <td>Every page (~700&ndash;900)</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>19 Business Unit Showcase Pages (each unique)</strong></td>
+      <td><span class="badge badge-high">High</span></td>
+      <td>Each of 19 business divisions (Endoscopy, Joint Replacement, Sports Medicine, Emergency Care, etc.) has a unique long-form product showcase page. While they share common block types (hero, product spotlight, feature cards, stats), the content arrangement, product diagrams, and number of sections vary significantly per page. Each requires individual content mapping.</td>
+      <td><code>/us/en/endoscopy.html</code>, <code>/us/en/joint-replacement.html</code>, etc.</td>
+      <td>19 pages</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><strong>Contact Page Complexity (Maps + Accordion + Tabs + Forms)</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Contact page combines 4 distinct interactive patterns: Google Maps iframe, 6-region accordion with 40+ office locations (each with name, description, address, phone, email, homepage link), horizontal tab navigation with 5 categories, and links to 4 separate contact forms.</td>
+      <td><code>/about/contact.html</code></td>
+      <td>1 page + 4 sub-form pages</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><strong>jQuery Dual-Load and Heavy Client-Side Dependencies</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>jQuery is loaded twice (AEM Granite version + Foundation version). 7 Scene7 viewer scripts are loaded on every page regardless of usage. Custom icon fonts and licensed Monotype fonts require font licensing consideration for EDS. Moving to EDS will eliminate these dependencies but requires ensuring all interactive behaviors are replicated in vanilla JS.</td>
+      <td>All pages</td>
+      <td>Site-wide</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><strong>Division-Specific Social Media Accounts</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Business unit pages (e.g., Endoscopy) have division-specific social media links (LinkedIn, Instagram, X, YouTube) that differ from the corporate social accounts in the global footer. Content authors will need to manage per-division social links.</td>
+      <td>Business Unit pages</td>
+      <td>19 pages</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td><strong>Cross-Domain Patient Portals</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Patient page links to multiple external domains: <code>patients.stryker.com</code>, <code>strykerivs.com</code>, <code>somesignssavelives.com</code>. These are separate applications and must be maintained as external links. Additionally, <code>careers.stryker.com</code> and <code>investors.stryker.com</code> are external portals.</td>
+      <td>Patients, About, Footer</td>
+      <td>5+ external portals</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td><strong>URL Redirects and Restructuring</strong></td>
+      <td><span class="badge badge-low">Low</span></td>
+      <td>Some legacy URLs redirect to new paths (e.g., <code>/acute-care.html</code> redirects to <code>/portfolios/medical-surgical-equipment.html</code>, <code>/about/careers.html</code> returns 404 and redirects to external <code>careers.stryker.com</code>). A comprehensive redirect map will be needed for migration.</td>
+      <td>Various legacy URLs</td>
+      <td>Unknown (requires crawl)</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td><strong>Search Infrastructure Replacement</strong></td>
+      <td><span class="badge badge-medium">Medium</span></td>
+      <td>Current site search at <code>/us/en/search.html</code> uses a custom AEM-backed search solution (historical Google Search Appliance indicators). EDS requires a replacement search solution (e.g., custom search index, Algolia, or spreadsheet-driven search).</td>
+      <td>All pages (header)</td>
+      <td>Site-wide feature</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- 6. MIGRATION ESTIMATES -->
+<div class="section-break"></div>
+<h1 id="estimates">6. Migration Estimates</h1>
+
+<h2>6.1 Phase Breakdown</h2>
+<table>
+  <thead>
+    <tr><th>Phase</th><th>Scope</th><th style="text-align:center">Effort (days)</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Design System Migration</strong></td>
+      <td>Global styles, Futura/Humanist Slab fonts, Stryker green/gold color palette, spacing, CSS custom properties, icon font</td>
+      <td style="text-align:center">3&ndash;5</td>
+      <td>Extract from AEM clientlibs (<code>base.min.css</code>, <code>components.min.css</code>). Licensed fonts require Fonts.com subscription continuation. Custom icon font to SVG migration.</td>
+    </tr>
+    <tr>
+      <td><strong>Header / Footer / Navigation</strong></td>
+      <td>Global header with mega-menu (19 business units + About submenu), mobile hamburger, search, country selector. Footer with legal links and social icons.</td>
+      <td style="text-align:center">4&ndash;6</td>
+      <td>Mega-menu is the primary complexity driver. Country/language selector must support 74 locales. Search requires replacement solution.</td>
+    </tr>
+    <tr>
+      <td><strong>Core Block Development (~12 blocks)</strong></td>
+      <td>Hero, Cards (5 variants), Columns (3 variants), Tabs, Accordion, Infographic/Stats, Statistical Callout, Blockquote, Embed/Maps</td>
+      <td style="text-align:center">15&ndash;22</td>
+      <td>Cards block alone has 5 design variants (news, product, feature, awards, values). Hero has 3 variants. Columns has 3 variants. Tabs has 2 variants.</td>
+    </tr>
+    <tr>
+      <td><strong>Homepage</strong></td>
+      <td>1 page, high complexity, 8+ block types</td>
+      <td style="text-align:center">3&ndash;4</td>
+      <td>After core blocks are built. "Our Focus" tabbed panels are the most complex custom element.</td>
+    </tr>
+    <tr>
+      <td><strong>Corporate Landing Pages</strong></td>
+      <td>~10 pages (About, Culture, History, Governance, Corporate Responsibility, etc.)</td>
+      <td style="text-align:center">5&ndash;8</td>
+      <td>Rich multi-section pages with unique block combinations. About page alone has 10+ sections. Manual content mapping required.</td>
+    </tr>
+    <tr>
+      <td><strong>Portfolio / Category Pages</strong></td>
+      <td>3 portfolio pages + 5&ndash;8 category landing pages</td>
+      <td style="text-align:center">3&ndash;5</td>
+      <td>Consistent card grid pattern. Template dev + per-page card content extraction. Partial automation possible.</td>
+    </tr>
+    <tr>
+      <td><strong>Business Unit Showcase Pages</strong></td>
+      <td>19 unique long-form product marketing pages</td>
+      <td style="text-align:center">12&ndash;18</td>
+      <td>Each page requires individual content mapping. Product diagrams, feature grids, statistical callouts, references sections. ~0.7&ndash;1 day per page.</td>
+    </tr>
+    <tr>
+      <td><strong>News / Article Pages</strong></td>
+      <td>488+ article pages + 1 listing page with filters</td>
+      <td style="text-align:center">5&ndash;8</td>
+      <td>Article template + bulk import script + QA sampling. Listing page requires custom JavaScript for category filtering and lazy loading.</td>
+    </tr>
+    <tr>
+      <td><strong>Product Sub-Category Pages</strong></td>
+      <td>~150&ndash;250 deeper product pages</td>
+      <td style="text-align:center">10&ndash;15</td>
+      <td>Mix of simple and complex pages. Template analysis needed to identify sub-templates. Partial automation for simpler variants.</td>
+    </tr>
+    <tr>
+      <td><strong>Contact &amp; Form Pages</strong></td>
+      <td>1 main contact page + 4 sub-form pages</td>
+      <td style="text-align:center">3&ndash;5</td>
+      <td>Google Maps embed, 6-region accordion with 40+ locations, form integration (likely Marketo). Tab navigation for company info.</td>
+    </tr>
+    <tr>
+      <td><strong>Patient &amp; Editorial Pages</strong></td>
+      <td>~10 patient story / editorial pages</td>
+      <td style="text-align:center">2&ndash;3</td>
+      <td>After core blocks are built. Blockquote styling, story cards, education resource cards.</td>
+    </tr>
+    <tr>
+      <td><strong>Legal / Policy Pages</strong></td>
+      <td>~10 simple rich-text pages</td>
+      <td style="text-align:center">1&ndash;2</td>
+      <td>Simple content migration. Privacy, Terms, Accessibility, Trademarks, UDI, Surgeon Disclaimer.</td>
+    </tr>
+    <tr>
+      <td><strong>Integration Replacement</strong></td>
+      <td>Adobe Launch, Analytics, OneTrust, Marketo, Search, Schema.org</td>
+      <td style="text-align:center">5&ndash;8</td>
+      <td>Adobe Launch &rarr; EDS-compatible tag loading. OneTrust consent migration. Marketo form integration. Search infrastructure replacement. Schema.org structured data.</td>
+    </tr>
+    <tr>
+      <td><strong>Dynamic Media / Asset Migration</strong></td>
+      <td>Image URL mapping, Scene7 viewer replacement</td>
+      <td style="text-align:center">3&ndash;5</td>
+      <td>Map <code>media-assets.stryker.com</code> URLs to EDS-optimized images. Replace Scene7 viewers with EDS-native image/video handling. Maintain responsive image presets.</td>
+    </tr>
+    <tr>
+      <td><strong>QA &amp; Visual Regression</strong></td>
+      <td>All templates, responsive, accessibility, regulatory compliance</td>
+      <td style="text-align:center">8&ndash;12</td>
+      <td>Desktop + tablet + mobile. Cross-browser. WCAG 2.1 AA compliance. Literature number verification. 74-locale spot-check for multi-region pages.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>6.2 Overall Estimate Summary</h2>
+<table>
+  <thead>
+    <tr><th>Category</th><th style="text-align:center">Days</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Automated Migration</strong> (articles + product sub-pages + legal)</td>
+      <td style="text-align:center">16&ndash;25</td>
+      <td>Bulk import ~500&ndash;750 news articles, product pages, and legal pages using import scripts with QA sampling</td>
+    </tr>
+    <tr>
+      <td><strong>Manual Migration</strong> (blocks + templates + custom pages)</td>
+      <td style="text-align:center">45&ndash;68</td>
+      <td>Core block development (12 blocks, 20+ variants), homepage, corporate pages, business unit showcase pages (19), portfolio pages, contact pages</td>
+    </tr>
+    <tr>
+      <td><strong>Integration &amp; Asset Work</strong></td>
+      <td style="text-align:center">8&ndash;13</td>
+      <td>Adobe Launch, Analytics, OneTrust, Marketo, search replacement, Dynamic Media URL migration, Schema.org</td>
+    </tr>
+    <tr>
+      <td><strong>QA &amp; UAT</strong></td>
+      <td style="text-align:center">8&ndash;12</td>
+      <td>Visual regression, responsive testing, accessibility, regulatory compliance, cross-browser, multi-locale spot-check</td>
+    </tr>
+    <tr style="background:#e8f5e9; font-weight:700; font-size: 10pt">
+      <td>TOTAL (en-US only)</td>
+      <td style="text-align:center">77&ndash;118</td>
+      <td>~16&ndash;24 weeks with a team of 2&ndash;3 EDS developers</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>6.3 Key Risks &amp; Blockers</h2>
+<div class="callout-danger callout">
+  <ul style="margin:0; padding-left:16px">
+    <li><strong>Multi-locale scope explosion:</strong> 74 locales could multiply migration effort 10&ndash;50x depending on content overlap. Prioritize en-US first, then assess locale-specific content vs. shared master copies.</li>
+    <li><strong>Dynamic Media dependency:</strong> All images use Scene7 with dynamic presets. Need a clear asset migration strategy &mdash; either maintain Dynamic Media URLs externally or re-host all assets in EDS DAM.</li>
+    <li><strong>News listing page with 488+ articles:</strong> EDS has no native dynamic listing/filter capability. Requires spreadsheet-driven approach or custom JavaScript block for category filtering and pagination.</li>
+    <li><strong>Search infrastructure:</strong> Current AEM search must be replaced. Options include custom search index, Algolia, or Google Programmable Search. Scope depends on search quality requirements.</li>
+    <li><strong>Regulatory compliance:</strong> Medical device content carries literature tracking numbers and approval dates. Content changes may require regulatory approval workflows not natively supported by EDS authoring.</li>
+    <li><strong>Licensed fonts:</strong> Futura and Humanist Slab fonts are licensed via Fonts.com (Monotype). License must be maintained or fonts replaced. Custom Stryker icon font must be converted to SVG icons.</li>
+    <li><strong>External portal dependencies:</strong> <code>careers.stryker.com</code>, <code>investors.stryker.com</code>, <code>patients.stryker.com</code>, <code>strykerivs.com</code>, <code>somesignssavelives.com</code> are external applications that must continue functioning.</li>
+    <li><strong>Marketo form integration:</strong> Contact forms likely powered by Marketo (Munchkin ID 338-WAP-571). Form handling must be preserved or replaced with EDS-compatible form solution.</li>
+  </ul>
+</div>
+
+<h2>6.4 Cost Assumptions</h2>
+<table>
+  <thead>
+    <tr><th>Parameter</th><th>Assumption</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Team size</td><td>2&ndash;3 EDS developers + 1 QA</td></tr>
+    <tr><td>Rate assumption</td><td>$150&ndash;200/hour (blended)</td></tr>
+    <tr><td>Hours per day</td><td>8 productive hours</td></tr>
+    <tr><td>en-US only cost range</td><td>$92,000 &ndash; $189,000 USD</td></tr>
+    <tr><td>Full site (incl. major locales) cost range</td><td>$250,000 &ndash; $500,000+ USD</td></tr>
+    <tr><td>Overall complexity</td><td><span class="badge badge-high" style="font-size:9pt">High</span> &mdash; Large content volume, 19 business units, multi-locale, Dynamic Media dependency, regulatory requirements</td></tr>
+  </tbody>
+</table>
+
+<!-- 7. SCREENSHOTS -->
+<div class="section-break"></div>
+<h1 id="screenshots">7. Screenshots Reference</h1>
+
+<h2>7.1 Page Templates</h2>
+<div class="screenshot-grid">
+  <div class="screenshot-item">
+    <img src="stryker-homepage-full.png" alt="Homepage" />
+    <div class="caption">Homepage (Mobile, full page)</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="stryker-about-full.png" alt="Corporate Landing - About" />
+    <div class="caption">Corporate Landing: About</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="stryker-portfolio-full.png" alt="Portfolio / Category Catalog" />
+    <div class="caption">Portfolio: Medical &amp; Surgical Equipment</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="stryker-endoscopy-full.png" alt="Business Unit Product Showcase" />
+    <div class="caption">Business Unit: Endoscopy</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="stryker-news-full.png" alt="News & Features Listing" />
+    <div class="caption">News &amp; Features Listing</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="stryker-news-article-full.png" alt="News Article Detail" />
+    <div class="caption">News Article Detail</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="stryker-contact-full.png" alt="Contact / Information Hub" />
+    <div class="caption">Contact / Information Hub</div>
+  </div>
+  <div class="screenshot-item">
+    <img src="stryker-patients-full.png" alt="Patient Stories / Editorial" />
+    <div class="caption">Patient Stories / Editorial</div>
+  </div>
+</div>
+
+<div class="footer-note">
+  Stryker.com Site Analysis Report &mdash; Generated March 12, 2026 &mdash; Confidential
+</div>
+
+</body>
+</html>
