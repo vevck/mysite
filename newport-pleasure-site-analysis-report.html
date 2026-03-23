@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Newport-Pleasure.com – Comprehensive Site Analysis Report</title>
+<style>
+  @page { size: A4; margin: 18mm 14mm 18mm 14mm; }
+  * { box-sizing: border-box; }
+  body { font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; font-size: 10pt; line-height: 1.5; color: #1a1a1a; margin: 0; padding: 28px 36px; background: #fff; }
+
+  .cover { page-break-after: always; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 90vh; text-align: center; }
+  .cover h1 { font-size: 26pt; color: #006341; margin-bottom: 6px; font-weight: 600; }
+  .cover .subtitle { font-size: 13pt; color: #444; margin-bottom: 24px; }
+  .cover .meta { font-size: 10pt; color: #666; margin-top: 36px; line-height: 2; }
+  .cover .meta strong { color: #333; }
+  .cover .logo-bar { margin-bottom: 36px; padding-bottom: 18px; border-bottom: 3px solid #C8A951; width: 55%; }
+
+  h1 { font-size: 17pt; color: #006341; margin-top: 28px; margin-bottom: 8px; border-bottom: 2px solid #C8A951; padding-bottom: 5px; }
+  h2 { font-size: 13pt; color: #333; margin-top: 20px; margin-bottom: 6px; }
+  h3 { font-size: 11pt; color: #006341; margin-top: 16px; margin-bottom: 5px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 16px 0; font-size: 8.5pt; }
+  th { background: #006341; color: #fff; font-weight: 600; text-align: left; padding: 6px 7px; }
+  td { padding: 5px 7px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+  tr:nth-child(even) { background: #f0f6f3; }
+
+  .badge { display: inline-block; padding: 1px 7px; border-radius: 3px; font-size: 7.5pt; font-weight: 600; color: #fff; }
+  .badge-low { background: #28a745; }
+  .badge-medium { background: #fd7e14; }
+  .badge-high { background: #dc3545; }
+  .badge-very-high { background: #6f42c1; }
+  .badge-na { background: #6c757d; }
+
+  .section-break { page-break-before: always; }
+
+  .callout { background: #e8f4ef; border-left: 4px solid #006341; padding: 10px 14px; margin: 10px 0; font-size: 9pt; }
+  .callout-warn { background: #fff8e1; border-left-color: #fd7e14; }
+  .callout-danger { background: #fef0f0; border-left-color: #dc3545; }
+
+  .summary-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin: 14px 0; }
+  .summary-card { background: #f0f6f3; border: 1px solid #c0d8ce; border-top: 3px solid #006341; padding: 12px; text-align: center; }
+  .summary-card .number { font-size: 20pt; font-weight: 700; color: #006341; }
+  .summary-card .label { font-size: 8pt; color: #666; margin-top: 3px; }
+
+  .toc { margin: 16px 0; }
+  .toc a { color: #006341; text-decoration: none; }
+  .toc li { margin: 5px 0; font-size: 10pt; }
+
+  code { background: #f4f4f4; padding: 1px 4px; border-radius: 3px; font-size: 8pt; font-family: 'Consolas', monospace; }
+  ul, ol { margin: 4px 0; padding-left: 18px; }
+  li { margin: 2px 0; }
+
+  .footer-note { margin-top: 28px; padding-top: 8px; border-top: 1px solid #ddd; font-size: 7.5pt; color: #999; text-align: center; }
+
+  .screenshot-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 0; }
+  .screenshot-item { border: 1px solid #ddd; padding: 5px; text-align: center; font-size: 7.5pt; color: #666; background: #fafafa; }
+  .screenshot-item img { max-width: 100%; height: auto; max-height: 200px; object-fit: contain; }
+  .screenshot-item .caption { margin-top: 3px; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover">
+  <div class="logo-bar">
+    <div style="font-size: 11pt; color: #666; letter-spacing: 2px; text-transform: uppercase;">AEM Site Analysis Report</div>
+  </div>
+  <h1>Newport-Pleasure.com</h1>
+  <div class="subtitle">Comprehensive Site Analysis for Edge Delivery Services Migration</div>
+  <div style="font-size: 10.5pt; color: #555; margin-top: 8px;">https://www.newport-pleasure.com/</div>
+  <div class="meta">
+    <strong>Date:</strong> March 18, 2026<br>
+    <strong>Scope:</strong> Templates, Components, Integrations, Migration Estimates<br>
+    <strong>Current Platform:</strong> Adobe Experience Manager (AEM Sites) &rarr; <strong>Target:</strong> Adobe Edge Delivery Services<br>
+    <strong>Locale:</strong> US / English &bull; Age-Gated (21+)
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<h1>Table of Contents</h1>
+<ol class="toc">
+  <li><a href="#exec-summary">Executive Summary</a></li>
+  <li><a href="#templates">Section 1 &ndash; Templates Inventory</a></li>
+  <li><a href="#blocks">Section 2 &ndash; Blocks / Components Catalog</a></li>
+  <li><a href="#page-counts">Section 3 &ndash; Page Counts by Template</a></li>
+  <li><a href="#integrations">Section 4 &ndash; Integrations Analysis</a></li>
+  <li><a href="#complex-use-cases">Section 5 &ndash; Complex Use Cases &amp; Observations</a></li>
+  <li><a href="#migration">Section 6 &ndash; Migration Estimates</a></li>
+</ol>
+
+<!-- EXECUTIVE SUMMARY -->
+<div class="section-break" id="exec-summary"></div>
+<h1>Executive Summary</h1>
+<p>Newport-Pleasure.com is a <strong>consumer-facing, age-gated cigarette brand website</strong> built on Adobe Experience Manager (AEM Sites). The site serves as a brand engagement hub, loyalty rewards platform, digital coupon delivery system, and content lounge for adult smokers (21+). It is operated by <strong>R.J. Reynolds Tobacco Company</strong> and features a comprehensive MarTech stack (20+ integrations), a Loyalty Plus rewards program with gamification, user-generated content features (UGC photo contests), and rich interactive content (polls, quizzes, comments).</p>
+
+<div class="summary-grid">
+  <div class="summary-card">
+    <div class="number">10</div>
+    <div class="label">Page Templates</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">22</div>
+    <div class="label">Blocks / Components</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">~40&ndash;55</div>
+    <div class="label">Estimated Total Pages</div>
+  </div>
+  <div class="summary-card">
+    <div class="number">20+</div>
+    <div class="label">Integrations</div>
+  </div>
+</div>
+
+<div class="callout">
+  <strong>Key Findings:</strong> The site is <strong>moderate in page count</strong> (~40&ndash;55 pages) but <strong>high in interactive complexity</strong>. Major challenges include: age-gated authentication (all content under <code>/secure/</code>), Loyalty Plus rewards integration with pack code scanning, UGC photo upload with moderation (Pleasure POV), gamification engine (polls, comments, likes, points), digital coupon system, 20+ ad-tech/analytics integrations, and a custom REST API backend at <code>api.newport-pleasure.com</code>.
+</div>
+
+<h2>Site Architecture Overview</h2>
+<table>
+  <tr><th>Dimension</th><th>Details</th></tr>
+  <tr><td>CMS Platform</td><td>Adobe Experience Manager (AEM Sites) &mdash; AEM Core Components with BEM <code>cmp-</code> prefix naming convention. Templates: <code>freeform</code>, <code>bloglanding</code>, <code>unbranded</code>, <code>homepage</code>.</td></tr>
+  <tr><td>Authentication</td><td>Age-gated login (21+). All authenticated content under <code>/secure/</code>. Public pages: login, registration, forgot password.</td></tr>
+  <tr><td>URL Structure</td><td><code>/</code> (public login/registration) and <code>/secure/</code> (authenticated content)</td></tr>
+  <tr><td>Brand Owner</td><td>R.J. Reynolds Tobacco Company (&copy;2026)</td></tr>
+  <tr><td>Loyalty Platform</td><td>Custom "Loyalty Plus" SDK integrated as AEM clientlib with barcode/QR code scanning for pack code entry</td></tr>
+  <tr><td>API Backend</td><td><code>api.newport-pleasure.com</code> (authentication, profile, code validation, UGC submissions, coupon management)</td></tr>
+  <tr><td>Custom Fonts</td><td>Newport brand fonts (custom typefaces), IcoMoon icons</td></tr>
+  <tr><td>Layout Shells</td><td>4 distinct layouts: (a) Standard Authenticated with header/footer, (b) Minimal/Unbranded for legal pages, (c) Login Layout for auth flows, (d) External Redirect for third-party links (e.g., Sustainability)</td></tr>
+  <tr><td>Regulatory</td><td>Surgeon General's Warning ("Smoking Causes Lung Cancer, Heart Disease, Emphysema, And May Complicate Pregnancy") persistent on all pages</td></tr>
+</table>
+
+
+<!-- SECTION 1: TEMPLATES INVENTORY -->
+<div class="section-break" id="templates"></div>
+<h1>Section 1 &ndash; Templates Inventory</h1>
+<p>10 distinct page templates were identified across the site, organized into 4 layout shells.</p>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>Template Name</th>
+    <th>AEM Template</th>
+    <th>Complexity</th>
+    <th>Description / Reasoning</th>
+    <th>Reference URL(s)</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td><strong>Homepage / Login</strong></td>
+    <td><code>homepage</code></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Dual-purpose page: unauthenticated visitors see the login/registration form with age-gate; authenticated users see a rich homepage with Lounge article carousel, rewards promotion, Pleasure POV (UGC) promo banner, featured content tiles, and promotional messaging. Full hero section with seasonal imagery.</td>
+    <td><a href="https://www.newport-pleasure.com/">newport-pleasure.com/</a><br><a href="https://www.newport-pleasure.com/secure.html">secure.html</a></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><strong>Lounge Listing (Blog Landing)</strong></td>
+    <td><code>bloglanding</code></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Content hub listing page for "The Lounge" &mdash; Newport's branded content section. Features a hero banner, filterable grid of article cards (with thumbnails, titles, engagement indicators), category filtering, and "Load More" pagination. Each card links to a Lounge article detail page.</td>
+    <td><a href="https://www.newport-pleasure.com/secure/the-lounge.html">the-lounge.html</a></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td><strong>Lounge Article / Poll</strong></td>
+    <td><code>freeform</code></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Individual Lounge content pages with rich interactive elements. Includes article body, hero image, interactive polls with radio options and image choices, comment system with character counter, like/share functionality, points badges for engagement, and "Related Content" carousel. Variants include article, poll, and quiz formats.</td>
+    <td><a href="https://www.newport-pleasure.com/secure/the-lounge/respectfully-disagree.html">respectfully-disagree.html</a><br><a href="https://www.newport-pleasure.com/secure/the-lounge/fan-fantasy-picks.html">fan-fantasy-picks.html</a></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><strong>Promotions / UGC (Pleasure POV)</strong></td>
+    <td><code>freeform</code></td>
+    <td><span class="badge badge-very-high">Very High</span></td>
+    <td>User-generated content contest page ("Pleasure POV"). Features photo upload with camera/gallery access, moderation queue, voting gallery, submission guidelines, promotional hero, and "winning moments" showcase. Handles image uploads, content moderation workflow, and public gallery display. Most complex interactive page on the site.</td>
+    <td><a href="https://www.newport-pleasure.com/secure/pleasure-pov.html">pleasure-pov.html</a></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td><strong>Products</strong></td>
+    <td><code>freeform</code></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Product showcase page featuring Newport cigarette product lineup. Product cards/tiles with imagery, product names and descriptions, pack visuals, and promotional CTAs. May include product comparison features and flavor/variant details.</td>
+    <td><a href="https://www.newport-pleasure.com/secure/products.html">products.html</a></td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td><strong>Rewards / Loyalty Hub</strong></td>
+    <td><code>freeform</code></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Loyalty Plus rewards portal. Features pack code entry with barcode/QR scanning, points balance display, rewards catalog, step-by-step instructional guide ("How It Works" with 3-step process), earning history, and redemption interface. Integrates deeply with Loyalty Plus SDK and custom API.</td>
+    <td><a href="https://www.newport-pleasure.com/secure/rewards.html">rewards.html</a></td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td><strong>Video Content</strong></td>
+    <td><code>freeform</code></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Video-centric content page with embedded video player, video title/description, engagement features (likes, comments), points earning for video viewing, and related content recommendations.</td>
+    <td><a href="https://www.newport-pleasure.com/secure/video.html">video.html</a></td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td><strong>Coupons / Offers</strong></td>
+    <td><code>freeform</code></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Digital coupon delivery page. Features available coupons list, coupon activation workflow, expiration dates, terms and conditions per coupon, print/digital delivery options. Integrates with notification center and rewards system. Personalized based on user profile.</td>
+    <td><a href="https://www.newport-pleasure.com/secure/coupons.html">coupons.html</a></td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td><strong>Form / Support</strong></td>
+    <td><code>freeform</code></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Contact form with topic dropdown, message textarea, and submit button. Also used for SMS signup with phone number input and opt-in. FAQ page uses accordion pattern with expandable/collapsible categories. Chat integration and phone click-to-call available.</td>
+    <td><a href="https://www.newport-pleasure.com/secure/footer-links/contact-us.html">contact-us.html</a><br><a href="https://www.newport-pleasure.com/secure/footer-links/faq.html">faq.html</a><br><a href="https://www.newport-pleasure.com/secure/sms.html">sms.html</a></td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td><strong>Legal / Unbranded</strong></td>
+    <td><code>unbranded</code></td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>Minimal layout with no standard header/footer chrome. Used for legal documents: Privacy Policy, Terms of Use, Rewards Terms &amp; Conditions. Long-form text with structured headings and paragraph content. Plain white background, minimal styling. Some pages use two-column sidebar layout.</td>
+    <td><a href="https://www.newport-pleasure.com/secure/footer-links/privacy-policy.html">privacy-policy.html</a><br><a href="https://www.newport-pleasure.com/secure/footer-links/terms-of-use.html">terms-of-use.html</a><br><a href="https://www.newport-pleasure.com/secure/footer-links/rewards-terms-and-conditions.html">rewards-terms-and-conditions.html</a></td>
+  </tr>
+</table>
+
+
+<!-- SECTION 2: BLOCKS / COMPONENTS CATALOG -->
+<div class="section-break" id="blocks"></div>
+<h1>Section 2 &ndash; Blocks / Components Catalog</h1>
+<p>22 blocks/components were identified. These are grouped into Global (present on all/most pages) and Content blocks.</p>
+
+<h2>2.1 Global Components</h2>
+<table>
+  <tr>
+    <th>#</th>
+    <th>Block Name</th>
+    <th>Complexity</th>
+    <th>Description &amp; Behaviour</th>
+    <th>Reference URL(s)</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td><strong>Surgeon General's Warning Banner</strong></td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>Fixed top bar with regulatory health warning. "SURGEON GENERAL'S WARNING: Smoking Causes Lung Cancer, Heart Disease, Emphysema, And May Complicate Pregnancy." Persistent on all pages. Required by federal regulation.</td>
+    <td>All pages</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><strong>Promotional Banner / Ticker</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Dismissible promotional bar below the warning banner. Dynamic content that changes based on promotions (e.g., "Enter codes, earn rewards" with CTA). Includes close/dismiss button. Content served from API.</td>
+    <td>All authenticated pages</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td><strong>Global Header</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Newport logo (links to homepage), hamburger menu button, notification bell with dynamic badge count, user profile icon/link. Slide-out notification center panel. Green brand color scheme (#006341). Full-screen mobile navigation drawer on hamburger click.</td>
+    <td>All authenticated pages</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><strong>Hamburger Navigation Menu</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Full-screen slide-out navigation. Items include: Home, The Lounge, Pleasure POV, Products, Rewards, Coupons, Contact Us, FAQ, SMS Sign Up, Profile, Logout. Expandable sub-menus with smooth animation transitions. Features user points display and profile quick-access.</td>
+    <td>All authenticated pages</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td><strong>Notification Center</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Slide-out panel triggered by bell icon in header. Shows coupon notifications, rewards updates, and promotional messages. Badge count updates dynamically. Links to relevant pages (coupons, rewards).</td>
+    <td>All authenticated pages</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td><strong>Rewards Bar / Points Display</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Persistent rewards points display bar showing current point balance and code entry shortcut. Quick access to rewards dashboard. Integrates with Loyalty Plus SDK for real-time balance.</td>
+    <td>All authenticated pages</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td><strong>Global Footer</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Newport branding, multi-tier navigation links (primary: Home, Products, Rewards, Coupons, Contact Us, FAQ; secondary: Privacy Policy, Terms of Use, Rewards T&amp;C, Text Messaging T&amp;C, Sustainability). Social media links, legal disclaimers, R.J. Reynolds copyright notice, Surgeon General's Warning repeat.</td>
+    <td>All authenticated pages</td>
+  </tr>
+</table>
+
+<h2>2.2 Content Components</h2>
+<table>
+  <tr>
+    <th>#</th>
+    <th>Block Name</th>
+    <th>Complexity</th>
+    <th>Description &amp; Behaviour</th>
+    <th>Reference URL(s)</th>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td><strong>Hero Banner</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Full-width hero with large heading, sub-copy, CTA button, and promotional imagery. Used on homepage, Lounge, Rewards pages. Features seasonal theming and dynamic promotional content. Multiple visual variants (dark/light, left-aligned/centered).</td>
+    <td><a href="https://www.newport-pleasure.com/secure.html">Homepage</a>, <a href="https://www.newport-pleasure.com/secure/the-lounge.html">Lounge</a>, <a href="https://www.newport-pleasure.com/secure/rewards.html">Rewards</a></td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td><strong>Lounge Article Carousel</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Horizontal scrollable carousel of Lounge article cards on the homepage. Each card has thumbnail image, title, engagement badges (points, likes, comments count), category tag. Touch/swipe support. Auto-advances with manual navigation dots/arrows.</td>
+    <td><a href="https://www.newport-pleasure.com/secure.html">Homepage</a></td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td><strong>Code Entry / Pack Scan</strong></td>
+    <td><span class="badge badge-very-high">Very High</span></td>
+    <td>Barcode/QR code scanning interface for pack code entry. Features camera integration for mobile scanning, manual text input fallback, code validation against API, points crediting on success, error handling for invalid/used codes. Core rewards functionality.</td>
+    <td><a href="https://www.newport-pleasure.com/secure/rewards.html">Rewards</a></td>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td><strong>UGC Photo Gallery (Pleasure POV)</strong></td>
+    <td><span class="badge badge-very-high">Very High</span></td>
+    <td>User-generated content gallery with photo upload capability. Features: camera/gallery photo selection, image cropping/filters, upload with caption, moderation queue, public voting gallery with like/share, "winning moments" showcase, contest rules modal. Most complex single component on the site.</td>
+    <td><a href="https://www.newport-pleasure.com/secure/pleasure-pov.html">Pleasure POV</a></td>
+  </tr>
+  <tr>
+    <td>12</td>
+    <td><strong>Interactive Poll</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Interactive voting component with radio button options (text and/or image-based choices). Shows results after voting with percentage bars. Awards points for participation. Includes social sharing after completion. Used in Lounge articles.</td>
+    <td><a href="https://www.newport-pleasure.com/secure/the-lounge/respectfully-disagree.html">Lounge articles</a></td>
+  </tr>
+  <tr>
+    <td>13</td>
+    <td><strong>Comments System</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Threaded comment system with character counter, user avatar display, timestamp, like button per comment, reply threading, pagination/load more. Awards points for commenting. Content moderation via API. Used on Lounge articles, polls, and video pages.</td>
+    <td><a href="https://www.newport-pleasure.com/secure/the-lounge/fan-fantasy-picks.html">Lounge articles</a></td>
+  </tr>
+  <tr>
+    <td>14</td>
+    <td><strong>Product Carousel / Grid</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Product showcase with cards displaying Newport product imagery, product name, variant details. Carousel/grid layout with smooth transitions. Links to product detail or external purchase points.</td>
+    <td><a href="https://www.newport-pleasure.com/secure/products.html">Products</a></td>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td><strong>Step-by-Step Instructional</strong></td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>Sequential step guide ("How It Works") with numbered steps, icons/illustrations per step, and descriptive text. Used on Rewards page to explain code entry &rarr; earn points &rarr; redeem rewards flow. 3-step variant is most common.</td>
+    <td><a href="https://www.newport-pleasure.com/secure/rewards.html">Rewards</a></td>
+  </tr>
+  <tr>
+    <td>16</td>
+    <td><strong>FAQ Accordion</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Expandable/collapsible FAQ sections organized by category. Click-to-expand individual questions with smooth animation. Categories include: Account, Rewards, Products, General. Multiple items per category.</td>
+    <td><a href="https://www.newport-pleasure.com/secure/footer-links/faq.html">FAQ</a></td>
+  </tr>
+  <tr>
+    <td>17</td>
+    <td><strong>Contact Form</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Multi-field contact form with topic/category dropdown, name fields, email, message textarea, and submit button. Client-side validation and server-side submission via API. Success/error state handling.</td>
+    <td><a href="https://www.newport-pleasure.com/secure/footer-links/contact-us.html">Contact Us</a></td>
+  </tr>
+  <tr>
+    <td>18</td>
+    <td><strong>SMS Signup Form</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Phone number input with opt-in checkbox for text messaging alerts. Verification code confirmation step. Terms &amp; conditions link. Integration with SMS gateway for opt-in management.</td>
+    <td><a href="https://www.newport-pleasure.com/secure/sms.html">SMS Signup</a></td>
+  </tr>
+  <tr>
+    <td>19</td>
+    <td><strong>Modal Disruptor / Interstitial</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Overlay modal used for promotional messaging, contest rules, coupon details, and confirmation dialogs. Features close button, CTA buttons, and content area. Can be triggered programmatically or on page load.</td>
+    <td>Various pages</td>
+  </tr>
+  <tr>
+    <td>20</td>
+    <td><strong>Activity Teaser / Points Badge</strong></td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>Small card/badge showing points available for an activity (e.g., "+50 pts for completing poll", "+25 pts for commenting"). Used as incentive markers across Lounge articles, polls, and video content. Dynamically shows earned vs. available.</td>
+    <td>Lounge articles, Polls, Videos</td>
+  </tr>
+  <tr>
+    <td>21</td>
+    <td><strong>Content Toolbar (Like/Share/Comment)</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Inline engagement toolbar with like button (with count), share button (social sharing options), and comment count link. Persists at bottom of content articles. Real-time count updates via API.</td>
+    <td>Lounge articles, Videos</td>
+  </tr>
+  <tr>
+    <td>22</td>
+    <td><strong>Related Content Cards</strong></td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>"You May Also Enjoy" section with 3&ndash;4 content cards linking to other Lounge articles or promotions. Card includes thumbnail, title, and category tag. Algorithmically or editorially curated.</td>
+    <td>Lounge article pages, Video pages</td>
+  </tr>
+</table>
+
+
+<!-- SECTION 3: PAGE COUNTS BY TEMPLATE -->
+<div class="section-break" id="page-counts"></div>
+<h1>Section 3 &ndash; Page Counts by Template</h1>
+<p>Estimated page counts based on site navigation, sitemap exploration, and content hub analysis.</p>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>Template</th>
+    <th>Estimated Pages</th>
+    <th>Notes</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Homepage / Login</td>
+    <td>2</td>
+    <td>Public login page + authenticated homepage (same URL, different states)</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Lounge Listing (Blog Landing)</td>
+    <td>1</td>
+    <td>Single listing page with paginated content</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Lounge Article / Poll</td>
+    <td>15&ndash;20</td>
+    <td>Individual Lounge articles, polls, and quizzes (e.g., Respectfully Disagree, Fan Fantasy Picks, and ~13&ndash;18 additional articles visible in listing)</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Promotions / UGC (Pleasure POV)</td>
+    <td>2&ndash;3</td>
+    <td>Pleasure POV main page + potential seasonal promotion pages</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Products</td>
+    <td>1&ndash;2</td>
+    <td>Main products page, potentially individual product detail pages</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Rewards / Loyalty Hub</td>
+    <td>2&ndash;3</td>
+    <td>Rewards main page, rewards enrollment page, potential rewards catalog sub-pages</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Video Content</td>
+    <td>3&ndash;5</td>
+    <td>Video pages (individual videos or video listing)</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>Coupons / Offers</td>
+    <td>1&ndash;2</td>
+    <td>Coupons listing page, potential promotional landing pages</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>Form / Support</td>
+    <td>3&ndash;4</td>
+    <td>Contact Us, FAQ, SMS Signup, potential additional support pages</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td>Legal / Unbranded</td>
+    <td>6&ndash;8</td>
+    <td>Privacy Policy, Terms of Use, Rewards T&amp;C, Text Messaging T&amp;C, Site Requirements, Sustainability (external redirect), Do Not Sell My Info, California Privacy</td>
+  </tr>
+  <tr>
+    <td colspan="2" style="font-weight: 700; background: #e8f4ef;">TOTAL ESTIMATED</td>
+    <td style="font-weight: 700; background: #e8f4ef;">~40&ndash;55</td>
+    <td style="background: #e8f4ef;">Includes registration/forgot-password auth flow pages (2&ndash;3 additional)</td>
+  </tr>
+</table>
+
+<div class="callout">
+  <strong>Note:</strong> Lounge articles represent the bulk of content pages (~15&ndash;20). The site relies heavily on dynamic API-driven content (coupons, notifications, rewards) which reduces the total static page count but increases integration complexity.
+</div>
+
+
+<!-- SECTION 4: INTEGRATIONS ANALYSIS -->
+<div class="section-break" id="integrations"></div>
+<h1>Section 4 &ndash; Integrations Analysis</h1>
+<p>20+ integrations identified across analytics, advertising, loyalty, security, and platform services.</p>
+
+<h2>4.1 Adobe Experience Cloud</h2>
+<table>
+  <tr>
+    <th>#</th>
+    <th>Integration</th>
+    <th>Migration Impact</th>
+    <th>Details</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td><strong>Adobe Experience Platform Launch</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Tag management system orchestrating all analytics and marketing tags. All scripts loaded via Launch container. Must be reconfigured for EDS page structure and event model.</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><strong>Adobe Analytics (AppMeasurement)</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Full implementation with custom variables, eVars, props, events. Report suite: <code>raiservices.global.prod</code>. Page-level and interaction tracking. Requires event remapping for EDS.</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td><strong>Adobe Target</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>A/B testing and personalization via <code>vusevapor.tt.omtrdc.net</code> endpoint. Active experiments across hero banners and promotional content. Mbox placements need recreation in EDS.</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><strong>Adobe Audience Manager</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Audience segmentation and data management. Pixel-based tracking for audience building. DIL library integration with custom signals.</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td><strong>Adobe Client Data Layer (ACDL)</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Version 2.0.2. Structured data layer for consistent event tracking. <code>adobeDataLayer.push()</code> calls throughout site. Must be maintained in EDS with proper event dispatching.</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td><strong>Adobe Helix RUM</strong></td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>Real User Monitoring via <code>rum.hlx.page</code>. Already present, indicating EDS migration planning is active. Will work natively in EDS.</td>
+  </tr>
+</table>
+
+<h2>4.2 Custom Platform Services</h2>
+<table>
+  <tr>
+    <th>#</th>
+    <th>Integration</th>
+    <th>Migration Impact</th>
+    <th>Details</th>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td><strong>Custom REST API</strong></td>
+    <td><span class="badge badge-very-high">Very High</span></td>
+    <td>Backend at <code>api.newport-pleasure.com</code>. Handles: authentication/login, user profile management, pack code validation, UGC submissions/moderation, coupon management, notification delivery, rewards points. Central dependency for all dynamic features.</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td><strong>Loyalty Plus SDK</strong></td>
+    <td><span class="badge badge-very-high">Very High</span></td>
+    <td>Custom loyalty program SDK integrated as AEM clientlib. Manages points earning, redemption, code scanning, rewards catalog. Deeply coupled with API backend. Must be extracted and re-integrated for EDS.</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td><strong>Barcode / QR Scanner</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Camera-based barcode/QR code scanning for pack code entry. Uses device camera API. Mobile-first feature for rewards code scanning. Requires JavaScript camera access and image processing library.</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td><strong>UGC Platform</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>User-generated content management for Pleasure POV. Photo upload, image processing, content moderation queue, public gallery, voting system. API-driven workflow with multiple states (submitted, moderated, published, featured).</td>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td><strong>Service Worker</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Progressive Web App (PWA) capabilities including offline caching strategy, push notification support, and asset pre-caching. Service worker registration on page load.</td>
+  </tr>
+</table>
+
+<h2>4.3 Security &amp; Compliance</h2>
+<table>
+  <tr>
+    <th>#</th>
+    <th>Integration</th>
+    <th>Migration Impact</th>
+    <th>Details</th>
+  </tr>
+  <tr>
+    <td>12</td>
+    <td><strong>Imperva / Incapsula WAF</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Web Application Firewall protecting the site. Bot detection, DDoS protection, and request filtering. Must be reconfigured for EDS CDN architecture (Fastly-based). May require WAF rule adjustments.</td>
+  </tr>
+  <tr>
+    <td>13</td>
+    <td><strong>hCaptcha</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>CAPTCHA challenge on registration pages to prevent bot signups. Client-side hCaptcha widget integration. Must be re-implemented in EDS registration flow.</td>
+  </tr>
+  <tr>
+    <td>14</td>
+    <td><strong>Age Verification Gate</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Federal requirement for tobacco brand websites. Age verification (21+) before any content access. Session-based authentication with token management. Must be implemented as EDS middleware or client-side gate.</td>
+  </tr>
+</table>
+
+<h2>4.4 Analytics &amp; Marketing (Third-Party)</h2>
+<table>
+  <tr>
+    <th>#</th>
+    <th>Integration</th>
+    <th>Migration Impact</th>
+    <th>Details</th>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td><strong>Google Tag Manager / Google Analytics</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Secondary analytics layer alongside Adobe Analytics. Conversion tracking, audience building, and remarketing tags. Tag container needs updating for EDS page structure.</td>
+  </tr>
+  <tr>
+    <td>16</td>
+    <td><strong>Facebook / Meta Pixel</strong></td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>Social media tracking pixel for audience building and conversion tracking. Standard pixel implementation via Launch.</td>
+  </tr>
+  <tr>
+    <td>17</td>
+    <td><strong>Twitter / X Conversion Tracking</strong></td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>Social media conversion pixel for Twitter/X advertising campaigns. Standard tag implementation.</td>
+  </tr>
+  <tr>
+    <td>18</td>
+    <td><strong>DoubleVerify / IAS</strong></td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>Ad verification and brand safety monitoring. Tracks viewability and fraud metrics for advertising campaigns.</td>
+  </tr>
+  <tr>
+    <td>19</td>
+    <td><strong>Lotame / LiveRamp</strong></td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>Data management and identity resolution platforms. Third-party audience data enrichment and cross-device identity matching.</td>
+  </tr>
+  <tr>
+    <td>20</td>
+    <td><strong>OneTrust / Cookie Consent</strong></td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Privacy consent management platform. Cookie consent banner, preference center, and consent-gated tag firing. Must integrate with EDS consent architecture.</td>
+  </tr>
+</table>
+
+<div class="callout callout-warn">
+  <strong>Shared Infrastructure:</strong> Newport-Pleasure.com shares significant infrastructure with other R.J. Reynolds brands (VELO, VUSE, Camel) including the API backend, Loyalty Plus SDK, authentication system, and much of the MarTech stack. This presents both an opportunity (shared integration patterns) and a risk (cross-brand dependencies).
+</div>
+
+
+<!-- SECTION 5: COMPLEX USE CASES & OBSERVATIONS -->
+<div class="section-break" id="complex-use-cases"></div>
+<h1>Section 5 &ndash; Complex Use Cases &amp; Observations</h1>
+
+<h2>5.1 Age-Gated Authentication System</h2>
+<div class="callout callout-danger">
+  <strong>Regulatory Requirement:</strong> Federal law requires age verification (21+) for all tobacco brand websites. This is non-negotiable and must be implemented in the EDS migration.
+</div>
+<ul>
+  <li><strong>Current implementation:</strong> All content lives under <code>/secure/</code> path. Public-facing pages limited to login, registration, forgot-password, and legal documents.</li>
+  <li><strong>Login flow:</strong> Email + password authentication, session token management, age verification at registration.</li>
+  <li><strong>Registration:</strong> Multi-step form with age verification, state selection, identity verification, hCaptcha bot protection. Imperva WAF provides additional security layer.</li>
+  <li><strong>EDS challenge:</strong> EDS serves content from CDN (Fastly). Authentication must be implemented as client-side JavaScript gate or custom worker/middleware to protect all <code>/secure/</code> content. Token validation against <code>api.newport-pleasure.com</code> must happen before content rendering.</li>
+</ul>
+
+<h2>5.2 Loyalty Plus Rewards &amp; Pack Code Scanning</h2>
+<ul>
+  <li><strong>Core feature:</strong> Users scan cigarette pack barcodes/QR codes using mobile camera to earn rewards points.</li>
+  <li><strong>Components involved:</strong> Code Entry widget (camera + manual input), points balance display, rewards catalog, earning history, step-by-step onboarding guide.</li>
+  <li><strong>Technical complexity:</strong> Camera API access (getUserMedia), barcode scanning library, real-time API validation, points crediting, error handling for invalid/duplicate codes.</li>
+  <li><strong>EDS challenge:</strong> Loyalty Plus SDK is currently an AEM clientlib. Must be extracted, potentially refactored, and loaded as an EDS block dependency. Camera scanning requires secure context (HTTPS) and user permission handling.</li>
+</ul>
+
+<h2>5.3 User-Generated Content (Pleasure POV)</h2>
+<ul>
+  <li><strong>Feature:</strong> Photo contest where users upload photos that go through moderation and appear in a public voting gallery.</li>
+  <li><strong>Workflow:</strong> Photo capture/selection &rarr; Crop/filter &rarr; Caption &rarr; Submit &rarr; Moderation queue &rarr; Published &rarr; Voting/likes &rarr; Featured winners.</li>
+  <li><strong>Technical complexity:</strong> File upload to API, image processing/resizing, content moderation workflow (API-driven), gallery rendering with lazy loading, voting system with rate limiting.</li>
+  <li><strong>EDS challenge:</strong> This is the most complex single feature. Requires custom block with multi-step upload flow, API integration for all CRUD operations, and real-time gallery updates. Consider implementing as a dedicated web component or embedding a micro-frontend.</li>
+</ul>
+
+<h2>5.4 Gamification &amp; Social Engagement Engine</h2>
+<ul>
+  <li><strong>Features:</strong> Polls with image/text options, comments with threading, likes with counts, points badges on activities, share functionality.</li>
+  <li><strong>Points economy:</strong> Users earn points for: viewing content, completing polls, posting comments, watching videos, uploading photos. Points displayed as badges ("+50 pts") on content cards.</li>
+  <li><strong>Technical complexity:</strong> Real-time engagement counters (likes, comments), poll state management (voted/not voted), comment moderation, points crediting via API, social share deep-links.</li>
+  <li><strong>EDS challenge:</strong> Multiple interactive blocks that share state (user points, engagement history). Requires centralized state management approach in EDS (likely a shared JavaScript module) and consistent API integration patterns.</li>
+</ul>
+
+<h2>5.5 Digital Coupon System</h2>
+<ul>
+  <li><strong>Feature:</strong> Personalized digital coupons delivered based on user profile and behavior.</li>
+  <li><strong>Components:</strong> Coupon listing with expiration dates, coupon activation workflow, print/digital delivery options, terms per coupon.</li>
+  <li><strong>Technical complexity:</strong> Personalized API responses, coupon state management (available/activated/used/expired), notification integration for new coupons.</li>
+  <li><strong>EDS challenge:</strong> Fully API-driven, no static content. Block must handle all coupon states and transitions. Integration with notification center for real-time updates.</li>
+</ul>
+
+<h2>5.6 Regulatory Compliance</h2>
+<ul>
+  <li><strong>Surgeon General's Warning:</strong> Must appear on every page. Currently a fixed top banner. Non-negotiable federal requirement.</li>
+  <li><strong>Age verification:</strong> 21+ requirement for all content access. Must be maintained in EDS.</li>
+  <li><strong>Privacy compliance:</strong> CCPA "Do Not Sell My Info" link, comprehensive privacy policy, cookie consent management.</li>
+  <li><strong>Advertising restrictions:</strong> Tobacco advertising regulations affect what content can be shown and how. Marketing claims must comply with FDA guidelines.</li>
+  <li><strong>EDS consideration:</strong> Regulatory requirements must be wired into the EDS header/footer fragments and authentication middleware from day one. No content should be accessible without age verification.</li>
+</ul>
+
+<h2>5.7 External Redirects &amp; Cross-Brand Architecture</h2>
+<ul>
+  <li><strong>Sustainability page:</strong> Redirects to an external R.J. Reynolds corporate sustainability page rather than hosting content locally.</li>
+  <li><strong>Shared infrastructure:</strong> Newport shares API backend, Loyalty Plus SDK, and authentication system with sibling brands (VELO, VUSE, Camel). This means API changes during Newport migration could affect other brands.</li>
+  <li><strong>EDS consideration:</strong> Cross-brand API dependencies must be mapped and tested. Consider creating shared EDS libraries for common functionality (auth, Loyalty Plus, analytics).</li>
+</ul>
+
+<h2>5.8 Progressive Web App (PWA) Features</h2>
+<ul>
+  <li><strong>Service Worker:</strong> Active service worker for offline caching and push notifications.</li>
+  <li><strong>Impact:</strong> EDS has its own service worker for performance optimization. Custom service worker logic (push notifications, offline caching) must be carefully merged or replaced.</li>
+</ul>
+
+
+<!-- SECTION 6: MIGRATION ESTIMATES -->
+<div class="section-break" id="migration"></div>
+<h1>Section 6 &ndash; Migration Estimates</h1>
+<p>Effort estimates for migrating Newport-Pleasure.com to Adobe Edge Delivery Services (EDS). Estimates assume a team familiar with EDS patterns and the R.J. Reynolds platform ecosystem.</p>
+
+<h2>6.1 Summary Estimates</h2>
+<table>
+  <tr>
+    <th>Category</th>
+    <th>Effort Estimate</th>
+    <th>Complexity</th>
+    <th>Notes</th>
+  </tr>
+  <tr>
+    <td><strong>Overall Migration</strong></td>
+    <td><strong>14&ndash;20 weeks</strong></td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Full migration including design system, all blocks, integrations, content migration, and QA. Assumes parallel workstreams.</td>
+  </tr>
+  <tr>
+    <td>Design System &amp; Global Styles</td>
+    <td>2&ndash;3 weeks</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Newport brand colors (#006341 green, #C8A951 gold), typography, spacing tokens, responsive breakpoints. Regulatory warning banner styling.</td>
+  </tr>
+  <tr>
+    <td>Global Components (Header, Footer, Nav)</td>
+    <td>2&ndash;3 weeks</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Header with hamburger nav, notification center, rewards bar, and footer with multi-tier navigation. Surgeon General's Warning banner.</td>
+  </tr>
+  <tr>
+    <td>Authentication / Age Gate</td>
+    <td>3&ndash;4 weeks</td>
+    <td><span class="badge badge-very-high">Very High</span></td>
+    <td>Client-side auth gate, token management, API integration, registration flow with hCaptcha, forgot password. Regulatory requirement &mdash; blocks all other work.</td>
+  </tr>
+  <tr>
+    <td>Content Blocks (Static)</td>
+    <td>2&ndash;3 weeks</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Hero, product carousel, step-by-step, related content cards, FAQ accordion, activity teasers. Standard EDS block patterns.</td>
+  </tr>
+  <tr>
+    <td>Interactive Blocks (Dynamic)</td>
+    <td>4&ndash;5 weeks</td>
+    <td><span class="badge badge-very-high">Very High</span></td>
+    <td>Poll, comments system, content toolbar (like/share), UGC photo gallery, code entry/scanner, coupon system. All require API integration.</td>
+  </tr>
+  <tr>
+    <td>Loyalty Plus / Rewards Integration</td>
+    <td>2&ndash;3 weeks</td>
+    <td><span class="badge badge-very-high">Very High</span></td>
+    <td>SDK extraction from AEM clientlib, re-integration in EDS, barcode scanning, points management, rewards catalog. Critical path dependency.</td>
+  </tr>
+  <tr>
+    <td>Analytics &amp; MarTech</td>
+    <td>2&ndash;3 weeks</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Adobe Launch reconfiguration, Analytics event remapping, Target mbox recreation, ACDL data layer, 15+ third-party tags. Can run in parallel with block development.</td>
+  </tr>
+  <tr>
+    <td>Content Migration</td>
+    <td>1&ndash;2 weeks</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>~40&ndash;55 pages. Lounge articles (~15&ndash;20) are the bulk. Legal pages are straightforward. Dynamic content (coupons, rewards) is API-driven (no migration needed).</td>
+  </tr>
+  <tr>
+    <td>QA &amp; UAT</td>
+    <td>2&ndash;3 weeks</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Cross-browser testing, mobile responsiveness, accessibility audit, regulatory compliance verification, performance optimization (Lighthouse 100 target).</td>
+  </tr>
+</table>
+
+<h2>6.2 Block-Level Effort Estimates</h2>
+<table>
+  <tr>
+    <th>Block</th>
+    <th>Effort (Days)</th>
+    <th>Complexity</th>
+    <th>Key Challenges</th>
+  </tr>
+  <tr>
+    <td>Surgeon General's Warning</td>
+    <td>0.5</td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>Static text, regulatory fixed content</td>
+  </tr>
+  <tr>
+    <td>Promotional Banner / Ticker</td>
+    <td>1&ndash;2</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Dismissible, API-driven dynamic content</td>
+  </tr>
+  <tr>
+    <td>Global Header</td>
+    <td>3&ndash;4</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Hamburger nav, notification bell, rewards display, responsive</td>
+  </tr>
+  <tr>
+    <td>Hamburger Navigation</td>
+    <td>2&ndash;3</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Full-screen overlay, sub-menus, animations, profile display</td>
+  </tr>
+  <tr>
+    <td>Notification Center</td>
+    <td>2&ndash;3</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Slide-out panel, real-time badge count, API integration</td>
+  </tr>
+  <tr>
+    <td>Rewards Bar</td>
+    <td>1&ndash;2</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Real-time points balance, Loyalty Plus SDK integration</td>
+  </tr>
+  <tr>
+    <td>Global Footer</td>
+    <td>1&ndash;2</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Multi-tier navigation, responsive, legal disclaimers</td>
+  </tr>
+  <tr>
+    <td>Hero Banner</td>
+    <td>2&ndash;3</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Multiple visual variants, seasonal theming, animations</td>
+  </tr>
+  <tr>
+    <td>Lounge Article Carousel</td>
+    <td>2&ndash;3</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Touch/swipe support, dynamic content, engagement badges</td>
+  </tr>
+  <tr>
+    <td>Code Entry / Pack Scan</td>
+    <td>5&ndash;7</td>
+    <td><span class="badge badge-very-high">Very High</span></td>
+    <td>Camera API, barcode scanning library, API validation, points crediting</td>
+  </tr>
+  <tr>
+    <td>UGC Photo Gallery (Pleasure POV)</td>
+    <td>7&ndash;10</td>
+    <td><span class="badge badge-very-high">Very High</span></td>
+    <td>Photo upload, image processing, moderation workflow, voting gallery, contest rules</td>
+  </tr>
+  <tr>
+    <td>Interactive Poll</td>
+    <td>2&ndash;3</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Voting mechanics, results display, points award, state management</td>
+  </tr>
+  <tr>
+    <td>Comments System</td>
+    <td>3&ndash;4</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Threading, moderation, character counter, pagination, points</td>
+  </tr>
+  <tr>
+    <td>Product Carousel / Grid</td>
+    <td>1&ndash;2</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Standard carousel pattern, product card layout</td>
+  </tr>
+  <tr>
+    <td>Step-by-Step Instructional</td>
+    <td>0.5&ndash;1</td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>Static layout with numbered steps</td>
+  </tr>
+  <tr>
+    <td>FAQ Accordion</td>
+    <td>1</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Expand/collapse, category grouping</td>
+  </tr>
+  <tr>
+    <td>Contact Form</td>
+    <td>1&ndash;2</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Form validation, API submission</td>
+  </tr>
+  <tr>
+    <td>SMS Signup Form</td>
+    <td>1&ndash;2</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Phone validation, verification step, opt-in management</td>
+  </tr>
+  <tr>
+    <td>Modal Disruptor</td>
+    <td>1</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Overlay pattern, multiple content types, trigger logic</td>
+  </tr>
+  <tr>
+    <td>Activity Teaser / Points Badge</td>
+    <td>0.5</td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>Small UI component, API-driven earned/available state</td>
+  </tr>
+  <tr>
+    <td>Content Toolbar</td>
+    <td>1&ndash;2</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Like/share/comment counts, real-time updates, social sharing</td>
+  </tr>
+  <tr>
+    <td>Related Content Cards</td>
+    <td>0.5&ndash;1</td>
+    <td><span class="badge badge-low">Low</span></td>
+    <td>Standard card layout, API or editorial content</td>
+  </tr>
+</table>
+
+<h2>6.3 Risk Assessment</h2>
+<table>
+  <tr>
+    <th>Risk</th>
+    <th>Severity</th>
+    <th>Mitigation</th>
+  </tr>
+  <tr>
+    <td>Authentication / Age Gate architecture for EDS</td>
+    <td><span class="badge badge-very-high">Very High</span></td>
+    <td>Prototype auth middleware early. Consider Cloudflare Workers or Fastly VCL for server-side token validation. Client-side fallback as backup. This is the #1 critical path item.</td>
+  </tr>
+  <tr>
+    <td>Loyalty Plus SDK extraction from AEM</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Engage Loyalty Plus team early. May need SDK refactoring to remove AEM dependencies. Consider creating a standalone JavaScript library.</td>
+  </tr>
+  <tr>
+    <td>Cross-brand API dependencies</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Map all API dependencies shared with VELO/VUSE/Camel. Coordinate API versioning. Avoid breaking changes that affect other brand sites.</td>
+  </tr>
+  <tr>
+    <td>UGC feature complexity (Pleasure POV)</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Consider phased approach: launch without UGC, add in Phase 2. Or embed as a micro-frontend with dedicated deployment.</td>
+  </tr>
+  <tr>
+    <td>Imperva WAF + EDS CDN compatibility</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Test Imperva rules against EDS CDN (Fastly) responses early. May need rule adjustments to avoid false positives on EDS-served content.</td>
+  </tr>
+  <tr>
+    <td>Regulatory compliance during transition</td>
+    <td><span class="badge badge-high">High</span></td>
+    <td>Surgeon General's Warning and age gate must be present from day one. No "soft launch" without compliance. Legal review required before go-live.</td>
+  </tr>
+  <tr>
+    <td>Performance with heavy MarTech stack</td>
+    <td><span class="badge badge-medium">Medium</span></td>
+    <td>Audit all 20+ tags. Defer non-critical tags to delayed loading. Target Lighthouse 100 score. May need to reduce tag count.</td>
+  </tr>
+</table>
+
+<h2>6.4 Recommended Migration Phases</h2>
+
+<h3>Phase 1 &ndash; Foundation (Weeks 1&ndash;4)</h3>
+<ul>
+  <li>Design system extraction and EDS theme setup (brand colors, fonts, spacing)</li>
+  <li>Authentication / age gate prototype and implementation</li>
+  <li>Global header, footer, Surgeon General's Warning banner</li>
+  <li>Regulatory compliance validation</li>
+</ul>
+
+<h3>Phase 2 &ndash; Core Content (Weeks 5&ndash;9)</h3>
+<ul>
+  <li>Hero banner, product carousel, step-by-step instructional</li>
+  <li>Lounge article template and carousel</li>
+  <li>FAQ accordion, contact form, SMS signup form</li>
+  <li>Legal/unbranded page template</li>
+  <li>Content migration for static pages (~20&ndash;30 pages)</li>
+</ul>
+
+<h3>Phase 3 &ndash; Interactive Features (Weeks 10&ndash;15)</h3>
+<ul>
+  <li>Interactive poll, comments system, content toolbar</li>
+  <li>Coupons / offers system</li>
+  <li>Loyalty Plus / Rewards integration with pack code scanning</li>
+  <li>Notification center and rewards bar</li>
+  <li>Remaining content migration (~10&ndash;25 pages)</li>
+</ul>
+
+<h3>Phase 4 &ndash; Advanced Features &amp; QA (Weeks 16&ndash;20)</h3>
+<ul>
+  <li>UGC Photo Gallery (Pleasure POV) &mdash; most complex feature</li>
+  <li>Analytics &amp; MarTech stack migration (Launch, Analytics, Target, AAM)</li>
+  <li>Cross-browser and mobile testing</li>
+  <li>Accessibility audit (WCAG 2.1 AA)</li>
+  <li>Performance optimization (Lighthouse 100 target)</li>
+  <li>Regulatory compliance review and legal sign-off</li>
+  <li>UAT and go-live preparation</li>
+</ul>
+
+<div class="callout">
+  <strong>Key Recommendation:</strong> Start with the authentication/age gate (Phase 1) as it is the critical path blocker. No other content or feature can be tested without it. Engage the Loyalty Plus SDK team and API backend team early (Week 1) to plan extraction and integration strategy.
+</div>
+
+<div class="callout callout-warn">
+  <strong>Cross-Brand Synergy:</strong> If VELO or other R.J. Reynolds brands are also migrating to EDS, significant effort can be saved by creating shared EDS libraries for authentication, Loyalty Plus, analytics, and common UI components. Recommend coordinating migration timelines across brands.
+</div>
+
+
+<div class="footer-note">
+  Newport-Pleasure.com Site Analysis Report &bull; Generated March 18, 2026 &bull; Adobe Edge Delivery Services Migration Assessment &bull; Confidential
+</div>
+
+</body>
+</html>
